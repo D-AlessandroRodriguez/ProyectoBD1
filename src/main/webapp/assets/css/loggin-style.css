@@ -1,0 +1,14 @@
+body {
+	background-image: url("../img/font-login.png"); 
+}
+
+#loginBox {
+	position: absolute;
+	background-color: rgba(217, 217, 217, 1);
+	border: rgba(217, 217, 217, 1) black 3px;
+	border-radius: 25px;
+	width: 40%;
+	height: 60vh;
+	top: 20vh;
+	left: 30vw;
+}

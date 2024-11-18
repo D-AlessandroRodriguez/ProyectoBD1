@@ -4,58 +4,26 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Hospital San Jesus</title>
+		<title>Hospital San Jesús</title>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<style>
-			body {
-				background-image: url("assets/img/font-login.png"); 
-			}
-			
-			#form{
-				
-			}
-			
-			#loginBox {
-				position: absolute;
-				background-color: rgba(217, 217, 217, 1);
-				border: rgba(217, 217, 217, 1) black 3px;
-				border-radius: 25px;
-				width: 40%;
-				height: 60vh;
-				top: 20vh;
-				left: 30vw;
-			}
-			
-			.custom-input {
-			 	position: relative;
-			 	left: 6vw;
-			 	width: 400px;
-			 	border-radius: 40px;
-			 }
-			 
-		</style>
+		<link rel="stylesheet" href="assets/css/loggin-style.css">
 	</head>
 	<body>
-				<div id="loginBox" class="shadow-lg">
-					<br>
-					<img src="assets/img/logo-hospital.png" hspace="20px" height="70px" alt="La imagen no se cargo correctamente" style="position:absolute"></img>
-					<h3 id="title1" style="color: rgba(34, 25, 115, 1); text-align: center">Hospita San Jesus</h3>
-					<h4 class="txt" style="text-align: center">Inicio de sesión</h4>
-					<br>
-					<form id="form" class="row g-3"> 
-					  <div class="mb-3">
-					    <input type="email" id="emailInput" class="shadow custom-input form-control" id="exampleFormControlInput1" placeholder="Correo">
-					  </div>
-					  <div class="mb-3">
-					    <input type="password" id="passwordInput" class="shadow custom-input form-control" id="exampleFormControlInput2" placeholder="Contra">
-					  </div>
-					</form>
-
-					 <button type="submit" id="loginButton" class="shadow btn btn-primary mb-3" style="margin-bottom: 20px; width: 140px; position: relative; left: 15vw;border-radius: 40px">Ingresar</button>
-                	<br><br><br>
-                	<p class="author" style="text-align: center; font-size: 12px">&nbsp;
-                    	© Todos los derechos reservados - BasesDeDatos1 <br></p>
-				</div>
+		<div id="loginBox" class="shadow-lg">
+			<br>
+			<img src="assets/img/logo-hospital.png" hspace="20px" height="70px" alt="La imagen no se cargó correctamente" style="position:absolute">
+			<h3 id="title1" style="color: rgba(34, 25, 115, 1); text-align: center">Hospital San Jesús</h3>
+			<h4 class="txt text-center">Inicio de sesión</h4>
+			<br>
+			<form id="form" class="d-grid mx-auto col-9 mt-3">
+				<input type="email" id="emailInput" class="shadow custom-input form-control rounded-5" id="exampleFormControlInput1" placeholder="Correo electrónico">
+				<input type="password" id="passwordInput" class="shadow custom-input form-control rounded-5 mt-4" id="exampleFormControlInput2" placeholder="Contraseña">
+			</form>
+			<div class="d-grid col-3 mx-auto mt-5">
+			  <button type="submit" class="btn btn-primary shadow rounded-5" type="button">Ingresar</button>
+			</div>
+	        <p class="author text-center mt-4" style="font-size: 12px;">© Todos los derechos reservados - BasesDeDatos1</p>
+		</div>
 		<script src="assets/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
