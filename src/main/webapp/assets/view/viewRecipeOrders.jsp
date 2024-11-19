@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>Ver Recetas: Farmacia</title>
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/viewRecipeOrdersStyle.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -50,12 +51,12 @@
 			</div>
 		</nav>
 		<!-- Página principal -->
-		<div class="container" style="height: 90vh;">
-			<div class="row h-100">
-				<div class="col px-5 mt-3 mb-3">
-					<h3 class="mt-3">Órdenes de Recetas</h3>
+		<div class="container" style="height: 80vh;">
+			<div class="row h-100 overflow-auto">
+				<h3 class="pt-3">Órdenes de Recetas</h3>
+				<div class="col px-5 mt-1 mb-2">
 					<table id="tablaRecetas" class="table">
-						<thead>
+						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Paciente</th>
@@ -65,61 +66,67 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">
-									<span id="numeroReceta1Span">1</span>
-								</th>
-						        <td>
-						        	<span id="primerNombrePacienteReceta1Span">Jesús</span> <span id="primerApellidoPacienteReceta1Span">Zepeda</span>
-						        </td>
-						        <td>
-						        	<span id="primerNombreMedicoReceta1Span">Cesar</span> <span id="primerApellidoMedicoReceta1Span">Cruz</span>
-						        </td>
-						        <td>
-						        	<span id="fechaReceta1Span">2024-11-19</span>
-						        </td>
-						        <td>
-						        	<button type="button" class="btn btn-success w-75" id="verReceta1Button">Ver</button>
-						        </td>
-						    </tr>
-						    <tr>
-						        <th scope="row">
-									<span id="numeroReceta2Span">2</span>
-								</th>
-						        <td>
-						        	<span id="primerNombrePacienteReceta2Span">Jesús</span> <span id="primerApellidoPacienteReceta2Span">Zepeda</span>
-						        </td>
-						        <td>
-						        	<span id="primerNombreMedicoReceta2Span">Cesar</span> <span id="primerApellidoMedicoReceta2Span">Cruz</span>
-						        </td>
-						        <td>
-						        	<span id="fechaReceta2Span">2024-11-19</span>
-						        </td>
-						        <td>
-						        	<button type="button" class="btn btn-success w-75" id="verReceta2Button">Ver</button>
-						        </td>
-						    </tr>
-						    <tr>
-						        <th scope="row">
-									<span id="numeroReceta3Span">3</span>
-								</th>
-						        <td>
-						        	<span id="primerNombrePacienteReceta3Span">Jesús</span> <span id="primerApellidoPacienteReceta3Span">Zepeda</span>
-						        </td>
-						        <td>
-						        	<span id="primerNombreMedicoReceta3Span">Cesar</span> <span id="primerApellidoMedicoReceta3Span">Cruz</span>
-						        </td>
-						        <td>
-						        	<span id="fechaReceta3Span">2024-11-19</span>
-						        </td>
-						        <td>
-						        	<button type="button" class="btn btn-success w-75" id="verReceta3Button">Ver</button>
-						        </td>
-						    </tr>
-						  </tbody>
+<!-- 							<tr> -->
+<!-- 								<th scope="row"> -->
+<!-- 									<span id="numeroReceta1Span">1</span> -->
+<!-- 								</th> -->
+<!-- 						        <td> -->
+<!-- 						        	<span id="primerNombrePacienteReceta1Span">Jesús</span> <span id="primerApellidoPacienteReceta1Span">Zepeda</span> -->
+<!-- 						        </td> -->
+<!-- 						        <td> -->
+<!-- 						        	<span id="primerNombreMedicoReceta1Span">Cesar</span> <span id="primerApellidoMedicoReceta1Span">Cruz</span> -->
+<!-- 						        </td> -->
+<!-- 						        <td> -->
+<!-- 						        	<span id="fechaReceta1Span">2024-11-19</span> -->
+<!-- 						        </td> -->
+<!-- 						        <td> -->
+<!-- 						        	<button type="button" class="btn btn-success w-75" id="verReceta1Button">Ver</button> -->
+<!-- 						        </td> -->
+<!-- 						    </tr> -->
+							<%
+							StringBuilder result = new StringBuilder();
+							for (int i = 1; i <= 10; i++) {
+								result.append("<tr>");
+								result.append("<th scope=\"row\">");
+								result.append(String.format("<span id=\"numeroReceta%sSpan\">%s</span>",i,i));
+								result.append("</th>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"primerNombrePacienteReceta%sSpan\">Jesús</span> <span id=\"primerApellidoPacienteReceta%sSpan\">Zepeda</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"primerNombreMedicoReceta%sSpan\">Cesar</span> <span id=\"primerApellidoMedicoReceta%sSpan\">Cruz</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"fechaReceta%sSpan\">2024-11-19</span>",i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<button type=\"button\" class=\"btn btn-success w-75\" id=\"verReceta%sButton\">Ver</button>",i));
+								result.append("</td>");
+								result.append("</tr>");
+							}
+							out.print(result.toString());
+							%>
+						</tbody>
 					</table>
 				</div>
 			</div>
+		</div>
+		<div class="container" style="height: 10vh;">
+			<nav class="p-2">
+				<ul class="pagination justify-content-center mb-0">
+			    	<li class="page-item disabled">
+			        	<a class="page-link">Anterior</a>
+			    	</li>
+			    	<li class="page-item active" aria-current="page">
+			      		<a class="page-link" href="#">1</a>
+			    	</li>
+			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
+			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
+			    	<li class="page-item">
+			      		<a class="page-link" href="#">Siguiente</a>
+			    	</li>
+			  	</ul>
+			</nav>
 		</div>
 		<script src="../js/bootstrap.bundle.min.js"></script>	
 	</body>
