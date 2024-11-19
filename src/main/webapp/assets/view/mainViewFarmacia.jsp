@@ -22,26 +22,30 @@
 				<div class="collapse navbar-collapse mx-2" id="navbarNavDropdown">
 			      <ul class="navbar-nav d-flex gap-2">
 			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            Ver
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">Órdenes de recetas</a></li>
-			            <li><a class="dropdown-item" href="#">Productos</a></li>
+			            <li><a class="dropdown-item" id="verOrdenesRecetasMenu" href="viewRecipeOrders.jsp">Órdenes de recetas</a></li>
+			            <li><a class="dropdown-item" id="verProductosMenu" href="#">Productos</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            Registrar
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" href="#">Productos</a></li>
-			            <li><a class="dropdown-item" href="#">Lotes de Productos</a></li>
+			            <li><a class="dropdown-item" id="registrarProductosMenu" href="#">Productos</a></li>
+			            <li><a class="dropdown-item" id="registrarLotesMenu" href="#">Lotes de Productos</a></li>
 			          </ul>
 			        </li>
 			      </ul>
 			    </div>
-			    <div class="text-white">Farmacia</div>
+			    <div>
+			    	<ol class="breadcrumb mb-0">
+				    	<li class="breadcrumb-item active" aria-current="page">Farmacia</li>
+				    </ol>
+			    </div>
 			</div>
 		</nav>
 		<!-- Página principal -->
