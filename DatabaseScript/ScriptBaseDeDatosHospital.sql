@@ -383,9 +383,10 @@ Cantidad INTEGER NOT NULL,
 DosificacionId INTEGER NOT NULL REFERENCES Dosificaciones(Id),
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
 DuracionDias INTEGER NOT NULL,
-Entregado BIT NOT NULL,
+CantEntregados INTEGER NOT NULL,
 PRIMARY KEY (RecetaId,ProductoId),
-CONSTRAINT FK_Dosificacion_UnidadMedida_2 FOREIGN KEY (DosificacionId,UnidadMedidaId) REFERENCES Dosificaciones(Id,UnidadMedidaId));
+CONSTRAINT FK_Dosificacion_UnidadMedida_2 FOREIGN KEY (DosificacionId,UnidadMedidaId) REFERENCES Dosificaciones(Id,UnidadMedidaId),
+CHECK (CantEntregados < Cantidad OR CantEntregados = Cantidad));
 GO
 
 CREATE TABLE LotesProductos(
@@ -417,9 +418,11 @@ GO
 
 CREATE TABLE RangosNumFactura(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
+CAI VARCHAR(32) NOT NULL UNIQUE,
 RangoInicio VARCHAR(8) NOT NULL UNIQUE,
 RangoFin VARCHAR(8) NOT NULL UNIQUE,
-Activo BIT NOT NULL);
+FechaLimite DATE NOT NULL,
+CHECK (DATEDIFF(MONTH,FechaLimite,GETDATE()) > 24));
 GO
 
 CREATE TABLE Facturas(
@@ -430,7 +433,6 @@ PacienteId INTEGER NOT NULL REFERENCES Pacientes(Id),
 EmpleadoId INTEGER NOT NULL REFERENCES Empleados(Id),
 FechaEmision DATE NOT NULL,
 HoraEmision TIME(0) NOT NULL,
-FechaLimite DATE NOT NULL,
 Subtotal DECIMAL(13,2) NOT NULL,
 ISV DECIMAL(13,2) NOT NULL,
 TOTAL DECIMAL(13,2) NOT NULL,
@@ -447,6 +449,7 @@ GO
 CREATE TABLE FacturasFormasDePago(
 FacturaId INTEGER NOT NULL REFERENCES Facturas(Id),
 FormaDePagoId INTEGER NOT NULL REFERENCES FormasDePago(Id),
+Importe DECIMAL(13,2) NOT NULL,
 PRIMARY KEY (FacturaId,FormaDePagoId));
 GO
 
