@@ -1,4 +1,21 @@
+
+#contenedorPrincipal {
+	height: 80vh;
+}
+
+#tituloRowContainer {
+	height: 10%;
+}
+
+#tablaRowContainer {
+	height: 90%;
+}
+
 #encabezadosDeTabla {
 	position: sticky;
 	top: 0;
+}
+
+#pieContenedor {
+	height: 10vh;
 }

@@ -51,11 +51,13 @@
 			</div>
 		</nav>
 		<!-- Página principal -->
-		<div class="container" style="height: 80vh;">
-			<div class="row h-100 overflow-auto">
+		<div id="contenedorPrincipal" class="container">
+			<div id="tituloRowContainer" class="row">
 				<h3 class="pt-3">Órdenes de Recetas</h3>
+			</div>
+			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
-					<table id="tablaRecetas" class="table">
+					<table class="table table-hover text-center">
 						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">#</th>
@@ -85,7 +87,7 @@
 <!-- 						    </tr> -->
 							<%
 							StringBuilder result = new StringBuilder();
-							for (int i = 1; i <= 10; i++) {
+							for (int i = 1; i <= 15; i++) {
 								result.append("<tr>");
 								result.append("<th scope=\"row\">");
 								result.append(String.format("<span id=\"numeroReceta%sSpan\">%s</span>",i,i));
@@ -100,7 +102,7 @@
 								result.append(String.format("<span id=\"fechaReceta%sSpan\">2024-11-19</span>",i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<button type=\"button\" class=\"btn btn-success w-75\" id=\"verReceta%sButton\">Ver</button>",i));
+								result.append(String.format("<p class=\"mb-0\"><a class=\"link-opacity-50-hover\" href=\"viewIndividualRecipeOrder.jsp?ord=%s\">Ver</a></p>",i));
 								result.append("</td>");
 								result.append("</tr>");
 							}
@@ -111,7 +113,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container" style="height: 10vh;">
+		<div id="pieContenedor" class="container">
 			<nav class="p-2">
 				<ul class="pagination justify-content-center mb-0">
 			    	<li class="page-item disabled">
