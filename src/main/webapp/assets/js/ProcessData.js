@@ -3,29 +3,34 @@ class ProcessData{
 	
 	
 	
-	send(inputEmail,inputPassword){
+	
+	send(inputEmail,inputPassword,modalError){
 		
-		let email = Validator.clear(inputEmail.value);
-		let password = Validator.clear(inputPassword.value);
-		
-		
-		console.log(email);
-		console.log(password);
-		
-					
-		if(Validator.isNull(email) || Validator.isNull(password) ){
+		let modalE = new ErrorModal(modalError);
+				
+		if(!Validator.isNull(inputEmail.value) && !Validator.isNull(inputPassword.value) ){
 			
+			let email = Validator.clear(inputEmail.value);
+			let password = Validator.clear(inputPassword.value);
 
-				console.log(email);
-				console.log(password);
-			if(Validator.isEmail(email)){ 
-			ActionLogin.send(email,password);
+				
+				
+			 if(Validator.isEmail(email)){
+				 
+			
+				ActionLogin.send(email,password);
+				
+			}else{
+				
+				modalE.show("Correo electronico no valido");
+				
 			}
 			
 			
-		}else{
 			
-			console.log("llene los campos" );
+		} else{
+			
+			modalE.show("Ingrese los datos correctos");
 			
 		}
 		

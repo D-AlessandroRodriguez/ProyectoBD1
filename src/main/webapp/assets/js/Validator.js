@@ -2,10 +2,8 @@ class Validator{
 	
 	static isNull(value){
 
-	if( `${value}`.match(/^\s*$/)){
-		return true;
-	}
-	return false;
+	return `${value}`.trim().length === 0  || value === null;
+	
 
 	}
 	
