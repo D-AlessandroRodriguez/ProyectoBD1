@@ -17,7 +17,7 @@ class ActionLogin{
 		
 		if(xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <300)  ){
 			
-		
+		 console.log("respuesta");
 		 }
 	       
 	    
@@ -46,7 +46,7 @@ class ActionLogin{
 		 */
 		
 			let xhr = new XMLHttpRequest();
-			xhr.open("POST","/users/login");
+			xhr.open("POST","users/login");
 			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			xhr.addEventListener("readystatechange",ActionLogin.processResponse.bind(xhr));
 			xhr.send(params);

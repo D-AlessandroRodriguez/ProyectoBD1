@@ -43,7 +43,7 @@
 		<script src="assets/js/bootstrap.bundle.min.js"></script>
 		
 		<script src="assets/js/Validator.js"></script>
-		<script src="assets/js/ErrorModal.js"></script>
+		<script src="assets/js/ErrorToast.js"></script>
 		<script src="assets/js/bootstrap.bundle.min.js"></script>
 		
 		<script src="assets/js/ActionLogin.js"></script>

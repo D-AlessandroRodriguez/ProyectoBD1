@@ -6,7 +6,7 @@ class ProcessData{
 	
 	send(inputEmail,inputPassword,modalError){
 		
-		let modalE = new ErrorModal(modalError);
+		let modalE = new ErrorToast(modalError);
 				
 		if(!Validator.isNull(inputEmail.value) && !Validator.isNull(inputPassword.value) ){
 			
