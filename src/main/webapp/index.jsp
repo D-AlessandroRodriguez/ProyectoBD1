@@ -25,5 +25,7 @@
 	        <p class="author text-center mt-4" style="font-size: 12px;">© Todos los derechos reservados - BasesDeDatos1</p>
 		</div>
 		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/js/Action.js"></script>
+		<script src="assets/js/main.js"></script>
 	</body>
 </html>
