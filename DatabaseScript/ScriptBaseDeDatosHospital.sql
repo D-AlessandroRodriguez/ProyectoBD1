@@ -196,14 +196,6 @@ Codigo VARCHAR(5) NOT NULL UNIQUE,
 Activo BIT NOT NULL);
 GO
 
-CREATE TABLE Dosificaciones(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
-Cantidad INTEGER NOT NULL,
-FrecuenciaHoras INTEGER NOT NULL,
-UNIQUE (Id,UnidadMedidaId));
-GO
-
 CREATE TABLE ExpedientesPatologiasBaseCronicas(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
 ExpedienteId INTEGER NOT NULL REFERENCES Expedientes(Id),
@@ -310,6 +302,7 @@ MedicoId INTEGER NOT NULL REFERENCES Medicos(Id),
 ExpedienteId INTEGER NOT NULL REFERENCES Expedientes(Id),
 ConsultaId INTEGER NOT NULL REFERENCES ConsultasMedicas(Id),
 DiagnosticoId INTEGER NOT NULL REFERENCES Diagnosticos(Id),
+Fecha DATE NOT NULL,
 Atendida BIT NOT NULL,
 UNIQUE(MedicoId,ExpedienteId,ConsultaId,DiagnosticoId),
 CONSTRAINT FK_CONSULTA_MEDICO_3 FOREIGN KEY (ConsultaId,MedicoId) REFERENCES ConsultasMedicas(Id,MedicoId),
@@ -370,23 +363,23 @@ GO
 CREATE TABLE ExpPatologíasBaseMedicamentos(
 ExpPatologiaBaseId INTEGER REFERENCES ExpedientesPatologiasBaseCronicas(Id),
 ProductoId INTEGER REFERENCES Productos(Id),
-DosificacionId INTEGER NOT NULL REFERENCES Dosificaciones(Id),
+CantDosis DECIMAL(5,2) NOT NULL,
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
+FrecuenciaHoras INTEGER NOT NULL,
 CONSTRAINT FK_Producto_UnidadDeMedida FOREIGN KEY (ProductoId,UnidadMedidaId) REFERENCES Productos(Id,UnidadMedidaId),
-CONSTRAINT FK_Dosificacion_UnidadMedida FOREIGN KEY (DosificacionId,UnidadMedidaId) REFERENCES Dosificaciones(Id,UnidadMedidaId),
 PRIMARY KEY (ExpPatologiaBaseId, ProductoId));
 
 CREATE TABLE OrdenRecetasProductos(
 RecetaId INTEGER NOT NULL REFERENCES OrdenRecetas(Id),
 ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
-Cantidad INTEGER NOT NULL,
-DosificacionId INTEGER NOT NULL REFERENCES Dosificaciones(Id),
+CantProductos INTEGER NOT NULL,
+CantDosis DECIMAL(5,2) NOT NULL,
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
+FrecuenciaHoras INTEGER NOT NULL,
 DuracionDias INTEGER NOT NULL,
 CantEntregados INTEGER NOT NULL,
 PRIMARY KEY (RecetaId,ProductoId),
-CONSTRAINT FK_Dosificacion_UnidadMedida_2 FOREIGN KEY (DosificacionId,UnidadMedidaId) REFERENCES Dosificaciones(Id,UnidadMedidaId),
-CHECK (CantEntregados < Cantidad OR CantEntregados = Cantidad));
+CHECK (CantEntregados < CantProductos OR CantEntregados = CantProductos));
 GO
 
 CREATE TABLE LotesProductos(
