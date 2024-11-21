@@ -18,6 +18,7 @@ class ProcessData{
 			
 				let params = [inputEmail,inputPassword];	
 				 let data = this.getUrltaData(params);
+				 
 				ActionLogin.send(data);
 							
 			}else{
@@ -45,7 +46,7 @@ class ProcessData{
 				let data =[];
 				
 				for(let item of inputs){
-					data.push(`${item.name}=${item.value}`);
+					data.push(`${item.name}=${Validator.clear(item.value)}`);
 				}
 				return data.join("&");
 			}
