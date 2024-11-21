@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Receta #1</title>
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/viewIndividualRecipeOrderStyle.css">
 	</head>
 	<body>
@@ -28,7 +28,7 @@
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item active" id="verOrdenesRecetasMenu" href="#">Órdenes de recetas</a></li>
-			            <li><a class="dropdown-item" id="verProductosMenu" href="#">Productos</a></li>
+			            <li><a class="dropdown-item" id="verProductosMenu" href="viewProductos.jsp">Productos</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -80,6 +80,7 @@
 							</tr>
 						</thead>
 						<tbody>
+							<!-- Código Java para rellenar de contenido -->
 							<%
 							StringBuilder result = new StringBuilder();
 							for (int i = 1; i <= 10; i++) {
@@ -114,7 +115,6 @@
 					  Ver
 					</button>
 				</div>
-				
 			</div>
 		</div>
 		
@@ -215,7 +215,6 @@
 		    	</div>
 		  	</div>
 		</div>
-		
-		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

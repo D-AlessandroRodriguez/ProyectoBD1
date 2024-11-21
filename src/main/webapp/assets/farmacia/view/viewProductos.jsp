@@ -4,9 +4,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Ver Recetas: Farmacia</title>
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../css/viewRecipeOrdersStyle.css">
+		<title>Productos</title>
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/viewProductosStyle.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -27,8 +27,8 @@
 			            Ver
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item active" id="verOrdenesRecetasMenu" href="#">Órdenes de recetas</a></li>
-			            <li><a class="dropdown-item" id="verProductosMenu" href="#">Productos</a></li>
+			            <li><a class="dropdown-item" id="verOrdenesRecetasMenu" href="viewRecipeOrders.jsp">Órdenes de recetas</a></li>
+			            <li><a class="dropdown-item active" id="verProductosMenu" href="#">Productos</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -45,15 +45,16 @@
 			    <div>
 			    	<ol class="breadcrumb mb-0">
 			    		<li class="breadcrumb-item"><a class="link-light" href="mainViewFarmacia.jsp">Farmacia</a></li>
-			    		<li class="breadcrumb-item active" aria-current="page">Órdenes de Recetas</li>
+			    		<li class="breadcrumb-item active" aria-current="page">Productos</li>
 			    	</ol>
 			    </div>
 			</div>
 		</nav>
+		
 		<!-- Página principal -->
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Órdenes de Recetas</h3>
+				<h3 class="pt-3">Inventario de Productos</h3>
 			</div>
 			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
@@ -61,48 +62,39 @@
 						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Paciente</th>
-								<th scope="col">Médico</th>
-								<th scope="col">Fecha</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Marca</th>
+								<th scope="col">Tipo</th>
+								<th scope="col">Contenido</th>
+								<th scope="col">Stock</th>
 								<th scope="col">Acción</th>
 							</tr>
 						</thead>
 						<tbody>
-<!-- 							<tr> -->
-<!-- 								<th scope="row"> -->
-<!-- 									<span id="numeroReceta1Span">1</span> -->
-<!-- 								</th> -->
-<!-- 						        <td> -->
-<!-- 						        	<span id="primerNombrePacienteReceta1Span">Jesús</span> <span id="primerApellidoPacienteReceta1Span">Zepeda</span> -->
-<!-- 						        </td> -->
-<!-- 						        <td> -->
-<!-- 						        	<span id="primerNombreMedicoReceta1Span">Cesar</span> <span id="primerApellidoMedicoReceta1Span">Cruz</span> -->
-<!-- 						        </td> -->
-<!-- 						        <td> -->
-<!-- 						        	<span id="fechaReceta1Span">2024-11-19</span> -->
-<!-- 						        </td> -->
-<!-- 						        <td> -->
-<!-- 						        	<button type="button" class="btn btn-success w-75" id="verReceta1Button">Ver</button> -->
-<!-- 						        </td> -->
-<!-- 						    </tr> -->
 							<%
 							StringBuilder result = new StringBuilder();
 							for (int i = 1; i <= 15; i++) {
 								result.append("<tr>");
 								result.append("<th scope=\"row\">");
-								result.append(String.format("<span id=\"numeroReceta%sSpan\">%s</span>",i,i));
+								result.append(String.format("<span id=\"numeroProducto%sSpan\">%s</span>",i,i));
 								result.append("</th>");
 								result.append("<td>");
-								result.append(String.format("<span id=\"primerNombrePacienteReceta%sSpan\">Jesús</span> <span id=\"primerApellidoPacienteReceta%sSpan\">Zepeda</span>",i,i));
+								result.append(String.format("<span id=\"nombreProducto%sSpan\">Nombre producto</span>",i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<span id=\"primerNombreMedicoReceta%sSpan\">Cesar</span> <span id=\"primerApellidoMedicoReceta%sSpan\">Cruz</span>",i,i));
+								result.append(String.format("<span id=\"marcaProducto%sSpan\">Nombre marca</span>",i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<span id=\"fechaReceta%sSpan\">2024-11-19</span>",i));
+								result.append(String.format("<span id=\"tipoProducto%sSpan\">Tipo producto</span>",i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<p class=\"mb-0\"><a class=\"link-opacity-50-hover\" href=\"viewIndividualRecipeOrder.jsp?ord=%s\">Ver</a></p>",i));
+								result.append(String.format("<span id=\"cantContenido%sSpan\">120</span> <span id=\"unidadMedida%sSpan\">ml</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"stockProd%sSpan\">345</span>",i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<a class=\"link-opacity-50-hover\" href=\"viewLotesProducto.jsp?prod=%s\">Ver lotes</a>",i));
 								result.append("</td>");
 								result.append("</tr>");
 							}
@@ -130,6 +122,6 @@
 			  	</ul>
 			</nav>
 		</div>
-		<script src="../js/bootstrap.bundle.min.js"></script>	
+		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

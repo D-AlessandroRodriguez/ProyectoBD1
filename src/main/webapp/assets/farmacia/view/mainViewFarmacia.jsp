@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Página principal: Farmacia</title>
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -27,7 +27,7 @@
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="verOrdenesRecetasMenu" href="viewRecipeOrders.jsp">Órdenes de recetas</a></li>
-			            <li><a class="dropdown-item" id="verProductosMenu" href="#">Productos</a></li>
+			            <li><a class="dropdown-item" id="verProductosMenu" href="viewProductos.jsp">Productos</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -57,6 +57,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="../js/bootstrap.bundle.min.js"></script>
+		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
