@@ -13,7 +13,7 @@ class Action {
 
 
 
-// Activar y desactivar el sidebar
+// Activar y desactivar el menú lateral
 let menuButton = document.querySelector("#menuButton");
 let menu = document.querySelector("#menuLateral");
 let action = new Action(menu);
