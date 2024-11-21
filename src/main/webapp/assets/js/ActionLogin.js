@@ -38,19 +38,24 @@ class ActionLogin{
 			console.log(emailInput.value,passwordInput.value);
 			
 			let params = [email,password];
-		/*	
-		ActionRegister. clearInputAnTextarea(inputs);
-		let params = ActionRegister.getUrltaData(inputs);
-		let value = A[]ionRegister.getDataValue(inputs);
-		 let correctParam = `${this.procesParam.isCorrectParam(inputs)}`.split(",");
-		 */
+		
 		
 			let xhr = new XMLHttpRequest();
 			xhr.open("POST","users/login");
 			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			xhr.addEventListener("readystatechange",ActionLogin.processResponse.bind(xhr));
-			xhr.send(params);
+			xhr.send(this.getUrltaData(params));
 			
+			}
+			
+			static getUrltaData(inputs){
+				
+				let data =[];
+				
+				for(let item of inputs){
+					data.push(`${item.name}=${item.value}`);
+				}
+				return data.join("&");
 			}
 	
 	

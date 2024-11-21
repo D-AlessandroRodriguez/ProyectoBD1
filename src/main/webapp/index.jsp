@@ -17,8 +17,8 @@
 			<h4 class="txt text-center">Inicio de sesión</h4>
 			<br>
 			<form id="form" class="d-grid mx-auto col-9 mt-3">
-			<input type="email" id="emailInput" class="shadow custom-input form-control rounded-5" id="exampleFormControlInput1" placeholder="Correo electrónico" required>
-				<input type="password" id="passwordInput" class="shadow custom-input form-control rounded-5 mt-4" id="exampleFormControlInput2" placeholder="Contraseña">
+			<input type="email" id="emailInput" name="email" class="shadow custom-input form-control rounded-5" id="exampleFormControlInput1" placeholder="Correo electrónico" required>
+				<input type="password" name="password" id="passwordInput" class="shadow custom-input form-control rounded-5 mt-4" id="exampleFormControlInput2" placeholder="Contraseña">
 			</form>
 			<div class="d-grid col-3 mx-auto mt-5">
 			  <button type="submit" id="buttonSend" class="btn btn-primary shadow rounded-5" >Ingresar</button>

@@ -9,11 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <dependencies>
-    <dependency>
-        <groupId>com.microsoft.sqlserver</groupId>
-        <artifactId>mssql-jdbc</artifactId>
-        <version>11.2.0.0</version> <!-- Usa la versión más reciente -->
-    </dependency>
-</dependencies>
-</web-app>
+  </web-app>
