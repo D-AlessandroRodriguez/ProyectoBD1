@@ -35,7 +35,7 @@ ValidLogin repo = new ValidLogin();
 
 		repo.getUser(request);
 
-     response.getWriter().append("");
+     response.getWriter().append("{\"totalVideo\":\"uno\"}");
 	}
 
 	/**

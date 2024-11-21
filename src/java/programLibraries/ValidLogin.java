@@ -13,7 +13,7 @@ public class ValidLogin {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		System.out.println(email);
+		System.out.println(email + password);
 		if( !email.isEmpty() && !password.isEmpty()) {
 			
 			email = Validator.clear(email );

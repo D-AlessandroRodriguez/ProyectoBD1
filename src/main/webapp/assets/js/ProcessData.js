@@ -8,18 +8,18 @@ class ProcessData{
 		
 		let modalE = new ErrorToast(modalError);
 				
+		
+		
 		if(!Validator.isNull(inputEmail.value) && !Validator.isNull(inputPassword.value) ){
 			
-			let email = Validator.clear(inputEmail.value);
-			let password = Validator.clear(inputPassword.value);
-
-				
-				
-			 if(Validator.isEmail(email)){
-				 
 			
-				ActionLogin.send(email,password);
 				
+			 if(Validator.isEmail(inputEmail.value)){
+			
+				let params = [inputEmail,inputPassword];	
+				 let data = this.getUrltaData(params);
+				ActionLogin.send(data);
+							
 			}else{
 				
 				modalE.show("Correo electronico no valido");
@@ -30,7 +30,7 @@ class ProcessData{
 			
 		} else{
 			
-			modalE.show("Ingrese los datos correctos");
+			modalE.show("LLene todos los campos");
 			
 		}
 		
@@ -39,6 +39,18 @@ class ProcessData{
 		
 	}
 	
+	
+   getUrltaData(inputs){
+				
+				let data =[];
+				
+				for(let item of inputs){
+					data.push(`${item.name}=${item.value}`);
+				}
+				return data.join("&");
+			}
+
+
 	
 	
 } 

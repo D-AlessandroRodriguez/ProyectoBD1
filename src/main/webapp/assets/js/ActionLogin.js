@@ -32,32 +32,23 @@ class ActionLogin{
 	   * @since 2024/07/4
 	   */
 		
-		static send(email,password){
+		static send(params){
 			
 			
-			console.log(emailInput.value,passwordInput.value);
 			
-			let params = [email,password];
+			
 		
+			console.log(params);
+			
 		
 			let xhr = new XMLHttpRequest();
 			xhr.open("POST","users/login");
 			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 			xhr.addEventListener("readystatechange",ActionLogin.processResponse.bind(xhr));
-			xhr.send(this.getUrltaData(params));
+			xhr.send(params);
 			
 			}
 			
-			static getUrltaData(inputs){
-				
-				let data =[];
-				
-				for(let item of inputs){
-					data.push(`${item.name}=${item.value}`);
-				}
-				return data.join("&");
-			}
-	
-	
+			
 	
 } 

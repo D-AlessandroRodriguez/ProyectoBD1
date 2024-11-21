@@ -12,7 +12,7 @@ public class ValidLogin {
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		System.out.println(email);
+		System.out.println(email + password);
 		
 		
 		if( !email.isEmpty() && !password.isEmpty()) {
@@ -20,7 +20,7 @@ public class ValidLogin {
 			email = Validator.clear(email );
 			password = Validator.clear(password);
 			
-			
+			System.out.println(password);
 			if(Validator.isEmail(email)) {
 				
 			repository.getUser(email);

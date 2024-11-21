@@ -14,13 +14,16 @@ class Validator{
 	       return false;
 	   }
 
-	   static clear(text=""){
+	   static clear(text){
 	   	
 	   	text = `${text}`;
-	   	text = text.replace(/(<[!\/]?\w*(\s\w+(=["`][^"`]*["`])?)*\s?>|([`";]+))/g,"");
+	   	text = text.replace(/(<[!\/]?\w*(\s\w+(=["`][^"`]*["`])?)*\s?>|([`";]+))/,"");
+	   	text = text.replace(/\b(select|drop|insert|delete|update|where|table|from)\b|['";\\-]/gi,"");
 	   	return text;
 
 	   }
+	   
+	  
 	
 	
 } 
