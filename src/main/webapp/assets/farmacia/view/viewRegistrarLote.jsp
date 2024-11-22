@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Página principal: Farmacia</title>
+		<title>Registrar lote de producto</title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
@@ -36,7 +36,7 @@
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="registrarProductosMenu" href="viewRegistrarProducto.jsp">Productos</a></li>
-			            <li><a class="dropdown-item" id="registrarLotesMenu" href="viewRegistrarLote.jsp">Lotes de Productos</a></li>
+			            <li><a class="dropdown-item active" id="registrarLotesMenu" href="#">Lotes de Productos</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -52,18 +52,59 @@
 			    </div>
 			    <div>
 			    	<ol class="breadcrumb mb-0">
-				    	<li class="breadcrumb-item active" aria-current="page">Farmacia</li>
-				    </ol>
+			    		<li class="breadcrumb-item"><a class="link-light" href="mainViewFarmacia.jsp">Farmacia</a></li>
+			    		<li class="breadcrumb-item active" aria-current="page">Registro de Lote</li>
+			    	</ol>
 			    </div>
 			</div>
 		</nav>
 		<!-- Página principal -->
-		<div class="container" style="height: 90vh;">
-			<div class="row h-100 align-items-center">
-				<div class="col text-center">
-					<h1>Bienvenido, <span id="employeeNameSpan">Jesús Zepeda</span>!</h1>
-		    		<p>Visite nuestro menú para ver más opciones.</p>
-				</div>
+		<div id="contenedorPrincipal" class="container">
+			<div id="tituloRowContainer" class="row">
+				<h3 class="pt-3">Registro de Lote</h3>		
+			</div>
+			<div id="datosGeneralesRowContainer" class="row">
+				<form class="py-3 px-5 border border-light-subtle rounded-3">
+					<fieldset>
+						<legend>Información del Lote</legend>
+						<div class="row mb-3">
+							<div class="col col-6">
+								<label for="nombreProductoInput" class="form-label">Producto</label>
+								<input class="form-control" list="listaDeProductos" id="nombreProductoInput" placeholder="Escriba el nombre del producto para buscar..." required>
+								<datalist id="listaDeProductos">
+									<!-- Filtración de productos se traen desde la base de datos -->
+								    <option value="NombreProducto1 Marca2 Tipo2">
+								    <option value="NombreProducto2 Marca5 Tipo1">
+								    <option value="NombreProducto3 Marca7 Tipo4">
+								    <option value="NombreProducto4 Marca2 Tipo6">
+								    <option value="NombreProducto5 Marca1 Tipo8">
+									<option value="NombreProducto6 Marca5 Tipo9">
+								</datalist>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col col-6">
+								<label for="fechaElabInput" class="form-label">Fecha de Elaboración</label>
+								<input type="date" class="form-control" id="fechaElabInput" required>
+							</div>
+							<div class="col col-6">
+								<label for="fechaVencInput" class="form-label">Fecha de Vencimiento</label>
+								<input type="date" class="form-control" id="fechaElabInput" required>
+							</div>
+						</div>
+						<div class="row mb-3">
+							<div class="col-4">
+								<label for="cantidadProducto" class="form-label">Cantidad a ingresar</label>
+								<input type="number" min="0" class="form-control" id="cantidadProducto" placeholder="Cantidad" required>
+							</div>
+						</div>
+					</fieldset>
+					<div class="row">
+						<div class="col text-center">
+							<button type="submit" class="btn btn-primary w-25">Registrar</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>

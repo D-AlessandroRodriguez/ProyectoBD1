@@ -36,8 +36,17 @@
 			            Registrar
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" id="registrarProductosMenu" href="#">Productos</a></li>
-			            <li><a class="dropdown-item" id="registrarLotesMenu" href="#">Lotes de Productos</a></li>
+			            <li><a class="dropdown-item" id="registrarProductosMenu" href="viewRegistrarProducto.jsp">Productos</a></li>
+			            <li><a class="dropdown-item" id="registrarLotesMenu" href="viewRegistrarLote.jsp">Lotes de Productos</a></li>
+			          </ul>
+			        </li>
+			        <li class="nav-item dropdown">
+			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			            Otros
+			          </a>
+			          <ul class="dropdown-menu">
+			            <li><a class="dropdown-item" id="registrarEntradaExtraordinariaMenu" href="viewRegistrarEntradaExtra.jsp">Registrar entrada extraordinaria</a></li>
+			            <li><a class="dropdown-item" id="registrarSalidaExtraordinariaMenu" href="viewRegistrarSalidaExtra.jsp">Registrar salida extraordinaria</a></li>
 			          </ul>
 			        </li>
 			      </ul>
