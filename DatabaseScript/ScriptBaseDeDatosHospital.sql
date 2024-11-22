@@ -355,26 +355,27 @@ Activo BIT NOT NULL);
 GO
 
 CREATE TABLE Productos(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-NombreComercial VARCHAR(100) NOT NULL,
+Id VARCHAR(19) PRIMARY KEY,
+NombreComercial VARCHAR(50) NOT NULL,
 TipoId INTEGER NOT NULL REFERENCES TiposDeProductos(Id),
 MarcaId INTEGER NOT NULL REFERENCES MarcasDeProductos(Id),
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
 CantidadContenido DECIMAL(13,2) NOT NULL,
 UNIQUE(Id,TipoId,MarcaId),
+UNIQUE(NombreComercial,TipoId,MarcaId),
 UNIQUE (Id,UnidadMedidaId),
 CONSTRAINT FK_TIPOPRODUCTO_UNIDADMEDIDA FOREIGN KEY (TipoId,UnidadMedidaId) REFERENCES TiposDeProductos(Id,UnidadMedidaId));
 GO
 
 CREATE TABLE ProductosCategorias(
-ProductoId INTEGER REFERENCES Productos(Id),
+ProductoId VARCHAR(19) REFERENCES Productos(Id),
 CategoriaId INTEGER REFERENCES CategoriasDeProductos(Id),
 PRIMARY KEY (ProductoId,CategoriaId));
 GO
 
 CREATE TABLE ExpPatologíasBaseMedicamentos(
 ExpPatologiaBaseId INTEGER REFERENCES ExpedientesPatologiasBaseCronicas(Id),
-ProductoId INTEGER REFERENCES Productos(Id),
+ProductoId VARCHAR(19) REFERENCES Productos(Id),
 CantDosis DECIMAL(5,2) NOT NULL,
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
 FrecuenciaHoras INTEGER NOT NULL,
@@ -383,7 +384,7 @@ PRIMARY KEY (ExpPatologiaBaseId, ProductoId));
 
 CREATE TABLE OrdenRecetasProductos(
 RecetaId INTEGER NOT NULL REFERENCES OrdenRecetas(Id),
-ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
+ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
 CantProductos INTEGER NOT NULL,
 CantDosis DECIMAL(5,2) NOT NULL,
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
@@ -395,8 +396,8 @@ CHECK (CantEntregados < CantProductos OR CantEntregados = CantProductos));
 GO
 
 CREATE TABLE LotesProductos(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
+Id VARCHAR(19) PRIMARY KEY,
+ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
 FechaIngreso DATE NOT NULL,
 FechaElab DATE NOT NULL,
 FechaVencimiento DATE NOT NULL,
@@ -408,16 +409,17 @@ GO
 CREATE TABLE TipoDeMovimientos(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
 Nombre VARCHAR(100) NOT NULL UNIQUE,
-Factor INTEGER NOT NULL);
+Factor INTEGER NOT NULL,
+CHECK (Factor = -1 OR Factor = 1));
 GO
 
 CREATE TABLE FichaInventario(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
+Id VARCHAR(19) PRIMARY KEY,
 Fecha DATE NOT NULL,
 TipoMivimientoId INTEGER NOT NULL REFERENCES TipoDeMovimientos(Id),
-ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
+ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
 Cantidad DECIMAL(13,2) NOT NULL,
-LoteId INTEGER NOT NULL REFERENCES LotesProductos(Id),
+LoteId VARCHAR(19) NOT NULL REFERENCES LotesProductos(Id),
 CONSTRAINT FK_LOTE_PRODUCTO FOREIGN KEY (LoteId,ProductoId) REFERENCES LotesProductos(Id,ProductoId));
 GO
 
