@@ -47,6 +47,7 @@
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="registrarEntradaExtraordinariaMenu" href="viewRegistrarEntradaExtra.jsp">Registrar entrada extraordinaria</a></li>
 			            <li><a class="dropdown-item" id="registrarSalidaExtraordinariaMenu" href="viewRegistrarSalidaExtra.jsp">Registrar salida extraordinaria</a></li>
+			             <li><a class="dropdown-item" id="verHistorialEntradasSalidasMenu" href="viewEntradasSalidas.jsp">Ver historial de entradas y salidas</a></li>
 			          </ul>
 			        </li>
 			      </ul>
@@ -90,12 +91,16 @@
 						</thead>
 						<tbody>
 							<!-- Código Java para rellenar de contenido -->
+							<!-- Identificación del producto -->
+							<!-- P-20241122112754123 -->
+							<!-- 19 caracteres -->
+							<!-- P-(fechaHoraMinutosSegundosMilisegundos) -->
 							<%
 							StringBuilder result = new StringBuilder();
 							for (int i = 1; i <= 10; i++) {
 								result.append("<tr>");
 								result.append("<th scope=\"row\">");
-								result.append(String.format("<span id=\"numeroProducto%sSpan\">%s</span>",i,i));
+								result.append(String.format("<span id=\"idProducto%sSpan\">%s</span>",i,i));
 								result.append("</th>");
 								result.append("<td>");
 								result.append(String.format("<span id=\"nombreProducto%sSpan\">Nombre Producto %s</span>",i,i));
@@ -141,6 +146,11 @@
 						<div class="tablaContenedor">
 							<table class="table table-hover text-center">
 						        <thead class="table-light encabezadosDeTabla">
+							        <!-- Código Java para rellenar de contenido -->
+									<!-- Identificación del lote -->
+									<!-- L-20241122112754123 -->
+									<!-- 19 caracteres -->
+									<!-- L-(fechaHoraMinutosSegundosMilisegundos) -->
 						            <tr>
 						                <th># Producto</th>
 						                <th># Lote</th>

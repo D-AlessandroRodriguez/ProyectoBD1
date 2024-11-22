@@ -46,6 +46,7 @@
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="registrarEntradaExtraordinariaMenu" href="viewRegistrarEntradaExtra.jsp">Registrar entrada extraordinaria</a></li>
 			            <li><a class="dropdown-item" id="registrarSalidaExtraordinariaMenu" href="viewRegistrarSalidaExtra.jsp">Registrar salida extraordinaria</a></li>
+			            <li><a class="dropdown-item" id="verHistorialEntradasSalidasMenu" href="viewEntradasSalidas.jsp">Ver historial de entradas y salidas</a></li>
 			          </ul>
 			        </li>
 			      </ul>
@@ -95,7 +96,7 @@
 						<div class="row mb-3">
 							<div class="col-4">
 								<label for="cantidadProducto" class="form-label">Cantidad a ingresar</label>
-								<input type="number" min="0" class="form-control" id="cantidadProducto" placeholder="Cantidad" required>
+								<input type="number" min="1" class="form-control" id="cantidadProducto" placeholder="Cantidad" required>
 							</div>
 						</div>
 					</fieldset>
