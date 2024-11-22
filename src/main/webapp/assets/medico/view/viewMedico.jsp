@@ -1,18 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String role = (String) session.getAttribute("role");
+    if (role == null || (!role.equals("admin") && !role.equals("user"))) {
+        response.sendRedirect("login.jsp");
+    }
+%> 
+   
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Nuevo: Diagnostico</title>
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../css/viewRecipeOrdersStyle.css">
+		<title>Página principal: Medico</title>
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
 		<nav class="navbar sticky-top bg-primary navbar-expand-lg" style="height: 10vh;" data-bs-theme="dark">
-	<div class="container-fluid">
-				<a class="navbar-brand" href="viewMedico.jsp">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">
 					<img src="../img/logo-hospital.png" alt="Logo" width="35px" height="30px" class="d-inline-block align-text-top">
 					Hospital San Jesús
 				</a>
@@ -52,50 +58,23 @@
 			        </li>
 			      </ul>
 			    </div>
+			    
+			    <div>
 			    	<ol class="breadcrumb mb-0">
-			    		<li class="breadcrumb-item"><a class="link-light" href="viewMedico.jsp">Medico</a></li>
-			    		<li class="breadcrumb-item active" aria-current="page">Crear consulta</li>
-			    	</ol>
+				    	<li class="breadcrumb-item active" aria-current="page">Hospital</li>
+				    </ol>
 			    </div>
+			</div>
 		</nav>
 		<!-- Página principal -->
-		<div id="contenedorPrincipal" class="container">
-			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Nuevo diagnostico</h3>
-			</div>
-			
-			<div id="tablaRowContainer" class="row overflow-auto">
-				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
-						<thead id="encabezadosDeTabla">
-							<tr>
-							<!--  -->
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+		<div class="container" style="height: 90vh;">
+			<div class="row h-100 align-items-center">
+				<div class="col text-center">
+					<h1>Bienvenido, <span id="employeeNameSpan">Sr. medico</span>!</h1>
+		    		<p>Visite nuestro menú para ver más opciones.</p>
 				</div>
 			</div>
 		</div>
-		
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
-		</div>
-		<script src="../js/bootstrap.bundle.min.js"></script>	
+		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

@@ -4,9 +4,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Generar Recetas: Receta</title>
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<link rel="stylesheet" href="../css/viewRecipeOrdersStyle.css">
+		<title>Ver: Consultas</title>
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/viewInteractionMedico-style.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -39,7 +39,7 @@
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="crearCosulta" href="crearConsulta.jsp">Crear consulta</a></li>
-			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
+			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos">Crear diagnostico</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -47,21 +47,21 @@
 			            Existente
 			          </a>
 			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" id="verConsultas" href="verConsultasMedico.jsp">Ver Consultas del medico</a></li>
+			            <li><a class="dropdown-item" id="verConsultas" href="verConsultasMedico.jsp">Ver consultas del medico</a></li>
 			          </ul>
 			        </li>
 			      </ul>
 			    </div>
 			    	<ol class="breadcrumb mb-0">
 			    		<li class="breadcrumb-item"><a class="link-light" href="viewMedico.jsp">Medico</a></li>
-			    		<li class="breadcrumb-item active" aria-current="page">Generar receta</li>
+			    		<li class="breadcrumb-item active" aria-current="page">Crear consulta</li>
 			    	</ol>
 			    </div>
 		</nav>
 		<!-- Página principal -->
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Nueva receta</h3>
+				<h3 class="pt-3">Consultas del medico</h3>
 			</div>
 			
 			<div id="tablaRowContainer" class="row overflow-auto">
@@ -96,6 +96,6 @@
 			  	</ul>
 			</nav>
 		</div>
-		<script src="../js/bootstrap.bundle.min.js"></script>	
+		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
