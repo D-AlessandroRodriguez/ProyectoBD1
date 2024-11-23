@@ -1,57 +1,33 @@
  
-class ProcessData{
+class ProcessData {
 	
-	
-	
-	
-	send(inputEmail,inputPassword,modalError){
+	send(inputEmail,inputPassword,modalError) {
 		
 		let modalE = new ErrorToast(modalError);
 				
-		
-		
-		if(!Validator.isNull(inputEmail.value) && !Validator.isNull(inputPassword.value) ){
-			
-			
-				
+		if (!Validator.isNull(inputEmail.value) && !Validator.isNull(inputPassword.value)) {
 			 if(Validator.isEmail(inputEmail.value)){
-			
+				
 				let params = [inputEmail,inputPassword];	
-				 let data = this.getUrltaData(params);
-				 
-				ActionLogin.send(data);
-							
-			}else{
+				let data = this.getUrlData(params);
+				ActionLogin.send(data);			
+			} else {
 				
-				modalE.show("Correo electronico no valido");
-				
+				modalE.show("Correo electrónico no válido");
 			}
+		} else {
 			
-			
-			
-		} else{
-			
-			modalE.show("LLene todos los campos");
-			
+			modalE.show("Llene todos los campos");
 		}
-		
-		
-		
-		
 	}
 	
-	
-   getUrltaData(inputs){
-				
-				let data =[];
-				
-				for(let item of inputs){
-					data.push(`${item.name}=${Validator.clear(item.value)}`);
-				}
-				return data.join("&");
-			}
-
-
-	
-	
-} 
+	getUrlData(inputs) {
+		
+		let data = [];
+		for (let item of inputs) {
+			
+			data.push(`${item.name}=${Validator.clear(item.value)}`);
+		}
+		return data.join("&");
+	}
+}
