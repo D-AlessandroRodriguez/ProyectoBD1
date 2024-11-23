@@ -58,9 +58,7 @@ public class RolesPermissionDAO {
 		String query = "";
 		try {
 			Connection con = DataBaseConnection.getConnection();
-			PreparedStatement ps = con.prepareStatement(query);
-			
-			
+			PreparedStatement ps = con.prepareStatement(query);	
 		}catch(SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

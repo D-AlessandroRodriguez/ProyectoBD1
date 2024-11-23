@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    String role = (String) session.getAttribute("role");
-    if (role == null || (!role.equals("admin") && !role.equals("user"))) {
-        response.sendRedirect("login.jsp");
-    }
-%> 
    
 <!DOCTYPE html>
 <html>
@@ -23,7 +17,7 @@
 					Hospital San Jesús
 				</a>
 				<!--hr vertical de boostrap-->
-				<div class="vr mx-1" style="color: white; width: 3px;"></div>
+				<div class="vr mx-1" style="color: white; width:3px;"></div>
 				<!--  no se para que-->
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon">botones</span>

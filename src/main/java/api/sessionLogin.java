@@ -43,16 +43,15 @@ public class sessionLogin extends HttpServlet {
 		
 	    //verificar que existe el usuario y crea una session
 	    if (userExists.isUser() != false) {
-	    		
 	    	//HttpSession session = request.getSession();
 	    	//session.setAttribute("rolesPermisos", user.getPermissionsForRole(userExists.idUser()));
-			
-	        response.sendRedirect("medico.jsp");
+			//System.out.println(request.getContextPath() + "/assets/medico/view/viewMedico.jsp");
+	        response.sendRedirect(request.getContextPath() + "/assets/medico/view/viewMedico.jsp");
 	    } else {
 	        response.sendRedirect("login.jsp?error=Invalid credentials");
 	    }
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 

@@ -7,6 +7,7 @@
 		<title>Nueva: Consulta</title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/viewInteractionMedico-style.css">
+		<link rel="stylesheet" href="../css/createConsulta-style.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -61,8 +62,48 @@
 		<!-- Página principal -->
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Nueva consulta</h3>
-			</div>
+				
+			</div>	
+			<div class="container border rounded  shadown" id="formConsulta "style=" position: absolute;top: 15vh;left: 25vw;width: 50vw;height: 70vh;display: flex;flex-direction: column;">
+    <div class="form-container text-center p-3 border-bottom ">
+        <h2 class="fw-bold">Nueva consulta</h2>
+    </div>
+
+    <div class="p-4" id="camposContainer" style="flex: 1;overflow-y: auto;">
+        <form>
+        
+        <div class="mb-3 fs-2 fw-bold">
+                <label for="doctor" class="form-label">Doctor : </label>
+                <label for="doctor" class="form-label ">Cesar Cruz</label>
+            </div>
+             <div class="mb-3">
+                <label for="paciente" class="form-label">Paciente</label>
+                <input type="text" class="form-control" id="paciente" name="paciente" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" required>
+            </div>
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora</label>
+                <input type="time" class="form-control" id="hora" name="hora" required>
+            </div>
+            
+           
+            <div class="mb-3">
+                <label for="costo" class="form-label">Costo</label>
+                <input type="text" class="form-control" id="costo" name="costo" required>
+            </div>
+        </form>
+    </div>
+
+    <div class="p-3 border-top text-center" id="botonContainer" style="position: sticky;bottom: 0;">
+        <button type="submit" class="btn btn-primary w-100">Registrar Consulta</button>
+    </div>
+</div>
+
+		
+			
 			
 			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
