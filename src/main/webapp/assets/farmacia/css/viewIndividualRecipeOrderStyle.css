@@ -1,0 +1,27 @@
+
+#contenedorPrincipal {
+	height: 80vh;
+}
+
+#infoGeneralRowContainer {
+	height: 32%;
+}
+
+#tablaRowContainer {
+	height: 68%;
+}
+
+.encabezadosDeTabla {
+	position: sticky;
+	top: 0;
+}
+
+.tablaContenedor {
+	max-height: 180px;
+	overflow-y: auto;
+	position: relative;
+}
+
+#pieContenedor {
+	height: 10vh;
+}
