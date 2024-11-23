@@ -81,19 +81,10 @@ GO
 
 CREATE TABLE Cargos(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-Nombre VARCHAR(250) NOT NULL UNIQUE,
+Nombre VARCHAR(100) NOT NULL UNIQUE,
 Codigo VARCHAR(5) NOT NULL UNIQUE,
 Activo BIT NOT NULL);
 GO
-
-CREATE TABLE Horarios(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-Nombre VARCHAR(50) NOT NULL UNIQUE,
-HoraInicio TIME(0) NOT NULL,
-HoraFinal TIME(0) NOT NULL,
-CantidadDias INTEGER NOT NULL);
-GO
-
 
 CREATE TABLE DepartamentosHospital(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
@@ -107,12 +98,28 @@ Id INTEGER IDENTITY(1,1) PRIMARY KEY,
 PersonaId INTEGER NOT NULL UNIQUE REFERENCES Personas(Id),
 SalarioM DECIMAL(13,2) NOT NULL,
 Activo BIT NOT NULL,
-HorarioId INTEGER NOT NULL REFERENCES Horarios(Id),
 DepartamentoId INTEGER NOT NULL REFERENCES DepartamentosHospital(Id),
 CargoId INTEGER NOT NULL REFERENCES Cargos(Id),
 FechaIngreso DATE NOT NULL,
 UNIQUE(Id,PersonaId),
 UNIQUE(PersonaId));
+GO
+
+CREATE TABLE Turnos(
+Id INTEGER IDENTITY(1,1) PRIMARY KEY,
+Nombre VARCHAR(100) NOT NULL UNIQUE,
+HoraInicio TIME(0) NOT NULL,
+HoraFinal TIME(0) NOT NULL,
+Activo BIT NOT NULL);
+GO
+
+CREATE TABLE Horarios(
+Id INTEGER IDENTITY(1,1) PRIMARY KEY,
+Nombre VARCHAR(50) NOT NULL UNIQUE,
+EmpleadoId INTEGER NOT NULL REFERENCES Empleados(Id),
+TurnoId INTEGER NOT NULL REFERENCES Turnos(Id),
+DiasTrabajo VARCHAR(7) NOT NULL,
+Activo BIT NOT NULL);
 GO
 
 CREATE TABLE Titulaciones(
@@ -182,26 +189,11 @@ Nombre VARCHAR(250) NOT NULL UNIQUE,
 Activo BIT NOT NULL);
 GO
 
-CREATE TABLE Medicamentos(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-Nombre VARCHAR(250) NOT NULL UNIQUE,
-Codigo VARCHAR(5) NOT NULL UNIQUE,
-Activo BIT NOT NULL);
-GO
-
 CREATE TABLE UnidadesDeMedida(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
 Nombre VARCHAR(50) NOT NULL UNIQUE,
 Codigo VARCHAR(5) NOT NULL UNIQUE,
 Activo BIT NOT NULL);
-GO
-
-CREATE TABLE Dosificaciones(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
-Cantidad INTEGER NOT NULL,
-FrecuenciaHoras INTEGER NOT NULL,
-UNIQUE (Id,UnidadMedidaId));
 GO
 
 CREATE TABLE ExpedientesPatologiasBaseCronicas(
@@ -310,6 +302,7 @@ MedicoId INTEGER NOT NULL REFERENCES Medicos(Id),
 ExpedienteId INTEGER NOT NULL REFERENCES Expedientes(Id),
 ConsultaId INTEGER NOT NULL REFERENCES ConsultasMedicas(Id),
 DiagnosticoId INTEGER NOT NULL REFERENCES Diagnosticos(Id),
+Fecha DATE NOT NULL,
 Atendida BIT NOT NULL,
 UNIQUE(MedicoId,ExpedienteId,ConsultaId,DiagnosticoId),
 CONSTRAINT FK_CONSULTA_MEDICO_3 FOREIGN KEY (ConsultaId,MedicoId) REFERENCES ConsultasMedicas(Id,MedicoId),
@@ -354,43 +347,57 @@ Codigo VARCHAR(5) NOT NULL UNIQUE,
 Activo BIT NOT NULL);
 GO
 
-CREATE TABLE Productos(
+CREATE TABLE CategoriasDeProductos(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-MedicamentoId INTEGER NOT NULL REFERENCES Medicamentos(Id),
-NombreComercial VARCHAR(100) NOT NULL,
+Nombre VARCHAR(100) NOT NULL UNIQUE,
+Codigo VARCHAR(5) NOT NULL UNIQUE,
+Activo BIT NOT NULL);
+GO
+
+CREATE TABLE Productos(
+Id VARCHAR(19) PRIMARY KEY,
+NombreComercial VARCHAR(50) NOT NULL,
 TipoId INTEGER NOT NULL REFERENCES TiposDeProductos(Id),
 MarcaId INTEGER NOT NULL REFERENCES MarcasDeProductos(Id),
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
 CantidadContenido DECIMAL(13,2) NOT NULL,
-UNIQUE(Id,MedicamentoId,TipoId,MarcaId),
+UNIQUE(Id,TipoId,MarcaId),
+UNIQUE(NombreComercial,TipoId,MarcaId),
 UNIQUE (Id,UnidadMedidaId),
 CONSTRAINT FK_TIPOPRODUCTO_UNIDADMEDIDA FOREIGN KEY (TipoId,UnidadMedidaId) REFERENCES TiposDeProductos(Id,UnidadMedidaId));
 GO
 
+CREATE TABLE ProductosCategorias(
+ProductoId VARCHAR(19) REFERENCES Productos(Id),
+CategoriaId INTEGER REFERENCES CategoriasDeProductos(Id),
+PRIMARY KEY (ProductoId,CategoriaId));
+GO
+
 CREATE TABLE ExpPatologíasBaseMedicamentos(
 ExpPatologiaBaseId INTEGER REFERENCES ExpedientesPatologiasBaseCronicas(Id),
-ProductoId INTEGER REFERENCES Productos(Id),
-DosificacionId INTEGER NOT NULL REFERENCES Dosificaciones(Id),
+ProductoId VARCHAR(19) REFERENCES Productos(Id),
+CantDosis DECIMAL(5,2) NOT NULL,
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
+FrecuenciaHoras INTEGER NOT NULL,
 CONSTRAINT FK_Producto_UnidadDeMedida FOREIGN KEY (ProductoId,UnidadMedidaId) REFERENCES Productos(Id,UnidadMedidaId),
-CONSTRAINT FK_Dosificacion_UnidadMedida FOREIGN KEY (DosificacionId,UnidadMedidaId) REFERENCES Dosificaciones(Id,UnidadMedidaId),
 PRIMARY KEY (ExpPatologiaBaseId, ProductoId));
 
 CREATE TABLE OrdenRecetasProductos(
 RecetaId INTEGER NOT NULL REFERENCES OrdenRecetas(Id),
-ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
-Cantidad INTEGER NOT NULL,
-DosificacionId INTEGER NOT NULL REFERENCES Dosificaciones(Id),
+ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
+CantProductos INTEGER NOT NULL,
+CantDosis DECIMAL(5,2) NOT NULL,
 UnidadMedidaId INTEGER NOT NULL REFERENCES UnidadesDeMedida(Id),
+FrecuenciaHoras INTEGER NOT NULL,
 DuracionDias INTEGER NOT NULL,
-Entregado BIT NOT NULL,
+CantEntregados INTEGER NOT NULL,
 PRIMARY KEY (RecetaId,ProductoId),
-CONSTRAINT FK_Dosificacion_UnidadMedida_2 FOREIGN KEY (DosificacionId,UnidadMedidaId) REFERENCES Dosificaciones(Id,UnidadMedidaId));
+CHECK (CantEntregados < CantProductos OR CantEntregados = CantProductos));
 GO
 
 CREATE TABLE LotesProductos(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
-ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
+Id VARCHAR(19) PRIMARY KEY,
+ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
 FechaIngreso DATE NOT NULL,
 FechaElab DATE NOT NULL,
 FechaVencimiento DATE NOT NULL,
@@ -402,24 +409,27 @@ GO
 CREATE TABLE TipoDeMovimientos(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
 Nombre VARCHAR(100) NOT NULL UNIQUE,
-Factor INTEGER NOT NULL);
+Factor INTEGER NOT NULL,
+CHECK (Factor = -1 OR Factor = 1));
 GO
 
 CREATE TABLE FichaInventario(
-Id INTEGER IDENTITY(1,1) PRIMARY KEY,
+Id VARCHAR(19) PRIMARY KEY,
 Fecha DATE NOT NULL,
 TipoMivimientoId INTEGER NOT NULL REFERENCES TipoDeMovimientos(Id),
-ProductoId INTEGER NOT NULL REFERENCES Productos(Id),
+ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
 Cantidad DECIMAL(13,2) NOT NULL,
-LoteId INTEGER NOT NULL REFERENCES LotesProductos(Id),
+LoteId VARCHAR(19) NOT NULL REFERENCES LotesProductos(Id),
 CONSTRAINT FK_LOTE_PRODUCTO FOREIGN KEY (LoteId,ProductoId) REFERENCES LotesProductos(Id,ProductoId));
 GO
 
 CREATE TABLE RangosNumFactura(
 Id INTEGER IDENTITY(1,1) PRIMARY KEY,
+CAI VARCHAR(32) NOT NULL UNIQUE,
 RangoInicio VARCHAR(8) NOT NULL UNIQUE,
 RangoFin VARCHAR(8) NOT NULL UNIQUE,
-Activo BIT NOT NULL);
+FechaLimite DATE NOT NULL,
+CHECK (DATEDIFF(MONTH,FechaLimite,GETDATE()) > 24));
 GO
 
 CREATE TABLE Facturas(
@@ -430,7 +440,6 @@ PacienteId INTEGER NOT NULL REFERENCES Pacientes(Id),
 EmpleadoId INTEGER NOT NULL REFERENCES Empleados(Id),
 FechaEmision DATE NOT NULL,
 HoraEmision TIME(0) NOT NULL,
-FechaLimite DATE NOT NULL,
 Subtotal DECIMAL(13,2) NOT NULL,
 ISV DECIMAL(13,2) NOT NULL,
 TOTAL DECIMAL(13,2) NOT NULL,
@@ -447,6 +456,7 @@ GO
 CREATE TABLE FacturasFormasDePago(
 FacturaId INTEGER NOT NULL REFERENCES Facturas(Id),
 FormaDePagoId INTEGER NOT NULL REFERENCES FormasDePago(Id),
+Importe DECIMAL(13,2) NOT NULL,
 PRIMARY KEY (FacturaId,FormaDePagoId));
 GO
 
@@ -464,10 +474,10 @@ Codigo VARCHAR(5) NOT NULL UNIQUE,
 Activo BIT NOT NULL);
 GO
 
-CREATE TABLE PermisosRoles(
-PermisoId INTEGER NOT NULL REFERENCES Permisos(Id),
+CREATE TABLE RolesPermisos(
 RolId INTEGER NOT NULL REFERENCES Roles(Id),
-PRIMARY KEY (PermisoId,RolId));
+PermisoId INTEGER NOT NULL REFERENCES Permisos(Id),
+PRIMARY KEY (RolId,PermisoId));
 GO
 
 CREATE TABLE Usuarios(
