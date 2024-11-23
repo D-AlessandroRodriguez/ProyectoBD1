@@ -11,7 +11,7 @@
 	<body>
 		<div id="loginBox" class="shadow-lg">
 			<br>
-			<img src="assets/img/logo-hospital.png" hspace="20px" height="70px" alt="La imagen no se cargó correctamente" style="position:absolute">
+			<img src="assets/login/img/logo-hospital.png" hspace="20px" height="70px" alt="La imagen no se cargó correctamente" style="position:absolute">
 			<h3 id="title1" style="color: rgba(34, 25, 115, 1); text-align: center">Hospital San Jesús</h3>
 			<h4 class="txt text-center">Inicio de sesión</h4>
 			<br>
