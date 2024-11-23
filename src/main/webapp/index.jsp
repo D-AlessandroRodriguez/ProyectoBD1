@@ -5,8 +5,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Hospital San Jesús</title>
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/loggin-style.css">
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/login/css/loggin-style.css">
 	</head>
 	<body>
 		<div id="loginBox" class="shadow-lg">
@@ -24,6 +24,6 @@
 			</div>
 	        <p class="author text-center mt-4" style="font-size: 12px;">© Todos los derechos reservados - BasesDeDatos1</p>
 		</div>
-		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
