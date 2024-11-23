@@ -8,6 +8,7 @@ class Action {
 	showOrHide (clickEvent){
 		this.menu.classList.toggle('active');
 	}
+	
 }
 
 

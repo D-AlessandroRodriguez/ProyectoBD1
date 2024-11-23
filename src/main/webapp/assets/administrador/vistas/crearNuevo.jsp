@@ -34,7 +34,7 @@
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
 				    <li><a class="dropdown-item" href="medicos.jsp">Médicos</a></li>
-				    <li><a class="dropdown-item" href="otros.jsp">Otros</a></li>
+				    <li><a class="dropdown-item" href="#">Otros</a></li>
 	  			</ul>
   			</div>
 		    
