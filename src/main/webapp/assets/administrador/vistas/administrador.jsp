@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Administrador</title>
-		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/administrador.css">		
 	</head>	
 	<body>

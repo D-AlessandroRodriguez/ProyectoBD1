@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 	/**
 	 * Servlet para logiarse
@@ -31,9 +32,10 @@ public class sessionLogin extends HttpServlet {
      * @since 2024/11/16
      * */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("application/json");
+	
 		String username = request.getParameter("email");
 		String password = request.getParameter("password");
-		
 		
 	    //extraer los roles y permisos
 		UserDAO userExists = new UserDAO(username, password);
@@ -41,15 +43,16 @@ public class sessionLogin extends HttpServlet {
 		
 	    //verificar que existe el usuario y crea una session
 	    if (userExists.isUser() != false) {
-	    	//HttpSession session = request.getSession();
-	    	//session.setAttribute("rolesPermisos", user.getPermissionsForRole(userExists.idUser()));
-			//System.out.println(request.getContextPath() + "/assets/medico/view/viewMedico.jsp");
-	        response.sendRedirect(request.getContextPath() + "/assets/medico/view/viewMedico.jsp");
+	    	HttpSession session = request.getSession();
+	    	session.setAttribute("user", username);
+	    	
+	    	response.getWriter().append("{\"status\":true}");
+	    	//response.sendRedirect(request.getContextPath() + "/assets/medico/view/viewMedico.jsp");
 	    } else {
-	        response.sendRedirect("login.jsp?error=Invalid credentials");
+	    	response.getWriter().append("{\"status\": "
+	    			+ "false, \"message\":\"credenciales invalidas\"}");
+	    	//response.sendRedirect(request.getContextPath() + "/index.jsp?error=Invalid%20credentials");
 	    }
-		
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 

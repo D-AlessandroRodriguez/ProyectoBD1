@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%
+	System.out.println("ok se ejecuta");
+    String user = (String) session.getAttribute("user");
+    if (user != null) {
+        response.sendRedirect("/ProyectoBD1/assets/medico/view/viewMedico.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
 	<head>
