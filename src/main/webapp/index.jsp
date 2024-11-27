@@ -33,13 +33,12 @@
 	        <p class="author text-center mt-4" style="font-size: 12px;">© Todos los derechos reservados - BasesDeDatos1</p>
 	       
 		</div>
-		
-		
+				
      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="modalError" >
       <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
+        <img src="assets/login/img/error.png" hspace="20px" height="20px" class="rounded me-2" alt="...">
         <strong class="me-auto">Error</strong>
-        <small class="text-body-secondary">just now</small>
+	    <small>1 second</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
