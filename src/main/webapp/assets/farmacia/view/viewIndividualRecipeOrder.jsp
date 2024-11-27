@@ -85,6 +85,8 @@
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Nombre</th>
+								<th scope="col">Marca</th>
+								<th scope="col">Tipo</th>
 								<th scope="col">Cantidad</th>
 								<th scope="col">Dosis</th>
 							</tr>
@@ -104,6 +106,12 @@
 								result.append("</th>");
 								result.append("<td>");
 								result.append(String.format("<span id=\"nombreProducto%sSpan\">Nombre Producto %s</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"marcaProducto%sSpan\">Marca Prod%s</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"tipoProducto%sSpan\">Tipo Prod%s</span>",i,i));
 								result.append("</td>");
 								result.append("<td>");
 								result.append(String.format("<span id=\"cantidadProductos%sSpan\">3</span>",i));

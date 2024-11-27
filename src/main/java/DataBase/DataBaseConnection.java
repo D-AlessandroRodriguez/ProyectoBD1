@@ -15,10 +15,10 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
 public class DataBaseConnection {
 	  // Información de conexión a la base de datos
-	private static String dburl = "jdbc:sqlserver://DESKTOP-LS6NEIC:1433;databaseName=loginUsers;encrypt=true;trustServerCertificate=true";
-    private static String dbUser = "aless";  // Usuario de la base de datos
-    private static String dbPassword = "aless2002CD";  // Contraseña de la base de datos
-
+	private static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=HospitalDatabase;encrypt=true;trustServerCertificate=true";
+    private static String dbUser = "farmaceutico";  // Usuario de la base de datos
+    private static String dbPassword = "jesus123";  // Contraseña de la base de datos
+    
 	/**
 	* Establece una conexion a la base de datos
 	* @author cdcruzr@unah.hn
