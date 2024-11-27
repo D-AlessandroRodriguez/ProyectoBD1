@@ -69,8 +69,24 @@
 			        <div class="modal-body">
 			            <div id="bodyModalVer"  class="ratio" style="--bs-aspect-ratio: 0; margin:10px"></div>
 			        	<!--valores dentro del cuerpo -->
-			        	<p>hello world</p>
-			        </div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">fecha: 2024/11/27</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Diagnostico</th>
+							</tr>
+							<tr>
+								<td>
+									hello world
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			        <div class="modal-footer">
 			          <button type="button" id="exitModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
 			        </div>
@@ -140,6 +156,5 @@
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="../js/ActionBtnVer.js"></script>
 		<script src="../js/mainBtnVer.js"></script>
-		
 	</body>
 </html>
