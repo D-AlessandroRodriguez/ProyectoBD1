@@ -39,7 +39,7 @@
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="crearCosulta" href="crearConsulta.jsp">Crear consulta</a></li>
-			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos">Crear diagnostico</a></li>
+			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -67,21 +67,24 @@
 			          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			        </div>
 			        <div class="modal-body">
-			            <div id="bodyModalVer"  class="ratio" style="--bs-aspect-ratio: 0; margin:10px"></div>
-			        	<!--valores dentro del cuerpo -->
+					<div id="bodyModalVer" class="ratio"
+						style="--bs-aspect-ratio: 0; margin: 10px"></div>
+					<!--valores dentro del cuerpo -->
 					<table class="table">
 						<thead>
 							<tr>
 								<th scope="col">fecha: 2024/11/27</th>
+								<th scope="col">hora: 15:00</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">Diagnostico</th>
-							</tr>
-							<tr>
-								<td>
-									hello world
+								<td><h5>Diagnostico</h5>
+									<div id="" class="container">
+										<h6>Observaciones:</h6>
+										<p>El paciente presenta enfermedadades base como ser diabates, azucar, presion y 
+										se remitio por un dolor de cebeza</p>
+									</div>
 								</td>
 							</tr>
 						</tbody>
