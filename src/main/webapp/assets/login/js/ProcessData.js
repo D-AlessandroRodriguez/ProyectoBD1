@@ -5,14 +5,13 @@ class ProcessData{
 				
 		if(!Validator.isNull(inputEmail.value) && !Validator.isNull(inputPassword.value) ){
 			 if(Validator.isEmail(inputEmail.value)){
-			
 				let params = [inputEmail,inputPassword];	
 				let data = this.getUrltaData(params);
 				ActionLogin.send(data);			
 			}else{
 				modalE.show("Correo electronico no valido");
 			}	
-		} else{
+		}else{
 			modalE.show("LLene todos los campos");
 		}
 	}
