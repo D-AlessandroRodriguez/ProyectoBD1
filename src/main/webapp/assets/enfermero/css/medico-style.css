@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#lineVertical{
+	transform: rotate(90deg);
+	background-color: white; 
+	position:relative; 
+	left:13vw; 
+	height:6px; 
+	width:70px;
+	bottom: 20px;
+}
+			
+#header{
+	background-color: rgba(40, 23, 191, 1);
+	height: 15vh; 					
+}
+			
