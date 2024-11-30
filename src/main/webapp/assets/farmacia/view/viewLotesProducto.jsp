@@ -1,12 +1,23 @@
+<%@page import="DAO.ProductsDAO"%>
+<%@page import="DAO.ProductBatchesDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String productId = request.getParameter("prod");
+	String productName = new String("No definido");
+	if (productId != null) {
+		
+		productName = ProductsDAO.getProductName(productId);
+	}
+%> 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Lotes de Producto</title>
+		<title>Lotes de <%=productName%></title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/viewLotesProductoStyle.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -56,7 +67,7 @@
 			    	<ol class="breadcrumb mb-0">
 			    		<li class="breadcrumb-item"><a class="link-light" href="mainViewFarmacia.jsp">Farmacia</a></li>
 			    		<li class="breadcrumb-item"><a class="link-light" href="viewProductos.jsp">Productos</a></li>
-			    		<li class="breadcrumb-item active" aria-current="page">Lotes de <span id="nombreProductoSpanBreadcrumb">nombre de producto</span></li>
+			    		<li class="breadcrumb-item active" aria-current="page">Lotes de <%=productName%></li>
 			    	</ol>
 			    </div>
 			</div>
@@ -64,11 +75,11 @@
 		<!-- Página principal -->
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Inventario de Productos</h3>
+				<h3 class="pt-3">Lotes de <%=productName%></h3>
 			</div>
-			<div id="tablaRowContainer" class="row overflow-auto">
+			<div id="tablaRowContainer" class="row">
 				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
+					<table id="tablaDeLotes" class="table table-hover text-center">
 						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">#Lote</th>
@@ -111,23 +122,10 @@
 				</div>
 			</div>
 		</div>
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
-		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+		<script src="../js/viewLotesProducto/main.js" data-product-id='<%=productId%>'></script>
 	</body>
 </html>

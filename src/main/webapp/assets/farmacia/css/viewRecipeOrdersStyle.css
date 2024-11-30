@@ -1,4 +1,3 @@
-
 #contenedorPrincipal {
 	height: 80vh;
 }
@@ -9,13 +8,4 @@
 
 #tablaRowContainer {
 	height: 90%;
-}
-
-#encabezadosDeTabla {
-	position: sticky;
-	top: 0;
-}
-
-#pieContenedor {
-	height: 10vh;
 }

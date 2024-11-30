@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String recipeOrderId = request.getParameter("ord");
+	if (recipeOrderId == null) {
+		
+		recipeOrderId = "No definido";
+	}
+%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Receta #1</title>
+		<title>Receta <%=recipeOrderId%></title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
 		<link rel="stylesheet" href="../css/viewIndividualRecipeOrderStyle.css">
 	</head>
 	<body>
@@ -56,7 +64,7 @@
 			    	<ol class="breadcrumb mb-0">
 			    		<li class="breadcrumb-item"><a class="link-light" href="mainViewFarmacia.jsp">Farmacia</a></li>
 			    		<li class="breadcrumb-item"><a class="link-light" href="viewRecipeOrders.jsp">Órdenes de Recetas</a></li>
-			    		<li class="breadcrumb-item active" aria-current="page">Receta #<span id="numRecetaSpanBreadcrumb">1</span></li>
+			    		<li class="breadcrumb-item active" aria-current="page">Receta <%=recipeOrderId%></li>
 			    	</ol>
 			    </div>
 			</div>
@@ -65,7 +73,7 @@
 		<!-- Página principal -->
 		<div id="contenedorPrincipal" class="container">
 			<div id="infoGeneralRowContainer" class="row">
-				<h3 class="pt-3">Orden de receta #<span id="numRecetaSpanMainLabel">1</span></h3>
+				<h3 class="pt-3">Orden de receta <%=recipeOrderId%></h3>
 				<p class="mt-2 fs-5 fw-semibold mb-1">Información General</p>
 				<div class="col">
 					<p class="fw-semibold mb-0">Paciente: <span id="nombrePacienteRecetaSpan" class="fw-normal">Jesús Zepeda</span></p>
@@ -78,18 +86,20 @@
 				</div>
 				<p class="mt-3 fs-5 fw-semibold mb-0">Productos de la receta</p>
 			</div>
-			<div id="tablaRowContainer" class="row overflow-auto">
+			<div id="tablaRowContainer" class="row">
 				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
+					<table id="productosDeRecetaTable" class="table table-hover">
 						<thead class="encabezadosDeTabla">
 							<tr>
-								<th scope="col">#</th>
+								<th scope="col">Código</th>
 								<th scope="col">Nombre</th>
+								<th scope="col">Marca</th>
+								<th scope="col">Tipo</th>
 								<th scope="col">Cantidad</th>
 								<th scope="col">Dosis</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="productosDeRecetaTbody">
 							<!-- Código Java para rellenar de contenido -->
 							<!-- Identificación del producto -->
 							<!-- P-20241122112754123 -->
@@ -97,13 +107,19 @@
 							<!-- P-(fechaHoraMinutosSegundosMilisegundos) -->
 							<%
 							StringBuilder result = new StringBuilder();
-							for (int i = 1; i <= 10; i++) {
+							for (int i = 1; i <= 20; i++) {
 								result.append("<tr>");
 								result.append("<th scope=\"row\">");
 								result.append(String.format("<span id=\"idProducto%sSpan\">%s</span>",i,i));
 								result.append("</th>");
 								result.append("<td>");
 								result.append(String.format("<span id=\"nombreProducto%sSpan\">Nombre Producto %s</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"marcaProducto%sSpan\">Marca Prod%s</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"tipoProducto%sSpan\">Tipo Prod%s</span>",i,i));
 								result.append("</td>");
 								result.append("<td>");
 								result.append(String.format("<span id=\"cantidadProductos%sSpan\">3</span>",i));
@@ -123,17 +139,13 @@
 		<div id="pieContenedor" class="container">
 			<div class="row">
 				<div class="col mt-3 text-end">
-					<button id="mostrarModalConfirmacionEntregaButton" type="button" class="btn btn-primary">Entregar productos disponibles</button>
-					<!-- Botón temporal solo para ver la ventana modal -->
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmacionEntregaModal">
-					  Ver
-					</button>
+					<button id="productosDisponiblesButton" type="button" class="btn btn-primary">Ver productos disponibles</button>
 				</div>
 			</div>
 		</div>
 		
-		<!-- Ventana modal de confirmación de entrega de productos -->
-		<div class="modal fade" id="confirmacionEntregaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<!-- Ventana modal de ver productos disponibles para entregar -->
+		<div class="modal fade modal-lg" id="productosDisponiblesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered">
 		    	<div class="modal-content">
 		        	<div class="modal-header">
@@ -144,7 +156,7 @@
 		      			<!-- Tabla de productos a entregar -->
 						<h6>Productos a entregar:</h6>
 						<div class="tablaContenedor">
-							<table class="table table-hover text-center">
+							<table id="productosDisponiblesTable" class="table table-hover text-center">
 						        <thead class="table-light encabezadosDeTabla">
 							        <!-- Código Java para rellenar de contenido -->
 									<!-- Identificación del lote -->
@@ -152,13 +164,13 @@
 									<!-- 19 caracteres -->
 									<!-- L-(fechaHoraMinutosSegundosMilisegundos) -->
 						            <tr>
-						                <th># Producto</th>
-						                <th># Lote</th>
+						                <th>Cód. Producto</th>
+						                <th>Cód. Lote</th>
 						                <th>Nombre</th>
-						                <th>Cantidad</th>
+						                <th>Disponibles</th>
 						            </tr>
 						        </thead>
-						        <tbody>
+						        <tbody id="productosDisponiblesTbody">
 						            <tr>
 						                <td>6</td>
 						                <td>3</td>
@@ -189,15 +201,15 @@
 						<!-- Tabla de productos faltantes -->
 						<h6 class="mt-2">Productos faltantes:</h6>
 						<div class="tablaContenedor">
-						    <table class="table table-hover text-center">
+						    <table id="productosFaltantesTable" class="table table-hover text-center">
 						        <thead class="table-light encabezadosDeTabla">
 						            <tr>
-						                <th># Producto</th>
+						                <th>Cód. Producto</th>
 						                <th>Nombre</th>
 						                <th>Cantidad Faltante</th>
 						            </tr>
 						        </thead>
-						        <tbody>
+						        <tbody id="productosFaltantesTbody">
 						            <tr>
 						                <td>8</td>
 						                <td>Paracetamol Kern Pharma</td>
@@ -229,11 +241,18 @@
 		      		</div>
 		      		<div class="modal-footer">
 		        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-		        		<button type="button" class="btn btn-primary">Confirmar entrega</button>
+		        		<button id="entregarProductosDisponiblesButton" type="button" class="btn btn-primary">Entregar productos disponibles</button>
 		      		</div>
 		    	</div>
 		  	</div>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+		<script src="../js/viewIndividualRecipeOrder/ModalAction.js"></script>
+		<script src="../js/viewIndividualRecipeOrder/ActionGetAvailableProducts.js"></script>
+		<script src="../js/viewIndividualRecipeOrder/ActionGetRecipeProducts.js"></script>
+		<script src="../js/viewIndividualRecipeOrder/main.js" data-order-id='<%=recipeOrderId%>'></script>
 	</body>
 </html>
