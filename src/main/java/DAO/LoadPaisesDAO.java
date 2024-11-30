@@ -41,7 +41,7 @@ public class LoadPaisesDAO {
                 String pais = resultSet.getString("Nombre");
                 String codigo = resultSet.getString("Codigo");
                 
-                System.out.println(pais);
+                
 
                 
                 if (!first) {

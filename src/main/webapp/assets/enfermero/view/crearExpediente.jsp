@@ -18,7 +18,7 @@
 				src="../img/logo-hospital.png" alt="Logo" width="35px" height="30px"
 				class="d-inline-block align-text-top"> Hospital San Jesús
 			</a>
-			<!--hr vertical de boostrap-->
+			
 			<div class="vr mx-1" style="color: white; width: 3px;"></div>
 			<!--  no se para que-->
 			<button class="navbar-toggler" type="button"

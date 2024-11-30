@@ -15,7 +15,7 @@ public class LoadP {
 	
 	public String load() {
 		
-		System.out.println(this.paises.loadPaises());
+		
 	return	this.paises.loadPaises();		
 		
 		

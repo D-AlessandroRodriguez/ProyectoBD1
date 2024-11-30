@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Página principal: Medico</title>
+<title>Página principal: Enfermero</title>
 <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 </head>
 <body>
@@ -55,7 +55,7 @@
 		<div class="row h-100 align-items-center">
 			<div class="col text-center">
 				<h1>
-					Bienvenido, <span id="employeeNameSpan">Sr. Medico</span>!
+					Bienvenido, <span id="employeeNameSpan">Sr. Zepeda</span>!
 				</h1>
 				<p>Visite nuestro menú para ver más opciones.</p>
 			</div>
