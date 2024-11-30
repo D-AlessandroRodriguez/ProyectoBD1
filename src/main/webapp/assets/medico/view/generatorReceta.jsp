@@ -87,13 +87,13 @@
 
 			<div class="row p-2 ">
 				<hr class="border-top  border-black border-2 opacity-75">
-				<div class="col-md-6 fw-bold">
+				<div class="col-md-4 fw-bold">
 					<!--Nombre del paciente debe de ser-->
 					<label class="row justify-content-start">Paciente: </label> 
 					<input type="text" class="form-control w-75" id="pacienteName"
 						placeholder="Escriba el nombre del paciente">
 				</div>
-				<div class="col-md-6 px-2 fw-bold">
+				<div class="col-md-8 px-2 fw-bold">
 					<div class="d-flex flex-row-reverse">
 						<label class="px-2">Fecha: 10/11/2024</label> <label class="px-2">Edad:
 							50</label>

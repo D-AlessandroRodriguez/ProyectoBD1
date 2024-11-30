@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.xml.crypto.Data;
+
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 	/**
 	 * retorna la data una vez que se refresque la pantalla
@@ -16,9 +18,16 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 public class DataBaseConnection {
 	  // Información de conexión a la base de datos
 	private static String dburl = "jdbc:sqlserver://DESKTOP-LS6NEIC:1433;databaseName=loginUsers;encrypt=true;trustServerCertificate=true";
-    private static String dbUser = "aless";  // Usuario de la base de datos
-    private static String dbPassword = "aless2002CD";  // Contraseña de la base de datos
-
+	private String dbUser;
+	private String dbPassword;
+	//private static String dbUser = "aless";  // Usuario de la base de datos
+    //private static String dbPassword = "aless2002CD";  // Contraseña de la base de datos
+	
+    public DataBaseConnection(String dbUser, String dbPassword) {
+    	this.dbUser = dbUser;
+    	this.dbPassword = dbPassword;
+    }
+    
 	/**
 	* Establece una conexion a la base de datos
 	* @author cdcruzr@unah.hn
@@ -26,7 +35,7 @@ public class DataBaseConnection {
 	* @date 2024/11/15
 	* @since 2024/11/15
 	* */
-    public static Connection getConnection() throws ClassNotFoundException, SQLException {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
        DriverManager.registerDriver(new SQLServerDriver());
        return DriverManager.getConnection(dburl, dbUser, dbPassword);
