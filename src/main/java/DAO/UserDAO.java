@@ -64,7 +64,7 @@ public class UserDAO {
     public int idUser() throws ClassNotFoundException, SQLException {
         String sql = "SELECT id FROM usuarios WHERE Correo = ? AND Contrasena= ?";
        
-        Connection conn =  new DataBaseConnection("aless", "aless2002CD").getConnection();
+        Connection conn = new DataBaseConnection("aless", "aless2002CD").getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, username);  // Asignamos el valor del username
         statement.setString(2, password);  // Asignamos el valor del password

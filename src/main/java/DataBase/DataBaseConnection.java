@@ -9,7 +9,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 /**
  * retorna la data una vez que se refresque la pantalla
  * @author cdcruzr@unah.hn
- * @version 0.1.0
+ * @version 0.2.0
  * @date 2024/11/15
  * @since 2024/11/29
  * */
@@ -29,7 +29,7 @@ public class DataBaseConnection {
 	/**
 	* Establece una conexion a la base de datos
 	* @author cdcruzr@unah.hn
-	* @version 0.1.0
+	* @version 0.2.0
 	* @date 2024/11/15
 	* @since 2024/11/29
 	* */
