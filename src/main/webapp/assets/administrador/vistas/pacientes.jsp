@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Médicos</title>
+		<title>Pacientes</title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/administrador.css">		
 		<link rel="stylesheet" href="../css/medicos.css">		
@@ -34,12 +34,12 @@
 			    Usuarios
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
-				    <li><a class="dropdown-item" href="#">Médicos</a></li>
+				    <li><a class="dropdown-item" href="medicos.jsp">Médicos</a></li>
 				    <li><a class="dropdown-item" href="#">Otros</a></li>
 	  			</ul>
   			</div>
   			
-		    <a href="pacientes.jsp">Pacientes</a>
+		    <a href="#">Pacientes</a>
 		    
 		    <div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,7 +62,7 @@
 		<div class="container text-center" style="margin-left: 16vw; margin-top: 15vh; width:80vw;">
 			<div class="row align-items-start">
 				<div class="col">
-					<h3 class="pt-3">Médicos </h3>
+					<h3 class="pt-3">Pacientes </h3>
 				</div>
 				<div class="col"></div>
 				<div class="col" style="margin-top: 2.5vh;">
@@ -71,16 +71,16 @@
 			</div>
 		</div>
 		
-		<div style="margin-left: 20vw; margin-top: 2vh;">
-			<input type="search" class="form-control input-sm" placeholder="Buscar" aria-controls="buscarMedico" style="width:30vw;">
+		<div style="margin-left: 24.5vw; margin-top: 2vh;">
+			<input type="search" class="form-control input-sm" placeholder="Buscar" aria-controls="buscarPaciente" style="width:30vw;">
 		</div>
 		
-		<!-- Modal para registrar medico -->
+		<!-- Modal para registrar paciente -->
 		<div id="registrarEmpleadoModal" class="modal fade" aria-hidden="true" tabindex="-1">
 			<div class="modal-dialog modal-dialog-scrollable">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">Registrar empleado</h5>
+						<h5 class="modal-title">Registrar paciente</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
@@ -178,9 +178,10 @@
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Nombre</th>
-								<th scope="col">Especialidad</th>
-								<th scope="col">Usuario</th>
-								<th scope="col">Perfil</th>
+								<th scope="col">DNI</th>
+								<th scope="col">Correo</th>
+								<th scope="col">Teléfono</th>
+								<th scope="col">Expediente</th>
 							</tr>
 						</thead>
 						<tbody>	
@@ -189,19 +190,22 @@
 							for (int i = 1; i <= 15; i++) {
 								result.append("<tr>");
 								result.append("<th scope=\"row\">");
-								result.append(String.format("<span id=\"numeroMedico%sSpan\">%s</span>",i,i));
+								result.append(String.format("<span id=\"numeroPaciente%sSpan\">%s</span>",i,i));
 								result.append("</th>");
 								result.append("<td>");
-								result.append(String.format("<span id=\"primerNombreMedico%sSpan\">Jesús</span> <span id=\"primerApellidoMedico%sSpan\">Zepeda</span>",i,i));
+								result.append(String.format("<span id=\"primerNombrePaciente%sSpan\">Constantino</span> <span id=\"primerApellidoPaciente%sSpan\">Flores</span>",i,i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<span id=\"especialidad%sSpan\">Especialidad</span>",i));
+								result.append(String.format("<span id=\"dni%sSpan\">0801-1989-00001</span>",i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<span id=\"usuario%sSpan\">ejemplo@gmail.com</span>",i));
+								result.append(String.format("<span id=\"correo%sSpan\">ejemplo@gmail.com</span>",i));
 								result.append("</td>");
 								result.append("<td>");
-								result.append(String.format("<a class=\"link-opacity-50-hover\" href=\"perfilMedico.jsp?perfil=%s\">Ver</a>",i));
+								result.append(String.format("<span id=\"telefono%sSpan\">9999-9999</span>",i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<a class=\"link-opacity-50-hover\" href=\"expediente.jsp?exp=%s\">Ver</a>",i));
 								result.append("</td>");
 								result.append("</tr>");
 							}
