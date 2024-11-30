@@ -4,12 +4,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Consultas</title>
+		<title>Administrador</title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/administrador.css">		
-	</head>
+	</head>	
 	<body>
-		<!-- Encabezado de la página -->
+	<!-- Encabezado de la página -->
 		<nav class="navbar fixed-top bg-primary" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
@@ -26,9 +26,9 @@
 
 		<!-- Menú lateral -->
 		<div class="menuLateral" id="menuLateral">
-		    <a href="administrador.jsp">Inicio</a>
-		    
-		    <div class="btn-group dropend btn-dark">
+		    <a href="#">Inicio</a>
+			
+			<div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Usuarios
 			    </a>
@@ -37,7 +37,7 @@
 				    <li><a class="dropdown-item" href="#">Otros</a></li>
 	  			</ul>
   			</div>
-		    
+			
 		    <a href="pacientes.jsp">Pacientes</a>
 		    
 		    <div class="btn-group dropend btn-dark">
@@ -46,7 +46,7 @@
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
 				    <li><a class="dropdown-item" href="verTodo.jsp">Ver todo</a></li>
-				    <li><a class="dropdown-item" href="#">Crear nuevo</a></li>
+				    <li><a class="dropdown-item" href="crearNuevo.jsp">Crear nuevo</a></li>
 	  			</ul>
   			</div>
 		    
@@ -56,31 +56,8 @@
 		    <a href="#">Laboratorio</a>
 		    <a href="#">Configuración</a>
 		    <a href="#">Cerrar sesión</a>
-		</div>	
-		
-		
-		
-		
-		
-		
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
 		</div>
-		
+
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="../js/administrador.js"></script>
 	</body>

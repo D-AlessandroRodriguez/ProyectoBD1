@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Consultas</title>
-		<link rel="stylesheet" href="../../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/administrador.css">		
 	</head>
 	<body>
@@ -13,7 +13,7 @@
 		<nav class="navbar fixed-top bg-primary" data-bs-theme="dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">
-					<img src="../../img/logo-hospital.png" alt="Logo" width="35" height="30" class="d-inline-block align-text-top">
+					<img src="../../login/img/logo-hospital.png" alt="Logo" width="35" height="30" class="d-inline-block align-text-top">
 					Hospital San Jesús
 					<!-- Botón para activar el menú lateral -->
 					<button class="btn btn-primary" id="menuButton">
@@ -38,7 +38,7 @@
 	  			</ul>
   			</div>
 			
-		    <a href="#">Pacientes</a>
+		    <a href="pacientes.jsp">Pacientes</a>
 		    
 		    <div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -132,7 +132,7 @@
 		</div>
 			
 			
-		<script src="../../js/bootstrap.bundle.min.js"></script>
+		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="../js/administrador.js"></script>
 	</body>
 </html>
