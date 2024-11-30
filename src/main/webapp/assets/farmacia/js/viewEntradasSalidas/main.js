@@ -1,7 +1,7 @@
-let table = new DataTable('#productsTable', {
+let table = new DataTable('#productsMovementsTable', {
 	paging: true,
-	pageLength: 15,
-    lengthMenu: [15, 30, 50, 100],
+	pageLength: 30,
+    lengthMenu: [30, 50, 100, 200],
     language: {
         paginate: {
           first: "Primera",
@@ -17,10 +17,13 @@ let table = new DataTable('#productsTable', {
 		{
 			data: 'id',
 			name: 'id',
+			render: function(data) {
+				return `<p style="text-align: center; margin-bottom: 0;">${data}</p>`;
+			}
 		},
 		{
-			data: 'nombre',
-			name: 'nombre',
+			data: 'producto',
+			name: 'producto',
 		},
 		{
 			data: 'marca',
@@ -31,26 +34,30 @@ let table = new DataTable('#productsTable', {
 			name: 'tipo',
 		},
 		{
-			data: 'contenido',
-			name: 'contenido',
+			data: 'lote',
+			name: 'lote',
 		},
 		{
-			data: 'stock',
-			name: 'stock',
+			data: 'movimiento',
+			name: 'movimiento',
 		},
 		{
-			data: 'accion',
-			name: 'accion',
+			data: 'cantidad',
+			name: 'cantidad',
 			render: function(data) {
-				return `<a class="link-opacity-50-hover" href="viewLotesProducto.jsp?prod=${data}">Ver lotes</a>`;
+				return `<p style="text-align: center; margin-bottom: 0;">${data}</p>`;
 			}
 		},
+		{
+			data: 'fecha',
+			name: 'fecha',
+		}
 	],
     scrollY: "55vh",
     scrollCollapse: false,
 	serverSide: true,
 	ajax: {
-		url: "/ProyectoBD1/api/get_products",
+		url: "/ProyectoBD1/api/get_products_movements",
 		type: "POST"
 	}
 });

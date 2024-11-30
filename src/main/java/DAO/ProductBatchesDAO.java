@@ -34,11 +34,13 @@ public class ProductBatchesDAO {
 	 */
 	private static int getBatchesCount(String productId) throws ClassNotFoundException, SQLException {
 		
-		String query = "SELECT COUNT(*) FROM dbo.obtenerLotesDeProducto('"+productId+"')";
+		String query = "SELECT COUNT(*) FROM dbo.obtenerLotesDeProducto(?)";
 		
-		Connection connection = DataBaseConnection.getConnection();
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(query);
+		
+		statement.setString(1, productId);
 		
 		ResultSet resultSet = statement.executeQuery();
 		
@@ -56,29 +58,48 @@ public class ProductBatchesDAO {
 	/**
 	 * Método que obtiene todos los lotes registrados de un producto de la base de datos.
 	 * @author jesus.zepeda@unah.hn
-	 * @version 0.1.0
+	 * @version 0.2.0
 	 * @since 2024/11/26
-	 * @date 2024/11/26
-	 * @param productId El Id del producto del cuál quiero obtener sus lotes.
+	 * @date 2024/11/29
+	 * @param productId El Id del producto del cuál se quiere obtener sus lotes.
 	 * @param start Indica el índice de registro a partir del cuál se empezará a seleccionar.
 	 * @param length Indica la cantidad de registros que se espera seleccionar.
 	 * @param searchValue Indica el valor a ser buscado en las columnas de cada registro para especificar éstos aún más.
-	 * @param orderColumnName Indica el nombre de la columna por la cual se aplicará la instrucción ORDER BY en la consulta a realizar.
+	 * @param orderColumnIndex Indica el índice de la columna por la cual se aplicará la instrucción ORDER BY en la consulta a realizar.
 	 * @param orderDirection Indica la dirección de ordenado.
 	 * @return Un mapa convertible en Json con los datos extraídos de la base de datos y con información adicional necesaria para dar respuesta al Frontend.
 	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
 	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
 	 */
-	public static Map<String,Object> getProductBatches(String productId, int start, int length, String searchValue, String orderColumnName, String orderDirection) throws ClassNotFoundException, SQLException {
+	public static Map<String,Object> getProductBatches(String productId, int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
 			
-		String query = "SELECT * FROM dbo.obtenerLotesDeProducto('"+productId+"') WHERE (id LIKE '"+searchValue+"%' OR CantidadIngresada LIKE '"+searchValue+"%' OR FechaIngreso LIKE '"+searchValue+"%' OR FechaElaboracion LIKE '"+searchValue+"%' OR FechaVencimiento LIKE '"+searchValue+"%' OR CantidadActual LIKE '"+searchValue+"%') ORDER BY '"+orderColumnName+"' "+orderDirection+" OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
+		String query = null;
 		
-		Connection connection = DataBaseConnection.getConnection();		
+		if (orderColumnIndex >= 0 && orderColumnIndex < 6) {
+			
+			if ("ASC".equalsIgnoreCase(orderDirection)) {
+				
+				query = String.format("SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			
+			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+				
+				query = String.format("SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			}
+		}
+		
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();		
 		
 		PreparedStatement statement = connection.prepareStatement(query);
 		
-		statement.setInt(1, start);
-		statement.setInt(2, length);
+		statement.setString(1,productId);
+		statement.setString(2, searchValue+"%");
+		statement.setString(3, searchValue+"%");
+		statement.setString(4, searchValue+"%");
+		statement.setString(5, searchValue+"%");
+		statement.setString(6, searchValue+"%");
+		statement.setString(7, searchValue+"%");
+		statement.setInt(8, start);
+		statement.setInt(9, length);
 		
 		ResultSet resultSet = statement.executeQuery();
 		

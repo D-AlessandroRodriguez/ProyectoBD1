@@ -11,38 +11,39 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import DAO.RecipeOrdersDAO;
+import DAO.ProductsMovementsDAO;
 
 /**
- * Servlet que accede a la base de datos para obtener las órdenes de recetas según los parámetros enviados del cliente Frontend.
+ * Servlet que accede a la base de datos para obtener el historial de movimiento de productos según los parámetros enviados del cliente Frontend.
  * @author jesus.zepeda@unah.hn
- * @version 0.3.0
- * @since 2024/11/27
+ * @version 0.1.0
+ * @since 2024/11/29
  * @date 2024/11/29
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/api/get_recipe_orders" })
-public class GetRecipeOrdersServlet extends HttpServlet {
+@WebServlet(asyncSupported = true, description = "Obtiene el historial de movimientos de productos de la base de datos.", urlPatterns = { "/api/get_products_movements" })
+public class GetProductsMovementsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetRecipeOrdersServlet() {
+    public GetProductsMovementsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
     /**
-	 * Método que recibe la petición POST del cliente Frontend para mostrar la información de las órdenes de recetas.
+	 * Método que recibe la petición POST del cliente Frontend para mostrar el historial de movimientos de productos.
 	 * @author jesus.zepeda@unah.hn
-	 * @version 0.3.0
-	 * @since 2024/11/26
+	 * @version 0.1.0
+	 * @since 2024/11/29
 	 * @date 2024/11/29
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("application/json");
 		
-		int draw = 0,start = 0,length = 0, orderColumnIndex = 0;
+		int draw = 0,start = 0,length = 0,orderColumnIndex = 0;
 		try {
 			
 			draw = Integer.parseInt(request.getParameter("draw"));
@@ -51,7 +52,6 @@ public class GetRecipeOrdersServlet extends HttpServlet {
 			orderColumnIndex = Integer.parseInt(request.getParameter("order[0][column]"));
 		
 		} catch (NumberFormatException e) {
-			
 			//e.printStackTrace();
 		}
 		
@@ -60,7 +60,7 @@ public class GetRecipeOrdersServlet extends HttpServlet {
 		
 		try {
 			
-			Map<String,Object> dataTableResponse = RecipeOrdersDAO.getRecipeOrders(start, length, searchValue, orderColumnIndex, orderDirection);
+			Map<String,Object> dataTableResponse = ProductsMovementsDAO.getProductsMovements(start, length, searchValue, orderColumnIndex, orderDirection);
 			
 			dataTableResponse.put("draw", String.format("%s", draw));
 			

@@ -40,9 +40,9 @@ let table = new DataTable('#recipeOrdersTable', {
 	],
     scrollY: "55vh",
     scrollCollapse: false,
-//	serverSide: true,
-//	ajax: {
-//		url: "/ProyectoBD1/api/get_products",
-//		type: "POST"
-//	}
+	serverSide: true,
+	ajax: {
+		url: "/ProyectoBD1/api/get_recipe_orders",
+		type: "POST"
+	}
 });

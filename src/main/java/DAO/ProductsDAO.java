@@ -36,7 +36,7 @@ public class ProductsDAO {
 		
 		String query = "SELECT COUNT(*) FROM Productos";
 		
-		Connection connection = DataBaseConnection.getConnection();
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(query);
 		
@@ -56,28 +56,46 @@ public class ProductsDAO {
 	/**
 	 * Método que obtiene todos los productos registrados de la base de datos.
 	 * @author jesus.zepeda@unah.hn
-	 * @version 0.1.0
+	 * @version 0.2.0
 	 * @since 2024/11/26
-	 * @date 2024/11/26
+	 * @date 2024/11/29
 	 * @param start Indica el índice de registro a partir del cuál se empezará a seleccionar.
 	 * @param length Indica la cantidad de registros que se espera seleccionar.
 	 * @param searchValue Indica el valor a ser buscado en las columnas de cada registro para especificar éstos aún más.
-	 * @param orderColumnName Indica el nombre de la columna por la cual se aplicará la instrucción ORDER BY en la consulta a realizar.
+	 * @param orderColumnIndex Indica el índice de la columna por la cual se aplicará la instrucción ORDER BY en la consulta a realizar.
 	 * @param orderDirection Indica la dirección de ordenado.
 	 * @return Un mapa convertible en Json con los datos extraídos de la base de datos y con información adicional necesaria para dar respuesta al Frontend.
 	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
 	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
 	 */
-	public static Map<String,Object> getProducts(int start, int length, String searchValue, String orderColumnName, String orderDirection) throws ClassNotFoundException, SQLException {
-
-		String query = "SELECT * FROM VistaProductos WHERE (id LIKE '" +searchValue+ "%' OR nombre LIKE '"+searchValue+"%' OR marca LIKE '"+searchValue+"%' OR tipo LIKE '"+searchValue+"%' OR contenido LIKE '"+searchValue+"%' OR stock LIKE '"+searchValue+"%') ORDER BY '"+orderColumnName+"' "+orderDirection+" OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
-
-		Connection connection = DataBaseConnection.getConnection();
+	public static Map<String,Object> getProducts(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
+		
+		String query = null;
+		
+		if (orderColumnIndex >= 0 && orderColumnIndex < 7) {
+			
+			if ("ASC".equalsIgnoreCase(orderDirection)) {
+				
+				query = String.format("SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			
+			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+				
+				query = String.format("SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			}
+		}
+		
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
 
 		PreparedStatement statement = connection.prepareStatement(query);
-
-		statement.setInt(1, start);
-		statement.setInt(2, length);
+		
+		statement.setString(1, searchValue+"%");
+		statement.setString(2, searchValue+"%");
+		statement.setString(3, searchValue+"%");
+		statement.setString(4, searchValue+"%");
+		statement.setString(5, searchValue+"%");
+		statement.setString(6, searchValue+"%");
+		statement.setInt(7, start);
+		statement.setInt(8, length);
 
 		ResultSet resultSet = statement.executeQuery();
 		
@@ -106,15 +124,17 @@ public class ProductsDAO {
 		response.put("recordsFiltered", String.format("%s", products.size()));
 		response.put("data", products);
 		
+		connection.close();
+		
 		return response;
 	}
 	
 	/**
 	 * Método que el nombre del producto con el Id pasado como parámetro.
 	 * @author jesus.zepeda@unah.hn
-	 * @version 0.1.0
+	 * @version 0.2.0
 	 * @since 2024/11/26
-	 * @date 2024/11/26
+	 * @date 2024/11/29
 	 * @param productId Id del producto a ser buscado en la base de datos para obtener su nombre.
 	 * @return El nombre del producto con el Id pasado como parámetro.
 	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
@@ -122,18 +142,25 @@ public class ProductsDAO {
 	 */
 	public static String getProductName(String productId) throws ClassNotFoundException, SQLException {
 
-		String query = "SELECT * FROM VistaProductos WHERE nombre LIKE '"+productId+"';";
+		String query = "SELECT * FROM VistaProductos WHERE nombre LIKE ?;";
 
-		Connection connection = DataBaseConnection.getConnection();
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
 
 		PreparedStatement statement = connection.prepareStatement(query);
+		
+		statement.setString(1, productId);
 
 		ResultSet resultSet = statement.executeQuery();
 		
 		if (resultSet.next()) {
 			
-			return resultSet.getString(1);
+			String productName = resultSet.getString(1);
+			connection.close();
+			
+			return productName;
 		}
+		
+		connection.close();
 		
 		return null;
 	}

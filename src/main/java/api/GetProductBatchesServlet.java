@@ -16,18 +16,18 @@ import DAO.ProductBatchesDAO;
 /**
  * Servlet que accede a la base de datos para obtener los lotes de un producto según los parámetros enviados del cliente Frontend.
  * @author jesus.zepeda@unah.hn
- * @version 0.1.0
+ * @version 0.3.0
  * @since 2024/11/26
- * @date 2024/11/26
+ * @date 2024/11/29
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/api/get_batches" })
-public class GetProductBatches extends HttpServlet {
+public class GetProductBatchesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetProductBatches() {
+    public GetProductBatchesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,25 +35,32 @@ public class GetProductBatches extends HttpServlet {
     /**
 	 * Método que recibe la petición POST del cliente Frontend para mostrar la información de los lotes de un producto.
 	 * @author jesus.zepeda@unah.hn
-	 * @version 0.1.0
+	 * @version 0.3.0
 	 * @since 2024/11/26
-	 * @date 2024/11/26
+	 * @date 2024/11/29
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		
 		String productId = request.getParameter("productId");
 		
-		int draw = Integer.parseInt(request.getParameter("draw"));
-		int start = Integer.parseInt(request.getParameter("start"));
-		int length = Integer.parseInt(request.getParameter("length"));
+		int draw = 0,start = 0,length = 0,orderColumnIndex=0;
+		try {
+			draw = Integer.parseInt(request.getParameter("draw"));
+			start = Integer.parseInt(request.getParameter("start"));
+			length = Integer.parseInt(request.getParameter("length"));
+			orderColumnIndex = Integer.parseInt(request.getParameter("order[0][column]"));
+		} catch (NumberFormatException e) {
+			
+			//e.printStackTrace();
+		}
+		
 		String searchValue = request.getParameter("search[value]");
-		String orderColumnName = request.getParameter("order[0][name]");
 		String orderDirection = request.getParameter("order[0][dir]");
 		
 		try {
 			
-			Map<String,Object> dataTableResponse = ProductBatchesDAO.getProductBatches(productId, start, length, searchValue, orderColumnName, orderDirection);
+			Map<String,Object> dataTableResponse = ProductBatchesDAO.getProductBatches(productId, start, length, searchValue, orderColumnIndex, orderDirection);
 			
 			dataTableResponse.put("draw", String.format("%s", draw));
 			
@@ -63,13 +70,5 @@ public class GetProductBatches extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 }

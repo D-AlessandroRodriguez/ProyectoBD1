@@ -1,4 +1,4 @@
-i-- Vistas del farmacéutico
+i-- Vistas y funciones del farmacéutico
 
 --Ver información de los productos
 CREATE VIEW VistaProductos
@@ -50,7 +50,7 @@ CREATE FUNCTION obtenerProductosDeReceta(@recetaId INTEGER)
 RETURNS TABLE
 AS
 RETURN(
-SELECT OrdRecProd.RecetaId id,
+SELECT Prod.Id id,
 Prod.NombreComercial nombre,
 M.Nombre marca,
 T.Nombre tipo,
