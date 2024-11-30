@@ -12,18 +12,17 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 	 * @author cdcruzr@unah.hn
 	 * @version 0.1.0
 	 * @date 2024/11/15
-	 * @since 2024/11/15
+	 * @since 2024/11/29
 	 * */
 
 public class DataBaseConnection {
 	  // Información de conexión a la base de datos
-	private static String dburl = "jdbc:sqlserver://DESKTOP-LS6NEIC:1433;databaseName=loginUsers;encrypt=true;trustServerCertificate=true";
+	private static String dburl = "jdbc:sqlserver://localhost:1433;databaseName=loginUsers;encrypt=true;trustServerCertificate=true";
 	private String dbUser;
 	private String dbPassword;
-	//private static String dbUser = "aless";  // Usuario de la base de datos
-    //private static String dbPassword = "aless2002CD";  // Contraseña de la base de datos
 	
     public DataBaseConnection(String dbUser, String dbPassword) {
+    	
     	this.dbUser = dbUser;
     	this.dbPassword = dbPassword;
     }
@@ -33,7 +32,7 @@ public class DataBaseConnection {
 	* @author cdcruzr@unah.hn
 	* @version 0.1.0
 	* @date 2024/11/15
-	* @since 2024/11/15
+	* @since 2024/11/29
 	* */
     public Connection getConnection() throws ClassNotFoundException, SQLException {
        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
