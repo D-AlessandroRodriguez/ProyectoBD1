@@ -27,6 +27,9 @@ let table = new DataTable('#tablaDeLotes', {
 		{
 			data: 'cantidadIngresada',
 			name: 'canitdadIngresada',
+			render: function(data) {
+				return `<p style="text-align: center; margin-bottom: 0;">${data}</p>`;
+			}
 		},
 		{
 			data: 'fechaIngreso',
@@ -43,6 +46,9 @@ let table = new DataTable('#tablaDeLotes', {
 		{
 			data: 'cantidadActual',
 			name: 'cantidadActual',
+			render: function(data) {
+				return `<p style="text-align: center; margin-bottom: 0;">${data}</p>`;
+			}
 		}
 	],
     scrollY: "55vh",

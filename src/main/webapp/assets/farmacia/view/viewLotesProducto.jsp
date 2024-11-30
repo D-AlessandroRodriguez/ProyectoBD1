@@ -5,6 +5,7 @@
 <%
 	String productId = request.getParameter("prod");
 	String productName = new String("No definido");
+	
 	if (productId != null) {
 		
 		productName = ProductsDAO.getProductName(productId);
@@ -78,7 +79,7 @@
 				<h3 class="pt-3">Lotes de <%=productName%></h3>
 			</div>
 			<div id="tablaRowContainer" class="row">
-				<div class="col px-5 mt-1 mb-2">
+				<div class="col px-2 mt-1 mb-2">
 					<table id="tablaDeLotes" class="table table-hover text-center">
 						<thead id="encabezadosDeTabla">
 							<tr>

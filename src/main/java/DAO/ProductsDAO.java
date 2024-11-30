@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-
 import DataBase.DataBaseConnection;
 
 /**
@@ -101,7 +99,7 @@ public class ProductsDAO {
 		
 		Map<String,Object> response = new HashMap<>();
 		
-		List<String> products = new ArrayList<>();
+		List<Object> products = new ArrayList<>();
 		
 		Map<String,String> product;
 		
@@ -117,7 +115,7 @@ public class ProductsDAO {
 			product.put("stock", resultSet.getString(7));
 			product.put("accion", resultSet.getString(1));
 			
-			products.add(new Gson().toJson(product));
+			products.add(product);
 		}
 		
 		response.put("recordsTotal", String.format("%s", getProductsCount()));
@@ -142,7 +140,7 @@ public class ProductsDAO {
 	 */
 	public static String getProductName(String productId) throws ClassNotFoundException, SQLException {
 
-		String query = "SELECT * FROM VistaProductos WHERE nombre LIKE ?;";
+		String query = "SELECT nombre FROM VistaProductos WHERE id LIKE ?;";
 
 		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
 

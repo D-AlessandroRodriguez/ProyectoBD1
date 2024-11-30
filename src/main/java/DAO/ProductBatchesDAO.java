@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
 import DataBase.DataBaseConnection;
 
 /**
@@ -105,7 +104,7 @@ public class ProductBatchesDAO {
 		
 		Map<String,Object> response = new HashMap<>();
 		
-		List<String> batches = new ArrayList<>();
+		List<Object> batches = new ArrayList<>();
 		
 		Map<String,String> batch;
 		
@@ -120,7 +119,7 @@ public class ProductBatchesDAO {
 			batch.put("fechaVencimiento", resultSet.getString(5));
 			batch.put("cantidadActual", resultSet.getString(6));	
 			
-			batches.add(new Gson().toJson(batch));
+			batches.add(batch);
 		}
 		
 		response.put("recordsTotal", String.format("%s", getBatchesCount(productId)));

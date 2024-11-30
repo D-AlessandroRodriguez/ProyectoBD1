@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-
 import DataBase.DataBaseConnection;
 
 /**
@@ -103,7 +101,7 @@ public class ProductsMovementsDAO {
 		
 		Map<String,Object> response = new HashMap<>();
 		
-		List<String> movements = new ArrayList<>();
+		List<Object> movements = new ArrayList<>();
 		
 		Map<String,String> movement;
 		
@@ -118,9 +116,9 @@ public class ProductsMovementsDAO {
 			movement.put("lote", resultSet.getString(5));
 			movement.put("movimiento", resultSet.getString(6));
 			movement.put("cantidad", resultSet.getString(7));
-			movement.put("fecha", resultSet.getString(7));
+			movement.put("fecha", resultSet.getString(8));
 			
-			movements.add(new Gson().toJson(movement));
+			movements.add(movement);
 		}
 		
 		response.put("recordsTotal", String.format("%s", getProductsMovementsCount()));
