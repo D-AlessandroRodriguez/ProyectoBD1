@@ -89,8 +89,8 @@
 				<hr class="border-top  border-black border-2 opacity-75">
 				<div class="col-md-6 fw-bold">
 					<!--Nombre del paciente debe de ser-->
-					<label class="row justify-content-start">Paciente: </label> <input
-						type="text" class="form-control w-75 inline" id="pacienteName"
+					<label class="row justify-content-start">Paciente: </label> 
+					<input type="text" class="form-control w-75" id="pacienteName"
 						placeholder="Escriba el nombre del paciente">
 				</div>
 				<div class="col-md-6 px-2 fw-bold">
