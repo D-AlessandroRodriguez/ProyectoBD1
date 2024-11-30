@@ -2,7 +2,6 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import DataBase.DataBaseConnection;
@@ -32,7 +31,7 @@ public class PersonaDAO{
 		String sql = "INSERT INTO Personas Values(?,?,?,?,?,?,?,?)";
         try {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        Connection conn = DataBaseConnection.getConnection();
+        Connection conn = new DataBaseConnection("usuarioDeAngel", "contraseñaDeAngel").getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, persona.getDni()); 
         statement.setString(2, persona.getRtn()); 

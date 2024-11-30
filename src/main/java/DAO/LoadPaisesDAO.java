@@ -29,7 +29,7 @@ public class LoadPaisesDAO {
         String sql = "SELECT Nombre,Codigo FROM Paises;";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = DataBaseConnection.getConnection();
+            Connection conn = new DataBaseConnection("usuarioDeAngel", "contraseñaDeAngel").getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
             ResultSet resultSet = statement.executeQuery();
@@ -41,14 +41,10 @@ public class LoadPaisesDAO {
                 String pais = resultSet.getString("Nombre");
                 String codigo = resultSet.getString("Codigo");
                 
-                
-
-                
                 if (!first) {
                     result.append(",");
                 }
 
-               
                 result.append(String.format("\"Nombre\":\"%s\"", pais));
                 result.append(String.format("\"Codigo\":\"%s\"", codigo));
                 first = false;  
