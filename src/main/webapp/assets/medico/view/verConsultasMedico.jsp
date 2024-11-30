@@ -39,7 +39,7 @@
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="crearCosulta" href="crearConsulta.jsp">Crear consulta</a></li>
-			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos">Crear diagnostico</a></li>
+			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -59,26 +59,85 @@
 			    </div>
 		</nav>
 		<!-- Página principal -->
+		<div class="modal modalViewVer" tabindex="-1">
+				<div class="modal-dialog modal-xl">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <h5 id="title" class="modal-title">Paciente: Jesús Zepeda</h5>
+			          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			        </div>
+			        <div class="modal-body">
+					<div id="bodyModalVer" class="ratio"
+						style="--bs-aspect-ratio: 0; margin: 10px"></div>
+					<!--valores dentro del cuerpo -->
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">fecha: 2024/11/27</th>
+								<th scope="col">hora: 15:00</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><h5>Diagnostico</h5>
+									<div id="" class="container">
+										<h6>Observaciones:</h6>
+										<p>El paciente presenta enfermedadades base como ser diabates, azucar, presion y 
+										se remitio por un dolor de cebeza</p>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			        <div class="modal-footer">
+			          <button type="button" id="exitModal" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+			        </div>
+			      </div>
+			  </div>
+		  </div>
+		
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Consultas del medico</h3>
+				<h3 class="pt-3">Consultas por el <span id="nameDoctor">Dr. Cesar Cruz</span></h3>
 			</div>
-			
 			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
 					<table class="table table-hover text-center">
 						<thead id="encabezadosDeTabla">
 							<tr>
-							<!--  -->
+								<th scope="col">Numero consulta</th>
+								<th scope="col">Paciente</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Acción</th>
 							</tr>
 						</thead>
 						<tbody>
+							<%
+							StringBuilder result = new StringBuilder();
+							for (int i = 1; i <= 15; i++) {
+								result.append("<tr>");
+								result.append("<th scope=\"row\">");
+								result.append(String.format("<span id=\"numeroReceta%sSpan\">%s</span>",i,i));
+								result.append("</th>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"primerNombrePacienteReceta%sSpan\">Jesús</span> <span id=\"primerApellidoPacienteReceta%sSpan\">Zepeda</span>",i,i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<span id=\"fechaReceta%sSpan\">2024-11-19</span>",i));
+								result.append("</td>");
+								result.append("<td>");
+								result.append(String.format("<button class=\"btn btnVer btn-primary\" type=\"button\">Ver</button>",i));
+								result.append("</td>");
+								result.append("</tr>");
+							}
+							out.print(result.toString());
+							%>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-		
 		<div id="pieContenedor" class="container">
 			<nav class="p-2">
 				<ul class="pagination justify-content-center mb-0">
@@ -96,6 +155,9 @@
 			  	</ul>
 			</nav>
 		</div>
+		
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/ActionBtnVer.js"></script>
+		<script src="../js/mainBtnVer.js"></script>
 	</body>
 </html>
