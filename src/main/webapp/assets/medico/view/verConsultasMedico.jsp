@@ -157,7 +157,7 @@
 		</div>
 		
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="../js/ActionBtnVer.js"></script>
-		<script src="../js/mainBtnVer.js"></script>
+		<script src="../js/verConsultaMedico/ActionBtnVer.js"></script>
+		<script src="../js/verConsultaMedico/mainBtnVer.js"></script>
 	</body>
 </html>
