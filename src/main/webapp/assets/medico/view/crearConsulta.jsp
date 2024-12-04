@@ -77,7 +77,7 @@
                 <label for="doctor" class="form-label ">Cesar Cruz</label>
             </div>
              <div class="mb-3">
-                <label for="paciente" class="form-label">Paciente</label>
+                <label for="paciente" class="form-label">Nombre Paciente</label>
                 <input type="text" class="form-control" id="paciente" name="paciente" required>
             </div>
             <div class="mb-3">
@@ -94,10 +94,10 @@
                 <label for="costo" class="form-label">Costo</label>
                 <input type="text" class="form-control" id="costo" name="costo" required>
             </div>
-        </form>
+		</form>
     </div>
 
-    <div class="p-3 border-top text-center" id="botonContainer" style="position: sticky;bottom: 0;">
+    <div class="p-3 border-top text-center" id="btnRegistrarConsulta" style="position: sticky;bottom: 0;">
         <button type="submit" class="btn btn-primary w-100">Registrar Consulta</button>
     </div>
 </div>
@@ -118,24 +118,6 @@
 					</table>
 				</div>
 			</div>
-		</div>
-		
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>

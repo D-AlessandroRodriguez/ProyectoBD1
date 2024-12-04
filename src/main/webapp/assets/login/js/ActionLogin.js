@@ -12,7 +12,6 @@ class ActionLogin{
 		
 		if(xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status <400)  ){	
 		let JsonResponse = JSON.parse(xhr.responseText);
-		console.log(JsonResponse);
 			if(JsonResponse.status){
 				console.log("flujo correcto hasta aqui");
 				window.location.reload();
