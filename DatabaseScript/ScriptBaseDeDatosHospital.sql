@@ -416,7 +416,7 @@ GO
 CREATE TABLE FichaInventario(
 Id VARCHAR(19) PRIMARY KEY,
 Fecha DATE NOT NULL,
-TipoMivimientoId INTEGER NOT NULL REFERENCES TipoDeMovimientos(Id),
+TipoMovimientoId INTEGER NOT NULL REFERENCES TipoDeMovimientos(Id),
 ProductoId VARCHAR(19) NOT NULL REFERENCES Productos(Id),
 Cantidad DECIMAL(13,2) NOT NULL,
 LoteId VARCHAR(19) NOT NULL REFERENCES LotesProductos(Id),

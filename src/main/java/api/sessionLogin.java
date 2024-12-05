@@ -36,6 +36,7 @@ public class sessionLogin extends HttpServlet {
 	
 		String username = request.getParameter("email");
 		String password = request.getParameter("password");
+		System.out.println(username);
 		
 	    //extraer los roles y permisos
 		UserDAO userExists = new UserDAO(username, password);

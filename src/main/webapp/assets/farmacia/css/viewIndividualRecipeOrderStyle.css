@@ -17,7 +17,7 @@
 }
 
 .tablaContenedor {
-	max-height: 180px;
+	max-height: 176px;
 	overflow-y: auto;
 	position: relative;
 }

@@ -128,55 +128,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
-		<script> 
-		let table = new DataTable('#recipeOrdersTable', {
-			paging: true,
-			pageLength: 15,
-		    lengthMenu: [15, 30, 50, 100],
-		    language: {
-		        paginate: {
-		          first: "Primera",
-		          last: "Última",
-		          next: "Siguiente",
-		          previous: "Anterior",
-		        },
-		        info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-		        lengthMenu: "Mostrar _MENU_ registros",
-		        search: "Buscar:"
-		    },
-			columns : [
-				{
-					data: 'id',
-					name: 'id',
-				},
-				{
-					data: 'paciente',
-					name: 'paciente',
-				},
-				{
-					data: 'medico',
-					name: 'medico',
-				},
-				{
-					data: 'fecha',
-					name: 'fecha',
-				},
-				{
-					data: 'accion',
-					name: 'accion',
-					render: function(data) {
-						return `<a class="link-opacity-50-hover" href="viewIndividualRecipeOrder.jsp?ord=${data}">Ver orden</a>`;
-					}
-				},
-			],
-		    scrollY: "55vh",
-		    scrollCollapse: false,
-			serverSide: true,
-			ajax: {
-				url: "/ProyectoBD1/api/get_recipe_orders",
-				type: "POST"
-			}
-		});
-		</script>
+		<script src="../js/viewRecipeOrders/main.js"></script>
 	</body>
 </html>

@@ -65,7 +65,7 @@
 				<h3 class="pt-3">Registro de Producto</h3>			
 			</div>
 			<div id="datosGeneralesRowContainer" class="row">
-				<form class="py-3 px-5 border border-light-subtle rounded-3">
+				<form class="py-3 px-5 border border-light-subtle rounded-3 novalidate">
 					<fieldset>
 						<legend>Datos Generales</legend>
 						<div class="row mb-3">
@@ -156,5 +156,6 @@
 			</div>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/viewRegistrarProducto/main.js"></script>
 	</body>
 </html>
