@@ -14,9 +14,8 @@ class ActionGetRecipeProducts {
 	 * @version 0.1.0
 	 * @since 2024/11/27
 	 * @date 2024/11/27
-	 * @param {HTMLBodyElement} productosDeRecetaTbody Cuerpo de la tabla en el cual se insertarán los datos obtenidos.
 	 */
-	static processRequestResponse(productosDeRecetaTbody) {
+	static processRequestResponse() {
 		
 		let xhr = this;
 		
@@ -26,7 +25,8 @@ class ActionGetRecipeProducts {
 			
 			let data = response.data;
 			
-			productosDeRecetaTbody.innerHMTL = "";
+			let productosDeRecetaTbody = document.querySelector("#productosDeRecetaTbody");
+			productosDeRecetaTbody.innerHTML = "";
 			
 			if (data.length != 0) {
 				
@@ -48,14 +48,13 @@ class ActionGetRecipeProducts {
 	 * @version 0.1.0
 	 * @since 2024/11/27
 	 * @date 2024/11/27
-	 * @param {string} recipeOrderId Id de la receta de la cuál se quiere obtener los productos.
-	 * @param {HTMLBodyElement} productosDeRecetaTbody Cuerpo de la tabla en el cual se insertarán los datos obtenidos. 
+	 * @param {string} recipeOrderId Id de la receta de la cuál se quiere obtener los productos. 
 	 */
-	static getRecipeProducts(recipeOrderId,productosDeRecetaTbody) {
+	static getRecipeProducts(recipeOrderId) {
 		
 		let xhr = new XMLHttpRequest();
 		xhr.open("GET", `/ProyectoBD1/api/get_recipe_products?id=${recipeOrderId}`);
-		xhr.addEventListener("load", ActionGetRecipeProducts.processRequestResponse.bind(xhr,productosDeRecetaTbody));
+		xhr.addEventListener("load", ActionGetRecipeProducts.processRequestResponse.bind(xhr));
 		xhr.send();
 	}
 }

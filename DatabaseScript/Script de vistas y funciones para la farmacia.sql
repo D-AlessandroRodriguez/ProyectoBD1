@@ -9,7 +9,7 @@ M.Nombre marca,
 T.Nombre tipo,
 P.CantidadContenido contenido,
 U.Nombre unidad,
-SUM(F.Cantidad*TM.Factor) stock
+ISNULL(SUM(F.Cantidad*TM.Factor), 0.00) stock
 FROM Productos P
 INNER JOIN MarcasDeProductos M
 ON P.MarcaId = M.Id
@@ -17,9 +17,9 @@ INNER JOIN TiposDeProductos T
 ON P.TipoId = T.Id
 INNER JOIN UnidadesDeMedida U
 ON P.UnidadMedidaId = U.Id
-INNER JOIN FichaInventario F
+LEFT JOIN FichaInventario F
 ON P.Id = F.ProductoId
-INNER JOIN TipoDeMovimientos TM
+LEFT JOIN TipoDeMovimientos TM
 ON F.TipoMovimientoId = TM.Id
 GROUP BY P.Id,P.NombreComercial,M.Nombre,T.Nombre,P.CantidadContenido,U.Nombre;
 GO

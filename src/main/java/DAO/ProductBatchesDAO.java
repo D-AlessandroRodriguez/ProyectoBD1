@@ -74,15 +74,22 @@ public class ProductBatchesDAO {
 			
 		String query = null;
 		
-		if (orderColumnIndex >= 0 && orderColumnIndex < 6) {
+		if (orderColumnIndex == 0 && orderDirection == null) {
 			
-			if ("ASC".equalsIgnoreCase(orderDirection)) {
-				
-				query = String.format("SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			query = "SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY id ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
+		
+		} else {
 			
-			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+			if (orderColumnIndex >= 0 && orderColumnIndex < 6) {
 				
-				query = String.format("SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				if ("ASC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				
+				} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM dbo.obtenerLotesDeProducto(?) WHERE (id LIKE ? OR CantidadIngresada LIKE ? OR FechaIngreso LIKE ? OR FechaElaboracion LIKE ? OR FechaVencimiento LIKE ? OR CantidadActual LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				}
 			}
 		}
 		

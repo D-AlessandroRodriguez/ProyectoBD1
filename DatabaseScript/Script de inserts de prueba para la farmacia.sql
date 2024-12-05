@@ -21,8 +21,8 @@ INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Tabl
 INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Cápsula','cpsla',1,3);
 INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Jarabe','jarbe',1,1);
 INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Inyectable','inyct',1,1);
-INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Aerosol','aersl',1,2);
-INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Granulado','grnld',1,5);
+INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Aerosol','aersl',1,1);
+INSERT INTO TiposDeProductos (Nombre,Codigo,Activo,UnidadMedidaId) VALUES ('Sobre granulado','grnld',1,3);
 GO
 
 -- Llenado de las marcas de productos
@@ -31,6 +31,7 @@ INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Bayer','bayer',1);
 INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Pfizer','pfizr',1);
 INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Genérico','gnric',1);
 INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Acofarma','acfrm',1);
+INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Corinfar','crfar',1);
 GO
 
 SELECT TP.Id,TP.Nombre,U.Id,U.Nombre FROM TiposDeProductos AS TP INNER JOIN UnidadesDeMedida U ON U.Id = TP.UnidadMedidaId;

@@ -74,15 +74,22 @@ public class RecipeOrdersDAO {
 //		String query = "SELECT * FROM VistaRecetas WHERE (id LIKE '"+searchValue+"%' OR paciente LIKE '"+searchValue+"%' OR medico LIKE '"+searchValue+"%' OR fecha LIKE '"+searchValue+"%') ORDER BY '"+orderColumnName+"' "+orderDirection+" OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
 		String query = null;
 		
-		if (orderColumnIndex >= 0 && orderColumnIndex <= 4) {
+		if (orderColumnIndex == 0 && orderDirection == null) {
 			
-			if ("ASC".equalsIgnoreCase(orderDirection)) {
-				
-				query = String.format("SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			query = "SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY id ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
+		
+		} else {
 			
-			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+			if (orderColumnIndex >= 0 && orderColumnIndex <= 4) {
 				
-				query = String.format("SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				if ("ASC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				
+				} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				}
 			}
 		}
 

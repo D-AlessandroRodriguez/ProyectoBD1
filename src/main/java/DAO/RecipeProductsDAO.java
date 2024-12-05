@@ -47,9 +47,20 @@ public class RecipeProductsDAO {
 		
 		Map<String,Object> response = new HashMap<>();
 		
-		List<String> recipeProducts = new ArrayList<>();
+		List<Object> recipeProducts = new ArrayList<>();
 		
-		Map<String,String> product;
+		Map<String,String> product = new HashMap<>();
+		
+		product.put("id", "L-20241203120554234");
+		product.put("nombre", "Acetaminofén");
+		product.put("marca", "Bayer");
+		product.put("tipo", "Tableta");
+		product.put("cantidad", "5");
+		product.put("cantidadDosis", "500");
+		product.put("unidad", "miligramo(s)");
+		product.put("frecuencia", "8");
+		
+		recipeProducts.add(product);
 		
 		while (resultSet.next()) {
 			
@@ -64,7 +75,7 @@ public class RecipeProductsDAO {
 			product.put("unidad", resultSet.getString(7));
 			product.put("frecuencia", resultSet.getString(8));
 			
-			recipeProducts.add(new Gson().toJson(product));
+			recipeProducts.add(product);
 		}
 		
 		response.put("data", recipeProducts);
