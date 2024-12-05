@@ -33,7 +33,7 @@ public class RolesPermissionDAO {
 	        
 	        List<String> rolesPermisos = new ArrayList<>();
 	        try {
-	        	Connection con = DataBaseConnection.getConnection();
+	        	Connection con = new DataBaseConnection("aless", "aless2002CD").getConnection();
 	            PreparedStatement ps = con.prepareStatement(query);
 	            ps.setInt(1, roleId);
 	            
@@ -57,7 +57,7 @@ public class RolesPermissionDAO {
 	public String Roles() {
 		String query = "";
 		try {
-			Connection con = DataBaseConnection.getConnection();
+			Connection con = new DataBaseConnection("aless", "aless2002CD").getConnection();
 			PreparedStatement ps = con.prepareStatement(query);	
 		}catch(SQLException e) {
 			e.printStackTrace();
