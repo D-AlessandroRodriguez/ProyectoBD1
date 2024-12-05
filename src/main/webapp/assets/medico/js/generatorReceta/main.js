@@ -1,4 +1,5 @@
-let actionGenerarReceta = new ActionGenerarReceta();
+const actionGenerarReceta = new ActionGenerarReceta();
+
 let ls = new LocalStorageRR();
 
 //nombre del doctor
@@ -13,9 +14,9 @@ let selectMarca =  document.querySelector("#marca");
 let cantProducto=  document.querySelector("#cantProducto");
 let docificacion =  document.querySelector("#docificacion");
 let frecuencia =  document.querySelector("#frecuencia");
-let unidadDeMedida =  document.querySelector("#unidadDeMedida");
+let selectUnidadDeMedida =  document.querySelector("#unidadDeMedida");
 
-let listSelect = [selectNombreProducto, selectMarca, cantProducto, docificacion, frecuencia, unidadDeMedida];
+let listSelect = [selectNombreProducto, selectMarca, cantProducto, docificacion, frecuencia, selectUnidadDeMedida];
 
 //boton para registrar receta
 let bodyTable = document.querySelector("#bodyTable");
@@ -30,13 +31,13 @@ btnRegistrarReceta.addEventListener("click", actionGenerarReceta.createLocalStor
 
 //cargamos los productos
 actionGenerarReceta.cargarProductos(selectNombreProducto);
-
 //para hacer el select de acuerdo al producto
 selectNombreProducto.addEventListener("change",
 												actionGenerarReceta.actionSendSelect.bind(
 													actionGenerarReceta,
 													selectMarca,
-													selectNombreProducto
+													selectNombreProducto,
+													selectUnidadDeMedida
 										));
 
 //boton para guardar en la base de datos la data	

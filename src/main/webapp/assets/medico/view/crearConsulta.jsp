@@ -73,14 +73,14 @@
 	
 						<div class="mb-3 fs-2 fw-bold">
 							<label for="doctor" class="form-label">Doctor : </label> <label
-								for="doctor" class="form-label" id="nombreDoctor">Cesar
-								Cruz</label>
+								for="doctor" class="form-label" id="nombreDoctor">---</label>
 						</div>
-						<div class="mb-3">
-							<label for="paciente" class="form-label">Nombre Paciente</label> <input
-								type="text" class="form-control" id="paciente" name="paciente"
-								required>
-						</div>
+				<div class="col-md mb-3">
+					<label for="paciente" class="form-label fw-bold w-100">Nombre Paciente</label> 
+					<select disabled id="paciente" class="form-select" aria-label="Default select example" required>
+						<option selected>Seleccione el paciente</option>
+					</select>
+				</div>
 						<div class="mb-3">
 							<label for="fecha" class="form-label">Fecha</label> <input
 								type="date" class="form-control" id="fecha" name="fecha" required>
@@ -89,13 +89,16 @@
 							<label for="hora" class="form-label">Hora</label> <input
 								type="time" class="form-control" id="hora" name="hora" required>
 						</div>
-	
-	
-						<div class="mb-3">
-							<label for="costo" class="form-label">Costo</label> <input
-								type="text" class="form-control" id="costo" name="costo" required>
+						
+					<div class="mb-3">
+						<label for="moneyInput" class="form-label">Ingresa una cantidad:</label>
+						<div class="input-group">
+							<span class="input-group-text">$</span> <input type="number"
+								class="form-control" id="moneyInput" placeholder="0.00" min="0"
+								step="0.01" oninput="LimitarDecimales.limitDecimalPlaces(event, 2)" required>
 						</div>
-					</form>
+					</div>
+				</form>
 				</div>
 	
 				<div class="p-3 border-top text-center" style="position: sticky; bottom: 0;">
@@ -105,6 +108,7 @@
 		</div>
 		
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/crearConsulta/LimitarDecimales.js"></script>
 		<script src="../js/crearConsulta/ActionConsulta.js"></script>
 		<script src="../js/crearConsulta/main.js"></script>
 		

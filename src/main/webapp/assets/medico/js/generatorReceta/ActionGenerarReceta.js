@@ -2,17 +2,23 @@ class ActionGenerarReceta{
 	/**
 	 * con este metodo procesamos la respuesta cuando se requiere autollenar select marca
 	*/
-	static responseDataSelectMarca(selectMarca){
+	static responseDataSelectMarca(selectMarca, selectselectUnidadDeMedida){
 		let xhr = this;
 		
 		if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
 			let dataMarca = JSON.parse(xhr.responseText);
 			
 			let option = document.createElement('option');
-			option.value = dataMarca.marcaId;
-			option.textContent = dataMarca.marcaName;
+			option.value = dataMarca.marca.marcaId;
+			option.textContent = dataMarca.marca.marcaName;
 			option.selected = true;
 			selectMarca.appendChild(option);	
+			
+			let optionUM = document.createElement('option');
+			optionUM.value = dataMarca.unidad.unidadId;
+			optionUM.textContent = `${dataMarca.unidad.codigo} - ${dataMarca.unidad.unidadName}`;
+			optionUM.selected = true;
+			selectselectUnidadDeMedida.appendChild(optionUM);
 			}
 		}
 	/**
@@ -31,12 +37,17 @@ class ActionGenerarReceta{
 				
 				let option = document.createElement('option');
 				option.dataset.idProducto = jsonItem.IdProducto;
-				option.value = jsonItem.id;
-				option.textContent = jsonItem.NombreComercial;
+				option.value = jsonItem.IdProducto;
+				option.textContent = `${jsonItem.IdProducto} - ${jsonItem.NombreComercial}`;
 				selectNombreProducto.appendChild(option);		
 			}
 		}
 	}
+	/**
+	 * 
+	 * procesamos respuesta de insertar ordenDeRecetaProducto
+	 * 
+	 */
 	static responseInsertReceta(){
 		let xhr = this;
 		if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
@@ -44,17 +55,16 @@ class ActionGenerarReceta{
 			
 		}
 	}
-	
 	/**
 	* peticion para seleccionar la marca de acuerdo al id del producto
 	*/
-	actionSendSelect(selectMarca, selectProducto) {
+	actionSendSelect(selectMarca, selectProducto, selectUnidadDeMedida) {
 		let idProducto = selectProducto.options[selectProducto.selectedIndex].dataset.idProducto;
 		
 		const xhr = new XMLHttpRequest();
 		xhr.open("POST", "/ProyectoBD1/api/generarRecetaDynamicMarca");
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhr.addEventListener("readystatechange", ActionGenerarReceta.responseDataSelectMarca.bind(xhr, selectMarca));
+		xhr.addEventListener("readystatechange", ActionGenerarReceta.responseDataSelectMarca.bind(xhr, selectMarca, selectUnidadDeMedida));
 		xhr.send(`idProduct=${idProducto}`);
 	}
 	/**
@@ -107,13 +117,13 @@ class ActionGenerarReceta{
 
 		//creo el objeto con el registro actual
 		let jsonElement = {
-		      id: Date.now(), 
+		      id: Date.now(), //cambiar ese data.now()
 		      nombreProducto: list[0].options[list[0].selectedIndex].text,
 		      marca: list[1].options[list[1].selectedIndex].text,
-		      cantProducto: list[2].options[list[2].selectedIndex].text,
+		      cantProducto: list[2].value,
 		      dosis: list[3].value,
 		      frecuencia: list[4].value,
-		      unidadMedida: list[5].value
+		      unidadMedida: list[5].options[list[1].selectedIndex].text
 		  }
 		 //valido los campos o parametros
 		if (Validator.ParametrosVacios(jsonElement)) {

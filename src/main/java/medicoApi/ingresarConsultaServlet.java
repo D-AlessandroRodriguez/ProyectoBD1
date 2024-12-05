@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import medicoDAO.RegistrarConsultaDAO;
 
 /**
@@ -29,14 +30,17 @@ public class ingresarConsultaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String paciente = request.getParameter("paciente");
+		String pacienteNombre = request.getParameter("paciente");
 		String fecha= request.getParameter("fecha");
 		String hora = request.getParameter("hora");
 		String costo = request.getParameter("costo");
 		
+		HttpSession session = request.getSession();
+		String idMedico = (String) session.getAttribute("idMedico");
+		
 		try {
 			RegistrarConsultaDAO rc = new RegistrarConsultaDAO();
-			rc.registrarConsulta(paciente, fecha, hora, costo);
+			rc.registrarConsulta(pacienteNombre, fecha, hora, costo, idMedico);
 			response.getWriter().append("{\"status\": true, \"filasAfectadas\":\"%s\"}");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

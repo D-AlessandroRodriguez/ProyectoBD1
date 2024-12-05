@@ -119,19 +119,13 @@
 					<select disabled id="marca" class="form-select" aria-label="Default select example" required>
 						<option selected>Seleccionar</option>
 					</select>
-
 				</div>
 
 				<div class="col-md-3 ">
-					<label for="cantProducto" class="form-label fw-bold w-100">Cantidad producto</label> 
-					<select id="cantProducto" class="form-select" aria-label="Default select example" required>
-						<option selected>Seleccionar</option>
-						<option value="1">10 tabletas</option>
-						<option value="2">1 jarabe</option>
-
-					</select>
-
+					<label for="cantProducto" class="form-label fw-bold w-100">Cantidad producto</label>
+					<input type="number" min="1" class="form-control" id="cantProducto" placeholder="cantidad Producto" required>
 				</div>
+				
 				<div class="col-md-3 ">
 					<label for="docificacion" class="form-label fw-bold w-100">Dosis</label>
 					<input type="number" min="1" class="form-control" id="docificacion" placeholder="Cantidad" required>
@@ -144,7 +138,9 @@
 				
 				<div class="col">
 					<label for="unidadDeMedida" class="form-label fw-bold w-100"> Unidad medida</label>
-					<input type="number" min="1" class="form-control" id="unidadDeMedida" placeholder="Cantidad" required>
+					<select disabled id="unidadDeMedida" class="form-select" aria-label="Default select example" required>
+						<option selected>Seleccionar</option>
+					</select>
 				</div>
 								
 				<div class="p-3 md-2 text-center" id="botonContainer">
@@ -216,6 +212,6 @@
 	<script src="../js/generatorReceta/Validator.js"></script>
 	<script src="../js/generatorReceta/LocalStorageRR.js"></script>
 	<script src="../js/generatorReceta/ActionGenerarReceta.js"></script>
-	<script type="text/javascript" src="../js/generatorReceta/main.js"></script>
+	<script src="../js/generatorReceta/main.js"></script>
 	</body>
 </html>
