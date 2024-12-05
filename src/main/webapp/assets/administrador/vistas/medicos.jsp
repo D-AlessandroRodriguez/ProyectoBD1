@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/administrador.css">		
 		<link rel="stylesheet" href="../css/medicos.css">		
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
 	</head>
 	<body>
 		<!-- Encabezado de la página -->
@@ -354,6 +355,9 @@
 		</div>			
 			
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
 		<script src="../js/administrador.js"></script> 
 		<script src="../js/medicos.js"></script>
 		<script src="../js/dataTables.js"></script>

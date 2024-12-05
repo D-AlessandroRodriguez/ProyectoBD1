@@ -38,7 +38,7 @@ public class GetEmployeesServlet extends HttpServlet {
 
     
     /**
-	 * Método que recibe la petición POST del cliente Frontend para mostrar la información de las órdenes de recetas.
+	 * Método que recibe la petición POST del cliente Frontend para mostrar la información de los empleados
 	 * @author jesus.zepeda@unah.hn
 	 * @version 0.3.0
 	 * @since 2024/11/26
