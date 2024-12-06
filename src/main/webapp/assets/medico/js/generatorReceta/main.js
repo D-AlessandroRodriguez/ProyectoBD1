@@ -29,8 +29,10 @@ let bodyTable = document.querySelector("#bodyTable");
 let btnRegistrarReceta = document.querySelector("#btnRegistrarReceta");
 btnRegistrarReceta.addEventListener("click", actionGenerarReceta.createLocalStorage.bind(actionGenerarReceta,listSelect, bodyTable));
 
-//cargamos los productos
+//cargamos los productos y pasientes
 actionGenerarReceta.cargarProductos(selectNombreProducto);
+actionGenerarReceta.loadCargarPacientes(selectNombrePaciente, lblNombreDoctor);
+
 //para hacer el select de acuerdo al producto
 selectNombreProducto.addEventListener("change",
 												actionGenerarReceta.actionSendSelect.bind(

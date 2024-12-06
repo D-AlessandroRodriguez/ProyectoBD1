@@ -78,7 +78,7 @@
 				<div class="col-sm-6 justify-content-center p-4 fw-bold">
 					<label class="row justify-content-center text-center">Hospital San Jesus</label>
 					<label class="row justify-content-center text-center">Consulta General</label>
-					<label class="row justify-content-center text-center" id="nombreMedico">Aqui va el nombre del medico</label>
+					<label class="row justify-content-center text-center" id="nombreMedico"></label>
 				</div>
 			</div>
 
@@ -90,8 +90,6 @@
 					<label for="nombrePaciente" class="form-label fw-bold w-100"> Seleccione el paciente</label> 
 					<select class="form-select" id="nombrePaciente" aria-label="Default select example" required>
 						<option selected>Seleccionar</option>
-						<option value="1">Cesar Cruz</option>
-						<option value="2">Jose inestroza</option>
 					</select>
 				</div>
 
@@ -109,8 +107,6 @@
 					<label for="productoName" class="form-label fw-bold w-100">nombre de producto</label>
 					<select id="productoName" class="form-select" aria-label="Default select example" required>
 						<option selected>Seleccionar</option>
-						<option value="1">Analgesico</option>
-						<option value="2">Antidolor</option>
 					</select>
 				</div>
 				

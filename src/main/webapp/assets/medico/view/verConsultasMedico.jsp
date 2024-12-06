@@ -100,7 +100,7 @@
 		
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Consultas por el <span id="nameDoctor">Dr. Cesar Cruz</span></h3>
+				<h3 class="pt-3">Consultas registradas</h3>
 			</div>
 			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
@@ -108,9 +108,9 @@
 						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">Numero consulta</th>
-								<th scope="col">Paciente</th>
 								<th scope="col">Fecha</th>
-								<th scope="col">Acción</th>
+								<th scope="col">Nombre Paciente</th>
+								<th scope="col">Accion</th>
 								<th scope="col">Generar receta</th>
 							</tr>
 						</thead>

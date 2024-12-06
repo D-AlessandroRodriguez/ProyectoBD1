@@ -73,11 +73,11 @@
 	
 						<div class="mb-3 fs-2 fw-bold">
 							<label for="doctor" class="form-label">Doctor : </label> <label
-								for="doctor" class="form-label" id="nombreDoctor">---</label>
+								for="doctor" class="form-label" id="nombreDoctor"></label>
 						</div>
 				<div class="col-md mb-3">
 					<label for="paciente" class="form-label fw-bold w-100">Nombre Paciente</label> 
-					<select disabled id="paciente" class="form-select" aria-label="Default select example" required>
+					<select id="paciente" class="form-select" aria-label="Default select example" required>
 						<option selected>Seleccione el paciente</option>
 					</select>
 				</div>

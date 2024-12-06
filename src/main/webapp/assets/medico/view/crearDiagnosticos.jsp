@@ -73,66 +73,34 @@
 				        <form>
 				        	<div class="mb-3 fs-2">
 				                <label for="doctor" class="form-label fw-bold">Doctor : </label>
-				                <label for="doctor" class="form-label fw-bold ">Cesar Cruz</label>
+				                <label for="doctor" class="form-label fw-bold " id="nombreMedico"></label>
 				            </div>
-				            <div class="mb-3 fs-2">
-				                <label for="doctor" class="form-label fw-bold">Paciente : </label>
-				                <label for="doctor" class="form-label ">Angel Blandin</label>
-				            </div>
-				            <div class="mb-3">
-				                <label for="fecha" class="form-label">Observaciones</label>
-				                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+							<div class="col-md mb-3">
+								<label for="nombrePaciente" class="form-label fw-bold w-100">Nombre Paciente</label> 
+								<select id="nombrePaciente" class="form-select" aria-label="Default select example" required>
+									<option selected>Seleccione el paciente</option>
+								</select>
+							</div>
+					        <div class="mb-3">
+				                <label for="observaciones" class="form-label">Observaciones</label>
+				                 <textarea class="form-control" id="observaciones" rows="3" required></textarea>
 				            </div>
 				            <div class="mb-3" style="display: flex; flex-wrap: wrap; gap: 1rem;">
 							    <div class="col">
 							        <label for="fecha" class="form-label">Fecha</label>
 							        <input type="date" class="form-control" id="fecha" name="fecha" required>
 							    </div>
-							    <div class="col">
-							        <label for="hora" class="form-label">Hora</label>
-							        <input type="time" class="form-control" id="hora" name="hora" required>
-							    </div>
 							</div> 
 				       </form>
 				 </div>
 				
 				    <div class="p-3 border-top text-center" id="botonContainer" style="position: sticky;bottom: 0;">
-				        <button type="submit" class="btn btn-primary w-100">Guardar diagnostico</button>
+				        <button type="submit" class="btn btn-primary w-100" id="registrarDiagnostico">Guardar diagnostico</button>
 				    </div>
 			  </div>
-
-			<div id="tablaRowContainer" class="row overflow-auto">
-				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
-						<thead id="encabezadosDeTabla">
-							<tr>
-							<!--  -->
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/crearDiagnostico/ActionDiagnostico.js"></script>
+		<script src="../js/crearDiagnostico/main.js"></script>
 	</body>
 </html>

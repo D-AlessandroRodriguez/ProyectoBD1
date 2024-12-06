@@ -1,8 +1,7 @@
 //extraccion de informacion 
 let nameDoctor = document.querySelector("#nombreDoctor");
-let paciente = document.querySelector("#");
 
-let recipeProductsDataTable = new DataTable('#consultasTable', {
+let recipeProductsDataTable = new DataTable("#consultasTable", {
 	paging: false,
 	pageLength: 10,
     lengthMenu: [10,20],
@@ -19,29 +18,24 @@ let recipeProductsDataTable = new DataTable('#consultasTable', {
     },
 	columns : [
 			{
-				data: 'numero de consulta',
-				name: 'numero de consulta',
+				data: 'Numero consulta',
 			},
 			{
-				data: 'nombre paciente',
-				name: 'nombre paciente',
+				data: 'Fecha',
 			},
 			{
-				data: 'fecha',
-				name: 'fecha',
+				data: 'Nombre Paciente',
 			},
 			{
-				data: 'action',
-				name: 'action',
+				data: 'Accion',
 				render: function(data) {
-					return `<a class="link-opacity-50-hover" href="viewIndividualRecipeOrder.jsp?ord=${data}">Ver consulta</a>`;
+					return `<a class="link-opacity-50-hover" href="crearDiagnosticos.jsp?ord=${data}">Ver consulta</a>`;
 				}
 			},
 			{
-				data: 'dosis',
-				name: 'dosis',
+				data: 'Generar receta',
 				render: function(data) {
-					return `<a class="link-opacity-50-hover" href="viewIndividualRecipeOrder.jsp?ord=${data}">Generar consulta</a>`;
+					return `<a class="link-opacity-50-hover" href="generatorReceta.jsp?ord=${data}">Generar receta</a>`;
 				}
 			}
 		],

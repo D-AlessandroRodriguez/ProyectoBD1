@@ -9,45 +9,38 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import medicoDAO.RegistrarConsultaDAO;
+import medicoDAO.RegistrarDiagnosticoDAO;
 
 /**
- * Servlet implementation class ingresarConsultaServlet
+ * Servlet implementation class insertDiagnosticoServlet
  */
-@WebServlet("/api/ingresarConsulta")
-public class ingresarConsultaServlet extends HttpServlet {
+@WebServlet("/api/insertDiagnosticoServlet")
+public class insertDiagnosticoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public ingresarConsultaServlet() {
+    
+	public insertDiagnosticoServlet() {
         super();
     }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pacienteNombre = request.getParameter("paciente");
-		String fecha= request.getParameter("fecha");
-		String hora = request.getParameter("hora");
-		String costo = request.getParameter("costo");
-		
-		System.out.println(fecha);
-		
+		response.setContentType("application/json");
+
+		String nombrePaciente = request.getParameter("nombrePaciente");
+		String observacion = request.getParameter("observaciones");
+		String fecha = request.getParameter("fecha");
+
 		HttpSession session = request.getSession(false);
 		int idMedico = (int) session.getAttribute("medicoId");
-		
+
+		RegistrarDiagnosticoDAO rd = new RegistrarDiagnosticoDAO();
 		try {
-			RegistrarConsultaDAO rc = new RegistrarConsultaDAO();
-			rc.registrarConsulta(pacienteNombre, fecha, hora, costo, idMedico);
+			rd.registrarDiagnostico(nombrePaciente, observacion, fecha, idMedico);
 			response.getWriter().append("{\"status\": true, \"filasAfectadas\":\"%s\"}");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		response.getWriter().append("{\"status\": true}");
 	}
-
 }

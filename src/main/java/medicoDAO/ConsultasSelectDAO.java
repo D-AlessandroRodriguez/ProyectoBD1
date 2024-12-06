@@ -13,9 +13,7 @@ import com.google.gson.Gson;
 
 import DataBase.DataBaseConnection;
 
-public class ConsultasSelectDAO {
-	
-	
+public class ConsultasSelectDAO {	
 	/**
 	 * Método para obtener la cantidad de órdenes de recetas registradas y que no están atendidas.
 	 * @author jesus.zepeda@unah.hn
@@ -28,9 +26,9 @@ public class ConsultasSelectDAO {
 	 */
 	private static int getRecipeOrdersCount() throws ClassNotFoundException, SQLException {
 		
-		String query = "SELECT COUNT(*) FROM OrdenRecetas WHERE Atendida = 0;";
+		String query = "SELECT COUNT(*) FROM ConsultasMedicas";
 		
-		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
+		Connection connection = new DataBaseConnection("medico","medico123").getConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(query);
 		
@@ -62,59 +60,46 @@ public class ConsultasSelectDAO {
 	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
 	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
 	 */
-	public static Map<String,Object> getConsultas(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
+	public static Map<String, Object> getConsultas(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
+	    // Llamada al procedimiento almacenado sin parámetros
+		   String query = """
+		            SELECT con.Id AS consultaId, pers.N1 AS nombrePaciente, pers.AP1 AS apellidoPaciente, con.Fecha
+		            FROM ConsultasMedicas con
+		            INNER JOIN Expedientes expe ON con.ExpedienteId = expe.Id
+		            INNER JOIN Pacientes pac ON expe.PacienteId = pac.Id
+		            INNER JOIN Personas pers ON pac.PersonaId = pers.Id
+		        """;
 
-//		String query = "SELECT * FROM VistaRecetas WHERE (id LIKE '"+searchValue+"%' OR paciente LIKE '"+searchValue+"%' OR medico LIKE '"+searchValue+"%' OR fecha LIKE '"+searchValue+"%') ORDER BY '"+orderColumnName+"' "+orderDirection+" OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
-		String query = null;
-		
-		if (orderColumnIndex >= 0 && orderColumnIndex <= 4) {
-			
-			if ("ASC".equalsIgnoreCase(orderDirection)) {
-				
-				query = String.format("SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
-			
-			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
-				
-				query = String.format("SELECT * FROM VistaRecetas WHERE (id LIKE ? OR paciente LIKE ? OR medico LIKE ? OR fecha LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
-			}
-		}
+	    Connection connection = new DataBaseConnection("medico", "medico123").getConnection();
+	    
+	    // Preparar la consulta para ejecutar el procedimiento almacenado
+	    PreparedStatement statement = connection.prepareStatement(query);
+	    
+	    // Ejecutar la consulta
+	    ResultSet resultSet = statement.executeQuery();
 
-		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
+	    Map<String, Object> response = new HashMap<>();
+	    List<String> recipeOrders = new ArrayList<>();
+	    Map<String, String> recipe;
 
-		PreparedStatement statement = connection.prepareStatement(query);
+	    while (resultSet.next()) {
+	        recipe = new HashMap<>();
+	        recipe.put("id", resultSet.getString(1));      // Asignar el primer campo de la consulta
+	        recipe.put("paciente", String.format("%s %s", resultSet.getString(2), resultSet.getString(3))); // Asignar el segundo campo
+	        recipe.put("fecha", resultSet.getString(4));  // Asignar el cuarto campo
+	        
+	        // Otros campos según tus necesidades, en este caso "accion" y "generarReceta"
+	        recipe.put("Accion", resultSet.getString(1));
+	        recipe.put("Generar receta", resultSet.getString(1));
 
-		statement.setString(1, searchValue+"%");
-		statement.setString(2, searchValue+"%");
-		statement.setString(3, searchValue+"%");
-		statement.setString(4, searchValue+"%");
-		statement.setInt(5, start);
-		statement.setInt(6, length);
+	        recipeOrders.add(new Gson().toJson(recipe));  // Convertir el mapa a JSON
+	    }
 
-		ResultSet resultSet = statement.executeQuery();
-		
-		Map<String,Object> response = new HashMap<>();
-		
-		List<String> recipeOrders = new ArrayList<>();
-		
-		Map<String,String> recipe;
-		
-		while (resultSet.next()) {
-			
-			recipe = new HashMap<>();
-			
-			recipe.put("id", resultSet.getString(1));
-			recipe.put("paciente", resultSet.getString(2));
-			recipe.put("medico", resultSet.getString(3));
-			recipe.put("fecha", resultSet.getString(4));
-			recipe.put("accion", resultSet.getString(1));
-			
-			recipeOrders.add(new Gson().toJson(recipe));
-		}
-		
-		response.put("recordsTotal", String.format("%s", getRecipeOrdersCount()));
-		response.put("recordsFiltered", String.format("%s", recipeOrders.size()));
-		response.put("data", recipeOrders);
-		
-		return response;
+	    response.put("recordsTotal", String.format("%s", getRecipeOrdersCount()));  // Total de registros
+	    response.put("recordsFiltered", String.format("%s", recipeOrders.size()));  // Registros obtenidos
+	    response.put("data", recipeOrders);  // Agregar los datos de las recetas
+
+	    return response;
 	}
+
 }

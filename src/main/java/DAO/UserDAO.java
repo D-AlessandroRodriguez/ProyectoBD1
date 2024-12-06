@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import DataBase.DataBaseConnection;
 	/**
@@ -31,10 +33,10 @@ public class UserDAO {
 	 * */
 	public boolean isUser() {
     	boolean isValid = false;
-            String sql = "SELECT * FROM Usuarios WHERE Correo = ? AND contrasena = ?";
+            String sql = "EXEC selectUsuario @correo = ?, @contra = ?";
             try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = new DataBaseConnection("aless", "aless2002CD").getConnection();
+            Connection conn = new DataBaseConnection("medico", "medico123").getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, username);  // Asignamos el valor del username
             statement.setString(2, password);  // Asignamos el valor del password
@@ -45,7 +47,6 @@ public class UserDAO {
             if (resultSet.next()) {
                 isValid = true;
             }
-            System.out.println(isValid);
             conn.close();
         } catch (ClassNotFoundException e) {
         	System.out.println(e);
@@ -61,16 +62,25 @@ public class UserDAO {
 	 * @date 2024/11/16
 	 * @since 2024/11/16
 	 * */
-    public int idUser() throws ClassNotFoundException, SQLException {
-        String sql = "SELECT id FROM usuarios WHERE Correo = ? AND Contrasena= ?";
-       
-        Connection conn = new DataBaseConnection("aless", "aless2002CD").getConnection();
+    public Map<String, Object> userInfo() throws ClassNotFoundException, SQLException {
+        String sql = "EXEC selectUsuario @correo = ?, @contra = ?";
+        Map<String, Object> result = new HashMap<>();
+        
+        Connection conn = new DataBaseConnection("medico", "medico123").getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
+        
         statement.setString(1, username);  // Asignamos el valor del username
         statement.setString(2, password);  // Asignamos el valor del password
         
 
         ResultSet resultSet = statement.executeQuery();
-        return resultSet.getInt("id");
+        if(resultSet.next()) {
+        	result.put("nombreUsuario", resultSet.getString(1));
+        	result.put("rol", resultSet.getString(3));
+        	result.put("email", resultSet.getString(4));
+        	result.put("medicoId", resultSet.getInt(6));
+        	result.put("nombreMedico", String.format("%s %s", resultSet.getString(7), resultSet.getString(8)));	
+        }
+        return result;
     }
 }
