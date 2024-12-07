@@ -7,6 +7,7 @@
 		<title>Ver: Consultas</title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/viewInteractionMedico-style.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -27,19 +28,10 @@
 			      <ul class="navbar-nav d-flex gap-2">
 			        <li class="nav-item dropdown">
 			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            Generar
-			          </a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" id="verOrdenesRecetasMenu" href="generatorReceta.jsp">Receta</a></li>
-			          </ul>
-			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            Nuevo
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="crearCosulta" href="crearConsulta.jsp">Crear consulta</a></li>
-			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -99,65 +91,38 @@
 		
 		<div id="contenedorPrincipal" class="container">
 			<div id="tituloRowContainer" class="row">
-				<h3 class="pt-3">Consultas por el <span id="nameDoctor">Dr. Cesar Cruz</span></h3>
+				<h3 class="pt-3">Consultas registradas</h3>
 			</div>
 			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
+					<table  id="consultasTable" class="table table-hover text-center">
 						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">Numero consulta</th>
-								<th scope="col">Paciente</th>
+								<th scope="col">Nombre Paciente</th>
 								<th scope="col">Fecha</th>
-								<th scope="col">Acción</th>
+								<th scope="col">Accion</th>
+								<th scope="col">Generar receta</th>
 							</tr>
 						</thead>
-						<tbody>
-							<%
-							StringBuilder result = new StringBuilder();
-							for (int i = 1; i <= 15; i++) {
-								result.append("<tr>");
-								result.append("<th scope=\"row\">");
-								result.append(String.format("<span id=\"numeroReceta%sSpan\">%s</span>",i,i));
-								result.append("</th>");
-								result.append("<td>");
-								result.append(String.format("<span id=\"primerNombrePacienteReceta%sSpan\">Jesús</span> <span id=\"primerApellidoPacienteReceta%sSpan\">Zepeda</span>",i,i));
-								result.append("</td>");
-								result.append("<td>");
-								result.append(String.format("<span id=\"fechaReceta%sSpan\">2024-11-19</span>",i));
-								result.append("</td>");
-								result.append("<td>");
-								result.append(String.format("<button class=\"btn btnVer btn-primary\" type=\"button\">Ver</button>",i));
-								result.append("</td>");
-								result.append("</tr>");
-							}
-							out.print(result.toString());
-							%>
+						<tbody id="bodyTableConsultas">
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
-		</div>
-		
+
+	
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script src="../js/ActionBtnVer.js"></script>
-		<script src="../js/mainBtnVer.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+		
+		<script src="../js/verConsultaMedico/ActionConsultas.js"></script>
+		
+		<script src="../js/verConsultaMedico/main.js"></script>
+		<script src="../js/verConsultaMedico/ActionBtnVer.js"></script>
+		<script src="../js/verConsultaMedico/mainBtnVer.js"></script>
 	</body>
 </html>

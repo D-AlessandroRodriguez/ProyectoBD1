@@ -7,7 +7,6 @@
 		<title>Nueva: Consulta</title>
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../css/viewInteractionMedico-style.css">
-		<link rel="stylesheet" href="../css/createConsulta-style.css">
 	</head>
 	<body>
 		<!-- Menú de navegación -->
@@ -28,19 +27,10 @@
 			      <ul class="navbar-nav d-flex gap-2">
 			        <li class="nav-item dropdown">
 			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            Generar
-			          </a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" id="verOrdenesRecetasMenu" href="generatorReceta.jsp">Receta</a></li>
-			          </ul>
-			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            Nuevo
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="crearCosulta" href="crearConsulta.jsp">Crear consulta</a></li>
-			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -61,82 +51,57 @@
 		</nav>
 		<!-- Página principal -->
 		<div id="contenedorPrincipal" class="container">
-			<div id="tituloRowContainer" class="row">
-				
-			</div>	
-			<div class="container border rounded  shadown" id="formConsulta "style=" position: absolute;top: 15vh;left: 25vw;width: 50vw;height: 70vh;display: flex;flex-direction: column;">
-    <div class="form-container text-center p-3 border-bottom ">
-        <h2 class="fw-bold">Nueva consulta</h2>
-    </div>
-
-    <div class="p-4" id="camposContainer" style="flex: 1;overflow-y: auto;">
-        <form>
-        
-        <div class="mb-3 fs-2 fw-bold">
-                <label for="doctor" class="form-label">Doctor : </label>
-                <label for="doctor" class="form-label ">Cesar Cruz</label>
-            </div>
-             <div class="mb-3">
-                <label for="paciente" class="form-label">Paciente</label>
-                <input type="text" class="form-control" id="paciente" name="paciente" required>
-            </div>
-            <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required>
-            </div>
-            <div class="mb-3">
-                <label for="hora" class="form-label">Hora</label>
-                <input type="time" class="form-control" id="hora" name="hora" required>
-            </div>
-            
-           
-            <div class="mb-3">
-                <label for="costo" class="form-label">Costo</label>
-                <input type="text" class="form-control" id="costo" name="costo" required>
-            </div>
-        </form>
-    </div>
-
-    <div class="p-3 border-top text-center" id="botonContainer" style="position: sticky;bottom: 0;">
-        <button type="submit" class="btn btn-primary w-100">Registrar Consulta</button>
-    </div>
-</div>
-
-		
-			
-			
-			<div id="tablaRowContainer" class="row overflow-auto">
-				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
-						<thead id="encabezadosDeTabla">
-							<tr>
-							<!--  -->
-							</tr>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
+			<div id="tituloRowContainer" class="row"></div>
+			<div class="container border rounded  shadown" id="formConsulta "
+				style="position: absolute; top: 15vh; left: 25vw; width: 50vw; height: 70vh; display: flex; flex-direction: column;">
+				<div class="form-container text-center p-3 border-bottom ">
+					<h2 class="fw-bold">Nueva consulta</h2>
+				</div>
+	
+				<div class="p-4" id="camposContainer"
+					style="flex: 1; overflow-y: auto;">
+					<form>
+	
+						<div class="mb-3 fs-2 fw-bold">
+							<label for="doctor" class="form-label">Doctor : </label> <label
+								for="doctor" class="form-label" id="nombreDoctor"></label>
+						</div>
+				<div class="col-md mb-3">
+					<label for="paciente" class="form-label fw-bold w-100">Nombre Paciente</label> 
+					<select id="paciente" class="form-select" aria-label="Default select example" required>
+						<option selected>Seleccione el paciente</option>
+					</select>
+				</div>
+						<div class="mb-3">
+							<label for="fecha" class="form-label">Fecha</label> <input
+								type="date" class="form-control" id="fecha" name="fecha" required>
+						</div>
+						<div class="mb-3">
+							<label for="hora" class="form-label">Hora</label> <input
+								type="time" class="form-control" id="hora" name="hora" required>
+						</div>
+						
+					<div class="mb-3">
+						<label for="moneyInput" class="form-label">Ingresa una cantidad:</label>
+						<div class="input-group">
+							<span class="input-group-text">$</span> <input type="number"
+								class="form-control" id="moneyInput" placeholder="0.00" min="0"
+								step="0.01" oninput="LimitarDecimales.limitDecimalPlaces(event, 2)" required>
+						</div>
+					</div>
+				</form>
+				</div>
+	
+				<div class="p-3 border-top text-center" style="position: sticky; bottom: 0;">
+					<button type="submit" class="btn btn-primary w-100" id="btnRegistrarConsulta">Registrar Consulta</button>
 				</div>
 			</div>
 		</div>
 		
-		<div id="pieContenedor" class="container">
-			<nav class="p-2">
-				<ul class="pagination justify-content-center mb-0">
-			    	<li class="page-item disabled">
-			        	<a class="page-link">Anterior</a>
-			    	</li>
-			    	<li class="page-item active" aria-current="page">
-			      		<a class="page-link" href="#">1</a>
-			    	</li>
-			    	<li class="page-item"><a class="page-link" href="#">2</a></li>
-			    	<li class="page-item"><a class="page-link" href="#">3</a></li>
-			    	<li class="page-item">
-			      		<a class="page-link" href="#">Siguiente</a>
-			    	</li>
-			  	</ul>
-			</nav>
-		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/crearConsulta/LimitarDecimales.js"></script>
+		<script src="../js/crearConsulta/ActionConsulta.js"></script>
+		<script src="../js/crearConsulta/main.js"></script>
+		
 	</body>
 </html>

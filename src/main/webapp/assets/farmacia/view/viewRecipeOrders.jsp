@@ -79,51 +79,12 @@
 							</tr>
 						</thead>
 						<tbody>
-<!-- 							<tr> -->
-<!-- 								<th scope="row"> -->
-<!-- 									<span id="numeroReceta1Span">1</span> -->
-<!-- 								</th> -->
-<!-- 						        <td> -->
-<!-- 						        	<span id="primerNombrePacienteReceta1Span">Jesús</span> <span id="primerApellidoPacienteReceta1Span">Zepeda</span> -->
-<!-- 						        </td> -->
-<!-- 						        <td> -->
-<!-- 						        	<span id="primerNombreMedicoReceta1Span">Cesar</span> <span id="primerApellidoMedicoReceta1Span">Cruz</span> -->
-<!-- 						        </td> -->
-<!-- 						        <td> -->
-<!-- 						        	<span id="fechaReceta1Span">2024-11-19</span> -->
-<!-- 						        </td> -->
-<!-- 						        <td> -->
-<!-- 						        	<button type="button" class="btn btn-success w-75" id="verReceta1Button">Ver</button> -->
-<!-- 						        </td> -->
-<!-- 						    </tr> -->
-							<%
-							StringBuilder result = new StringBuilder();
-							for (int i = 1; i <= 15; i++) {
-								result.append("<tr>");
-								result.append("<th scope=\"row\">");
-								result.append(String.format("<span id=\"numeroReceta%sSpan\">%s</span>",i,i));
-								result.append("</th>");
-								result.append("<td>");
-								result.append(String.format("<span id=\"primerNombrePacienteReceta%sSpan\">Jesús</span> <span id=\"primerApellidoPacienteReceta%sSpan\">Zepeda</span>",i,i));
-								result.append("</td>");
-								result.append("<td>");
-								result.append(String.format("<span id=\"primerNombreMedicoReceta%sSpan\">Cesar</span> <span id=\"primerApellidoMedicoReceta%sSpan\">Cruz</span>",i,i));
-								result.append("</td>");
-								result.append("<td>");
-								result.append(String.format("<span id=\"fechaReceta%sSpan\">2024-11-19</span>",i));
-								result.append("</td>");
-								result.append("<td>");
-								result.append(String.format("<a class=\"link-opacity-50-hover\" href=\"viewIndividualRecipeOrder.jsp?ord=%s\">Ver</a>",i));
-								result.append("</td>");
-								result.append("</tr>");
-							}
-							out.print(result.toString());
-							%>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
+		
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>

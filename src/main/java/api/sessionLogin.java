@@ -1,8 +1,9 @@
 package api;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Map;
 
-import DAO.RolesPermissionDAO;
 import DAO.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -36,23 +37,25 @@ public class sessionLogin extends HttpServlet {
 	
 		String username = request.getParameter("email");
 		String password = request.getParameter("password");
-		System.out.println(username);
-		
-	    //extraer los roles y permisos
+		Map<String, Object> rolesPermisos;
 		UserDAO userExists = new UserDAO(username, password);
-		RolesPermissionDAO user = new RolesPermissionDAO();
 		
 	    //verificar que existe el usuario y crea una session
 	    if (userExists.isUser() != false) {
-	    	HttpSession session = request.getSession();
-	    	session.setAttribute("user", username);
-	    	
-	    	response.getWriter().append("{\"status\":true}");
-	    	//response.sendRedirect(request.getContextPath() + "/assets/medico/view/viewMedico.jsp");
+	    	try {
+				rolesPermisos = userExists.userInfo();
+		    	HttpSession session = request.getSession();
+		    	session.setAttribute("nombreUsuario", rolesPermisos.get("nombreUsuario"));
+		    	session.setAttribute("rol", rolesPermisos.get("rol"));
+		    	session.setAttribute("email", rolesPermisos.get("email"));
+		    	session.setAttribute("medicoId", rolesPermisos.get("medicoId"));
+		    	session.setAttribute("nombreMedico", rolesPermisos.get("nombreMedico"));
+		    	response.getWriter().append("{\"status\":true}");
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 	    } else {
-	    	response.getWriter().append("{\"status\": "
-	    			+ "false, \"message\":\"credenciales invalidas\"}");
-	    	//response.sendRedirect(request.getContextPath() + "/index.jsp?error=Invalid%20credentials");
+	    	response.getWriter().append("{\"status\": false, \"message\":\"credenciales invalidas\"}");
 	    }
 	}
 
