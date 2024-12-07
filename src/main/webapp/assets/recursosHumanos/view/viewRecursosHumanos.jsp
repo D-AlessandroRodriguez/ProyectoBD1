@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Nuevo : Empleado</title>
 <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/viewInteractionMedico-style.css">
+
 
 </head>
 <body>
@@ -118,12 +118,17 @@
 							<select class="form-select" name="sexoPersona" id="sexoPersona"
 								aria-label="Default select example" required>
 								<option selected>Seleccionar</option>
-								<option value="1">Masculino</option>
-								<option value="2">Femenino</option>
+								<option value="M">Masculino</option>
+								<option value="F">Femenino</option>
 
 							</select>
 
 
+						</div>
+						<div class="col-md-3">
+							<label for="email" class="form-label fw-bold">Correo </label> <input
+								type="email" class="form-control" id="email" name="email"
+								name="fecha" required>
 						</div>
 					</div>
 
@@ -139,9 +144,7 @@
 
 							<select class="form-select" aria-label="Default select example"
 								id="pais" name="pais" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Honduras</option>
-								<option value="2">El Salvador</option>
+
 
 							</select>
 
@@ -154,9 +157,7 @@
 								class="form-label fw-bold w-100">Departamento</label> <select
 								class="form-select" id="depto" name="depto"
 								aria-label="Default select example" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Francisco Morazan</option>
-								<option value="2">San Salvador</option>
+
 
 							</select>
 
@@ -168,9 +169,7 @@
 
 							<select class="form-select" aria-label="Default select example"
 								id="ciudad" name="ciudad" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Tegucigalpa</option>
-								<option value="2">Salvador</option>
+
 
 							</select>
 
@@ -181,9 +180,7 @@
 							<label for="ColoniaDireccion" class="form-label fw-bold w-100">Colonia</label>
 							<select class="form-select" aria-label="Default select example"
 								id="colonia" name="colonia" required>
-								<option selected>Seleccionar</option>
-								<option value="1">hato</option>
-								<option value="2">Suyapa</option>
+
 
 							</select>
 
@@ -209,33 +206,23 @@
 							contrato</label>
 					</div>
 
-					<div class="row mb-3" id="rowDireccion1">
+					<div class="row mb-3">
 
 						<div class="col-md-3 ">
-							<label for="paisDireccion" class="form-label fw-bold w-100">Departamento</label>
-
+							<label for="deptosh" class="form-label fw-bold w-100">Departamento</label>
 
 							<select class="form-select" aria-label="Default select example"
-								id="pais" name="pais" required>
-								<option selected>Seleccionar</option>
-								<option value="1">TI</option>
-								<option value="2">Contabilidad</option>
+								id="deptosh" name="deptosh" required>
 
 							</select>
 
-
-
-
 						</div>
 
+
 						<div class="col-md-3 ">
-							<label for="departamentoDireccion"
-								class="form-label fw-bold w-100">Cargo</label> <select
-								class="form-select" id="depto" name="depto"
+							<label for="cargos" class="form-label fw-bold w-100">Cargo</label>
+							<select class="form-select" id="cargos" name="cargos"
 								aria-label="Default select example" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Arquitecto de sotfware</option>
-								<option value="2">Diseñador grafico</option>
 
 							</select>
 
@@ -261,16 +248,58 @@
 
 
 					</div>
+					<div class="row mb-3 p-2" id="dataDoctor">
+					</div>
+
+					<div class="row mb-3">
+						<label for="fechaIngreso" class="form-label fw-bold">Horario</label>
+						<div class="col-md-4">
+							<label for="paisDireccion" class="form-label fw-bold w-100">Dias</label>
 
 
+							<select class="form-select" aria-label="Default select example"
+								id="pais" name="pais" required>
+								<option selected>Seleccionar</option>
+								<option value="L-V">Lunes-Viernes</option>
+								<option value="L-S">Lunes-sabado</option>
+								<option value="L-D">Lunes-Domingo</option>
+								<option value="S-D">Sabado-Domigo</option>
+
+							</select>
+
+
+
+
+						</div>
+
+						<div class="col-md-4 ">
+							<label for="horario" class="form-label fw-bold w-100">Turnos</label>
+							<select class="form-select" id="horario" name="horario"
+								aria-label="Default select example" required>
+
+							</select>
+						</div>
+
+					</div>
+
+
+					<div class="row">
+
+
+						<label for="titulaciones" class="form-label fw-bold w-100">
+							Titulaciones</label>
+
+
+						<div id="Titulaciones" class="row"></div>
+
+
+
+					</div>
 				</div>
-
-
-
 			</div>
 			<div class="p-3 border-top text-center" id="botonContainer"
 				style="position: sticky; bottom: 0; background-color: white;">
-				<button type="button" id="buttonCreate"
+				<button type="button" id="guardarEmpleado"
 					class="btn btn-primary w-100 fw-bold">Registrar Empleado</button>
 			</div>
 		</form>
@@ -309,6 +338,16 @@
 
 
 	<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../js/Validator.js"></script>
+	<script src="../js/Load.js"></script>
+	<script src="../js/ErrorToast.js"></script>
+	<script src="../js/LoadDataDoctor.js"></script>
+	<script src="../js/Action.js"></script>
+	<script src="../js/ProccessData.js"></script>
+
+	<script src="../js/LoadData.js"></script>
+	<script src="../js/Main.js"></script>
+
 
 
 </body>
