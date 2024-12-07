@@ -1,18 +1,21 @@
 package DAO;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import DataBase.DataBaseConnection;
+import time.TimeAndDate;
 
 /**
- * Clase que accede a la base de datos para obtener información de los productos.
+ * Clase que accede a la base de datos para registrar productos o para obtener información de los productos.
  * @author jesus.zepeda@unah.hn
  * @version 0.1.0
  * @since 2024/11/26
@@ -32,7 +35,7 @@ public class ProductsDAO {
 	 */
 	private static int getProductsCount() throws ClassNotFoundException, SQLException {
 		
-		String query = "SELECT COUNT(*) FROM Productos";
+		String query = "SELECT COUNT(*) FROM VistaProductos";
 		
 		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
 		
@@ -66,19 +69,27 @@ public class ProductsDAO {
 	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
 	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
 	 */
-	public static Map<String,Object> getProducts(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
+	public static Map<String,Object> getProductsForDataTable(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
 		
 		String query = null;
 		
-		if (orderColumnIndex >= 0 && orderColumnIndex < 7) {
+		if (orderColumnIndex == 0 && orderDirection == null) {
 			
-			if ("ASC".equalsIgnoreCase(orderDirection)) {
-				
-				query = String.format("SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			//consulta por defecto con filtro por default
+			query = "SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY nombre ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
+		
+		} else {
 			
-			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+			if (orderColumnIndex >= 0 && orderColumnIndex < 7) {
 				
-				query = String.format("SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				if ("ASC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+					
+				} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM VistaProductos WHERE (id LIKE ? OR nombre LIKE ? OR marca LIKE ? OR tipo LIKE ? OR contenido LIKE ? OR stock LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				}
 			}
 		}
 		
@@ -161,5 +172,164 @@ public class ProductsDAO {
 		connection.close();
 		
 		return null;
+	}
+	
+	/**
+	 * Método que registra en la base de datos a un producto con su información.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/12/04
+	 * @date 2024/12/04
+	 * @param productName Nombre del producto a ser registrado.
+	 * @param productBranchCode Código de la marcad del producto a ser registrado.
+	 * @param productTypeCode Código del tipo del tipo de producto a ser registrado.
+	 * @param productQuantity Cantidad de contenido del producto a ser registrado.
+	 * @param productMeasurementUnitCode Código de la unidad de medida del contenido del producto a ser registrado.
+	 * @param productCategoriesCodes Array de códigos de categorías del producto a ser registrado.
+	 * @return Mapa convertible en Json para dar respuesta al cliente Frontend.
+	 */
+	public static Map<String, Object> registerProduct(String productName, String productBranchCode,
+			String productTypeCode, BigDecimal productQuantity, String productMeasurementUnitCode,
+			String[] productCategoriesCodes) {
+		
+		String productId = getProductId();
+		
+		String registerProductQuery = "{CALL dbo.registrarProductoFarmacia(?, ?, ?, ?, ?, ?)}";
+		
+		String registerProductCategoryQuery = "{CALL dbo.registrarCategoriaDeProducto(?, ?)}";
+		
+		Map<String,Object> response;
+		
+		try {
+			Connection connection = new DataBaseConnection("farmaceutico", "jesus123").getConnection();
+			
+			connection.setAutoCommit(false);
+			
+			//Registrar el producto
+			try (PreparedStatement insertProductStatement = connection.prepareCall(registerProductQuery)) {
+				
+				insertProductStatement.setString(1, productId);
+				insertProductStatement.setString(2, productName);
+				insertProductStatement.setString(3, productTypeCode);
+				insertProductStatement.setString(4, productBranchCode);
+				insertProductStatement.setString(5, productMeasurementUnitCode);
+				insertProductStatement.setBigDecimal(6, productQuantity);
+				
+				insertProductStatement.execute();
+				
+				try (PreparedStatement insertCategoryProductStatement = connection.prepareCall(registerProductCategoryQuery)) {
+					
+					//Registrar las categorias del producto.
+					for (int i = 0; i < productCategoriesCodes.length; i++) {
+						
+						insertCategoryProductStatement.setString(1, productId);
+						insertCategoryProductStatement.setString(2, productCategoriesCodes[i]);
+						
+						insertCategoryProductStatement.execute();
+					}
+				}
+				
+				connection.commit();
+				
+				response = new HashMap<>();
+				
+				response.put("status", true);
+				
+				Map<String,String> productIdResponse = new HashMap<>();
+				
+				productIdResponse.put("productId", productId);
+				
+				response.put("content", productIdResponse);
+				
+				response.put("errorMessage", null);
+				
+				connection.close();
+				
+				return response;
+				
+			} catch (Exception e) {
+				
+				if (connection != null) {
+					
+					try {
+	                    connection.rollback();
+	                    connection.close();
+	                    e.printStackTrace();
+	                    
+	                } catch (SQLException rollbackEx) {
+	                	
+	                    rollbackEx.printStackTrace();
+	                }
+				}
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		response = new HashMap<>();
+		response.put("status", false);
+		response.put("content", null);
+		response.put("errorMessage", "No se puedo registrar el producto!");
+		
+		return response;
+	}
+	
+	/**
+	 * Método que genera un id para identificar al producto a ser registrado.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/12/04
+	 * @date 2024/12/04
+	 * @return El id generado del producto a ser registrado.
+	 */
+	private static String getProductId() {
+		// TODO Auto-generated method stub
+		String productId = new String("P-"+TimeAndDate.getCurrentDate("YYYYMMddhhmmssSSS"));
+		return productId;
+	}
+
+	/**
+	 * Método que accede a la base de datos para recuperar los productos para ser mostrados en una DataList de bootstrap por el cliente Frontend.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/12/05
+	 * @date 2024/12/05
+	 * @return Un mapa convertible a Json con los productos recolectados de la base de datos.
+	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
+	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
+	 */
+	public static Map<String, Object> getProductsForDataList() throws ClassNotFoundException, SQLException {
+		
+		String query = "SELECT * FROM VistaProductos;";
+		
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
+		
+		PreparedStatement statement = connection.prepareStatement(query);
+		
+		ResultSet resultSet = statement.executeQuery();
+		
+		Map<String,Object> response;
+		
+		List<Object> products = new LinkedList<>();
+		
+		Map<String,String> product;
+		
+		while (resultSet.next()) {
+			
+			product = new HashMap<>();
+			product.put("id", resultSet.getString(1));
+			product.put("information", String.format("%s %s %s %s", resultSet.getString(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
+			
+			products.add(product);
+		}
+		
+		response = new HashMap<>();
+		response.put("products", products);
+		
+		connection.close();
+		
+		return response;
 	}
 }

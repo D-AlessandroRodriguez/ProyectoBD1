@@ -6,7 +6,6 @@ const recipeOrderId = currentScriptFile.dataset.orderId;
 let nombrePacienteSpan = document.querySelector("#nombrePacienteRecetaSpan");
 let nombreMedicoSpan = document.querySelector("#nombreMedicoRecetaSpan");
 let fechaRecetaSpan = document.querySelector("#fechaRecetaSpan");
-let productosDeRecetaTbody = document.querySelector("#productosDeRecetaTbody");
 
 //Botón para mostrar ventana modal con los productos a entregar y los faltantes.
 let productosDisponiblesButton = document.querySelector("#productosDisponiblesButton");
@@ -18,7 +17,7 @@ let productosDisponiblesModal = document.querySelector("#productosDisponiblesMod
 let entregarProductosDisponiblesButton = document.querySelector("#entregarProductosDisponiblesButton");
 
 //Obtener de la base de datos a los productos de la receta
-ActionGetRecipeProducts.getRecipeProducts(recipeOrderId,productosDeRecetaTbody);
+ActionGetRecipeProducts.getRecipeProducts(recipeOrderId);
 
 //Escuchador de evento clic sobre el botón que permite ver los productos disponibles y no disponibles.
 productosDisponiblesButton.addEventListener("click", ActionGetAvailableProducts.getAvailableProducts.bind(null,recipeOrderId,productosDisponiblesModal));

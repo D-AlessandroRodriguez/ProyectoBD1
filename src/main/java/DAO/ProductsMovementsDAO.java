@@ -70,15 +70,22 @@ public class ProductsMovementsDAO {
 		
 		String query = null;
 		
-		if (orderColumnIndex >= 0 && orderColumnIndex <= 7) {
+		if (orderColumnIndex == 0 && orderDirection == null) {
 			
-			if ("ASC".equalsIgnoreCase(orderDirection)) {
-				
-				query = String.format("SELECT * FROM VistaMovimientosProductos WHERE (id LIKE ? OR producto LIKE ? OR marca LIKE ? OR tipo LIKE ? OR lote LIKE ? OR movimiento LIKE ? OR cantidad LIKE ? OR fecha LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+			query = "SELECT * FROM VistaMovimientosProductos WHERE (id LIKE ? OR producto LIKE ? OR marca LIKE ? OR tipo LIKE ? OR lote LIKE ? OR movimiento LIKE ? OR cantidad LIKE ? OR fecha LIKE ?) ORDER BY fecha ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;";
+		
+		} else {
 			
-			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+			if (orderColumnIndex >= 0 && orderColumnIndex <= 7) {
 				
-				query = String.format("SELECT * FROM VistaMovimientosProductos WHERE (id LIKE ? OR producto LIKE ? OR marca LIKE ? OR tipo LIKE ? OR lote LIKE ? OR movimiento LIKE ? OR cantidad LIKE ? OR fecha LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				if ("ASC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM VistaMovimientosProductos WHERE (id LIKE ? OR producto LIKE ? OR marca LIKE ? OR tipo LIKE ? OR lote LIKE ? OR movimiento LIKE ? OR cantidad LIKE ? OR fecha LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				
+				} else if ("DESC".equalsIgnoreCase(orderDirection)) {
+					
+					query = String.format("SELECT * FROM VistaMovimientosProductos WHERE (id LIKE ? OR producto LIKE ? OR marca LIKE ? OR tipo LIKE ? OR lote LIKE ? OR movimiento LIKE ? OR cantidad LIKE ? OR fecha LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				}
 			}
 		}
 		

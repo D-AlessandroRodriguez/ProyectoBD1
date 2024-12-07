@@ -65,17 +65,17 @@
 				<h3 class="pt-3">Registro de Producto</h3>			
 			</div>
 			<div id="datosGeneralesRowContainer" class="row">
-				<form class="py-3 px-5 border border-light-subtle rounded-3 novalidate">
+				<div class="mt-2 py-3 px-5 border border-light-subtle rounded-3 shadow">
 					<fieldset>
 						<legend>Datos Generales</legend>
 						<div class="row mb-3">
 							<div class="col col-7">
 								<label for="nombreComercialInput" class="form-label">Nombre comercial</label>
-								<input type="text" class="form-control" id="nombreComercialInput" placeholder="Nombre comercial" required>
+								<input type="text" class="form-control" id="nombreComercialInput" placeholder="Nombre comercial">
 							</div>
 							<div class="col col-5">
 								<label for="marcaSelect" class="form-label">Marca</label>
-								<select id="marcaSelect" class="form-select" required>
+								<select id="marcaSelect" class="form-select">
 									<!-- Opciones se traen de la base de datos -->
 									<option value="" selected>Selecciona</option>
 									<option value="1">One</option>
@@ -87,7 +87,7 @@
 						<div class="row mb-3">
 							<div class="col col-4">
 								<label for="tipoSelect" class="form-label">Tipo de Producto (Presentación)</label>
-								<select id="tipoSelect" class="form-select" required>
+								<select id="tipoSelect" class="form-select">
 									<!-- Tipos se traen de la base de datos -->
 									<option value="" selected>Selecciona</option>
 									<option value="1">One</option>
@@ -97,17 +97,11 @@
 							</div>
 							<div class="col col-4">
 								<label for="cantidadDeContenidoInput" class="form-label">Cantidad de contenido</label>
-								<input type="text" class="form-control" id="cantidadDeContenidoInput" placeholder="Cantidad" pattern="\d{1,13}(\.\d{1,2})?" required>
+								<input type="text" class="form-control" id="cantidadDeContenidoInput" placeholder="Ej:  0.5  100  50.0  100.05">
 							</div>
 							<div class="col col-4">
-								<label for="unidadDeMedidaSelect" class="form-label">Unidad de medida</label>
-								<select id="unidadDeMedidaSelect" class="form-select" required>
-								<!-- Unidades de medida se traen de la base de datos -->
-									<option value="" selected>Selecciona</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
+								<label for="unidadDeMedidaInput" class="form-label">Unidad de medida</label>
+								<input id="unidadDeMedidaInput" class="form-control" placeholder="Seleccione un tipo..." disabled>
 							</div>
 						</div>
 					</fieldset>
@@ -115,7 +109,7 @@
 						<legend>Clasificación médica del producto (Categorías)</legend>
 						<!-- Categorías se traen de la base de datos -->
 						<div class="row mb-3">
-							<div class="col">
+							<div class="col categoriesCheckboxCol">
 								<div class="form-check">
 									<input name="categorias" class="form-check-input" type="checkbox" value="cat1" id="categoria1Check">
 								    <label class="form-check-label" for="categoria1Check">Antihistamínico</label>
@@ -125,7 +119,7 @@
 								    <label class="form-check-label" for="categoria4Check">Analgésico</label>
 								</div>
 							</div>
-							<div class="col">
+							<div class="col categoriesCheckboxCol">
 								<div class="form-check">
 									<input name="categorias" class="form-check-input" type="checkbox" value="cat2" id="categoria2Check">
 								    <label class="form-check-label" for="categoria2Check">Expectorante</label>
@@ -135,7 +129,7 @@
 								    <label class="form-check-label" for="categoria5Check">Antidepresivo</label>
 								</div>
 							</div>
-							<div class="col">
+							<div class="col categoriesCheckboxCol">
 								<div class="form-check">
 									<input name="categorias" class="form-check-input" type="checkbox" value="cat3" id="categoria3Check">
 								    <label class="form-check-label" for="categoria3Check">Antitusivo</label>
@@ -149,13 +143,16 @@
 					</fieldset>
 					<div class="row">
 						<div class="col text-center">
-							<button type="submit" class="btn btn-primary w-25">Registrar</button>	
+							<button id="sendButton" type="submit" class="btn btn-primary w-25">Registrar</button>	
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/viewRegistrarProducto/ActionGetCatalogsInformation.js"></script>
+		<script src="../js/viewRegistrarProducto/Validator.js"></script>
+		<script src="../js/viewRegistrarProducto/ActionRegisterProduct.js"></script>
 		<script src="../js/viewRegistrarProducto/main.js"></script>
 	</body>
 </html>

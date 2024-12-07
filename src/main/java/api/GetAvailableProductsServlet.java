@@ -30,13 +30,13 @@ public class GetAvailableProductsServlet extends HttpServlet {
     }
 
     /**
-	 * Método que recibe la petición POST del cliente Frontend para obtener la disponibilidad de productos de una receta determinada.
+	 * Método que recibe la petición GET del cliente Frontend para obtener la disponibilidad de productos de una receta determinada.
 	 * @author jesus.zepeda@unah.hn
 	 * @version 0.1.0
 	 * @since 2024/11/28
 	 * @date 2024/11/28
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		
 		int recipeId = 0;
@@ -52,6 +52,16 @@ public class GetAvailableProductsServlet extends HttpServlet {
 				String availableProducts = AvailableProductsDAO.getAvailableProducts(recipeId);
 				
 				response.getWriter().append(availableProducts);
+			} else {
+				
+				response.getWriter().append("""
+						{
+							"data": {
+								"availableProducts": [],
+								"unavailableProducts": []
+							}
+						}
+						""");
 			}
 		} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 			//e.printStackTrace();

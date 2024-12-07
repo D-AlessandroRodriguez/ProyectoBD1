@@ -65,13 +65,17 @@
 				<h3 class="pt-3">Registro de Lote</h3>		
 			</div>
 			<div id="datosGeneralesRowContainer" class="row">
-				<form class="py-3 px-5 border border-light-subtle rounded-3">
+				<div class="py-3 px-5 border border-light-subtle rounded-3">
 					<fieldset>
 						<legend>Información del Lote</legend>
+						<div class="row mb-1">
+							<div class="col col-6">
+								<label for="identificacionProductoInput" class="form-label">Producto</label>
+							</div>
+						</div>
 						<div class="row mb-3">
 							<div class="col col-6">
-								<label for="nombreProductoInput" class="form-label">Producto</label>
-								<input class="form-control" list="listaDeProductos" id="nombreProductoInput" placeholder="Escriba el nombre del producto para buscar..." required>
+								<input class="form-control" list="listaDeProductos" id="identificacionProductoInput" placeholder="Escriba el nombre del producto para buscar..." required>
 								<datalist id="listaDeProductos">
 									<!-- Filtración de productos se traen desde la base de datos -->
 								    <option value="NombreProducto1 Marca2 Tipo2">
@@ -82,6 +86,9 @@
 									<option value="NombreProducto6 Marca5 Tipo9">
 								</datalist>
 							</div>
+							<div class="col col-3">
+								<button class="btn btn-secondary" id="changeProductButton" disabled>Cambiar</button>
+							</div>
 						</div>
 						<div class="row mb-3">
 							<div class="col col-6">
@@ -90,7 +97,7 @@
 							</div>
 							<div class="col col-6">
 								<label for="fechaVencInput" class="form-label">Fecha de Vencimiento</label>
-								<input type="date" class="form-control" id="fechaElabInput" required>
+								<input type="date" class="form-control" id="fechaVencInput" required>
 							</div>
 						</div>
 						<div class="row mb-3">
@@ -105,9 +112,14 @@
 							<button type="submit" class="btn btn-primary w-25">Registrar</button>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 		<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../js/viewRegistrarLote/Validator.js"></script>
+		<script src="../js/viewRegistrarLote/ActionRegisterBatch.js"></script>
+		<script src="../js/viewRegistrarLote/ActionSetProduct.js"></script>
+		<script src="../js/viewRegistrarLote/ActionGetProducts.js"></script>
+		<script src="../js/viewRegistrarLote/main.js"></script>
 	</body>
 </html>

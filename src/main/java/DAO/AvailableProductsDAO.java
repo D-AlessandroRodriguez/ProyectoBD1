@@ -49,8 +49,8 @@ public class AvailableProductsDAO {
 		
 		Map<String,Object> data = new HashMap<>();
 		
-		List<String> availableProducts = new ArrayList<>();
-		List<String> nonAvailableProducts = new ArrayList<>();
+		List<Object> availableProducts = new ArrayList<>();
+		List<Object> nonAvailableProducts = new ArrayList<>();
 		
 		Map<String,String> product;
 		
@@ -85,7 +85,7 @@ public class AvailableProductsDAO {
 					product.put("name", productName);
 					product.put("quantity", String.format("%s", takedQuantity));
 					
-					availableProducts.add(new Gson().toJson(product));
+					availableProducts.add(product);
 				}
 			}
 			
@@ -96,7 +96,7 @@ public class AvailableProductsDAO {
 				product.put("name", productName);
 				product.put("quantity", String.format("%s", requiredQuantity));
 				
-				nonAvailableProducts.add(new Gson().toJson(product));
+				nonAvailableProducts.add(product);
 			}
 		}
 		

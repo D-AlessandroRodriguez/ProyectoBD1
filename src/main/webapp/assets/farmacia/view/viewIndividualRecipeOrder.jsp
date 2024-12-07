@@ -87,7 +87,7 @@
 				<p class="mt-3 fs-5 fw-semibold mb-0">Productos de la receta</p>
 			</div>
 			<div id="tablaRowContainer" class="row">
-				<div class="col px-5 mt-1 mb-2">
+				<div class="col mt-1 mb-2">
 					<table id="productosDeRecetaTable" class="table table-hover">
 						<thead class="encabezadosDeTabla">
 							<tr>
