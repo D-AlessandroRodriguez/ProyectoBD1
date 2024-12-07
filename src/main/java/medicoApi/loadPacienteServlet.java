@@ -36,7 +36,7 @@ public class loadPacienteServlet extends HttpServlet {
 		response.setContentType("application/json");
 		
 		HttpSession session = request.getSession(false);
-		String nombreMedico = (String) session.getAttribute("nombreMedico");
+		String nombreMedico = (String) session.getAttribute("nombreEmpleado");
 		
 		try {
 			response.getWriter().append(String.format("{\"paciente\": %s, \"nombreMedico\": \"%s\"}",
