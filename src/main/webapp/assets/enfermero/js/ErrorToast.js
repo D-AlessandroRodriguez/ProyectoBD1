@@ -1,42 +1,57 @@
-
 /**
- * Crea una ventan que muestra un error 
- * @author jose.ineztrosa@unah.edu.hn,agblandin@unah.hn
+ * Envia una peticion y procesa la respuesta
+ * @author agblandin@unha.hn
  * @version 0.1.0
- * @date 2024/08/07
- * @since 2024/08/4
+ * @date 2024/15/11
+ * @since 2024/15/11
  */
-
-class ErrorToast {
-
-	constructor(modalToast) {
-		this.modalToast = modalToast;
-
-	}
-
-
+class Action {
 
 	/**
-	 * Genera la venta de que mustra un error
-	 * @author jose.ineztrosa@unah.edu.hn,agblandin@unah.hn
+	 * Procesa la respuesta que recibe de un servlet
+	 * @author agblandin@unha.hn
 	 * @version 0.1.0
-	 * @date 2024/08/07
-	 * @since 2024/08/4
-	 * @param {String} message es el mensaje que se mostrara en la ventana
+	 * @date 2024/15/11
+	 * @since 2024/15/11
 	 */
-	show(message) {
+	static processResponse(modalError) {
+		let xhr = this;
 
-		const toastDom = this.modalToast;
+		let errorToast = new ErrorToast(modalError);
 
-		const toast = new bootstrap.Toast(toastDom);
+		if (xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status < 300)) {
+			let jsonR = JSON.parse(xhr.responseText);
+			let status = jsonR.status;
+			let message = jsonR.message; 
 
-		const text = toastDom.querySelector("#textError");
-		text.textContent = message;
-		toast.show();
+     console.log(status);
+     console.log(message);
+	 
+			if (status) {
 
+				errorToast.show(message);
+			} else {
 
+				errorToast.show(message);
+			}
+
+		}
 	}
 
+	/**
+	 * Crea una peticion y la envia a un servlet
+	 * @author agblandin@unah.hn
+	 * @version 0.1.0
+	 * @date 2024/15/11
+	 * @since 2024/15/11
+	 */
+	static send(personaData, modalError) {
+		console.log(personaData);
 
-
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", "/ProyectoBD1/enfermero_rh_api/expedientePersona");
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.addEventListener("readystatechange", Action.processResponse.bind(xhr, modalError));
+		xhr.send(personaData);
+	}
 }
