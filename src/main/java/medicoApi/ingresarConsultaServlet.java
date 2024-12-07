@@ -12,7 +12,11 @@ import jakarta.servlet.http.HttpSession;
 import medicoDAO.RegistrarConsultaDAO;
 
 /**
- * Servlet implementation class ingresarConsultaServlet
+ * servlet donde se recibe los parametros para hacer un INSERT INTO consultaMedica
+ *	@author cdcruzr@unah.hn
+ * @version 0.2.0
+ * @since 2024/12/4
+ * @date 2024/12/6
  */
 @WebServlet("/api/ingresarConsulta")
 public class ingresarConsultaServlet extends HttpServlet {
@@ -20,34 +24,34 @@ public class ingresarConsultaServlet extends HttpServlet {
     public ingresarConsultaServlet() {
         super();
     }
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	/*
+	 * peticion post donde recibimos todos los parametros
+	 * @author cdcruzr@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/4
+	 * @date 2024/12/6
+	 **/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pacienteNombre = request.getParameter("paciente");
 		String fecha= request.getParameter("fecha");
 		String hora = request.getParameter("hora");
 		String costo = request.getParameter("costo");
 		
-		System.out.println(fecha);
 		
 		HttpSession session = request.getSession(false);
 		int idMedico = (int) session.getAttribute("medicoId");
 		
 		try {
 			RegistrarConsultaDAO rc = new RegistrarConsultaDAO();
-			rc.registrarConsulta(pacienteNombre, fecha, hora, costo, idMedico);
-			response.getWriter().append("{\"status\": true, \"filasAfectadas\":\"%s\"}");
-		} catch (ClassNotFoundException | SQLException e) {
+			response.getWriter().append(String.format("{\"status\": true, \"filasAfectadas\":\"%s\"}", 
+					rc.registrarConsulta(pacienteNombre, fecha, hora, costo, idMedico)));
+		} catch (ClassNotFoundException | SQLException  e) {
 			e.printStackTrace();
+			response.getWriter().append("{\"status\": false, \"message\": \"Error al hacer insert verificar los parametros o error de sentencias SQL\"}");
 		}
-		response.getWriter().append("{\"status\": true}");
 	}
 
 }

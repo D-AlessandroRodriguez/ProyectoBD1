@@ -15,16 +15,13 @@ let cantProducto=  document.querySelector("#cantProducto");
 let docificacion =  document.querySelector("#docificacion");
 let frecuencia =  document.querySelector("#frecuencia");
 let selectUnidadDeMedida =  document.querySelector("#unidadDeMedida");
+let duracionsDias = document.querySelector("#duracionsDias");
 
-let listSelect = [selectNombreProducto, selectMarca, cantProducto, docificacion, frecuencia, selectUnidadDeMedida];
+let listSelect = [selectNombreProducto, selectMarca, cantProducto, docificacion, frecuencia, selectUnidadDeMedida, duracionsDias];
 
 //boton para registrar receta
 let bodyTable = document.querySelector("#bodyTable");
 
-	if(ls.isGetLocalStorage()){
-		let load = JSON.parse(ls.loadLocalStorage());
-		actionGenerarReceta.loadStorage(load, bodyTable);		
-	}
 // evento click para registrar receta en la tabla
 let btnRegistrarReceta = document.querySelector("#btnRegistrarReceta");
 btnRegistrarReceta.addEventListener("click", actionGenerarReceta.createLocalStorage.bind(actionGenerarReceta,listSelect, bodyTable));
@@ -44,6 +41,6 @@ selectNombreProducto.addEventListener("change",
 
 //boton para guardar en la base de datos la data	
 let btnGuardarReceta = document.querySelector("#btngGuardarReceta");
-btnGuardarReceta.addEventListener("click", actionGenerarReceta.insertReceta.bind(actionGenerarReceta));
+btnGuardarReceta.addEventListener("click", actionGenerarReceta.insertReceta.bind(actionGenerarReceta, listSelect, selectNombrePaciente));
 
 

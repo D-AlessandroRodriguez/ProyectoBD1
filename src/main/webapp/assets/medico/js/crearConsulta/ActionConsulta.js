@@ -1,17 +1,41 @@
+/**
+* clase donde se realizacion las peticiones y se manejan las respuestas para crear consultas
+* @author cdcruzr@unah.hn
+* @version 0.1.0
+* @since 2024/11/29
+* @date 2024/11/30
+*/
 class ActionConsulta{
     /**
-	 * para hacer el insert solo tendremos un true en donde sabremos si se hizo el insert
-	 */
+	* metodo de respuesta para saber si se inserto la receta
+	* @author cdcruzr@unah.hn
+	* @version 0.1.0
+	* @since 2024/11/30
+	* @date 2024/11/30
+	*/
 	static getResponseRegistrarReceta(){
         let xhr = this;
 
         if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
-            //recibe respuesta verdadera si se hizo la peticion
+            let jsonResponse = JSON.parse(xhr.responseText);
+			
+			if(!jsonResponse.status){
+				window.alert(jsonResponse.message);
+			}else{
+				window.alert(jsonResponse.filasAfectadas);
+			}
+			
         }
-
     }
 	/**
 	 * crea los option del select en donde se ubicara los nombres de los pacicentes
+	 * @author cdcruzr@unah.hn
+	 * @version 0.1.2
+	 * @since 2024/11/29
+	 * @date 2024/11/30
+	 * 
+	 * @param {element select} selectPacientes
+	 * @param {element label} lblNombreDoctor  
 	 */
 	static getResponsePacientes(selectPacientes, lblNombreDoctor){
 		let xhr = this;
@@ -33,7 +57,13 @@ class ActionConsulta{
 		}
 	}
 	/**
-	 * peticion para hacer el insert a la base de datos 
+	 * peticion para hacer el insert a la base de datos
+	 * @author cdcruzr@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/11/29
+	 * @date 2024/11/30
+	 * 
+	 * @param {arreglo de elementos del dom} arrayParametros 
 	 */
     registrarConsulta(arrayParametros){
         let xhr = new XMLHttpRequest();
@@ -45,7 +75,13 @@ class ActionConsulta{
 	}
 	/**
 	 * peticion para cargar los pacicentes en el select
+	 * @author cdcruzr@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/11/30
+     * @date 2024/11/30
 	 * 
+	 * @param {element select} selectPacientes
+	 * @param {element label} lblNombreDoctor  
 	 */
 	loadCargarPacientes(selectPacientes, lblNombreDoctor){
 		let xhr = new XMLHttpRequest();

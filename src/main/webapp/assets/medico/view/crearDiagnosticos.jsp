@@ -27,19 +27,10 @@
 			      <ul class="navbar-nav d-flex gap-2">
 			        <li class="nav-item dropdown">
 			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            Generar
-			          </a>
-			          <ul class="dropdown-menu">
-			            <li><a class="dropdown-item" id="verOrdenesRecetasMenu" href="generatorReceta.jsp">Receta</a></li>
-			          </ul>
-			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            Nuevo
 			          </a>
 			          <ul class="dropdown-menu">
 			            <li><a class="dropdown-item" id="crearCosulta" href="crearConsulta.jsp">Crear consulta</a></li>
-			            <li><a class="dropdown-item" id="crearDiagnostico" href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
 			          </ul>
 			        </li>
 			        <li class="nav-item dropdown">
@@ -53,8 +44,8 @@
 			      </ul>
 			    </div>
 			    	<ol class="breadcrumb mb-0">
-			    		<li class="breadcrumb-item"><a class="link-light" href="viewMedico.jsp">Medico</a></li>
-			    		<li class="breadcrumb-item active" aria-current="page">Crear consulta</li>
+			    		<li class="breadcrumb-item"><a class="link-light" href="verConsultasMedico.jsp">ver consultas medicas</a></li>
+			    		<li class="breadcrumb-item active" aria-current="page">Crear Diagnostico</li>
 			    	</ol>
 			    </div>
 		</nav>

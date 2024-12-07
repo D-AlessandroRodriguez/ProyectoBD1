@@ -12,25 +12,32 @@ public class RegistrarConsultaDAO {
 	 * hace el insert de la consulta
 	 * @author cdcruzr@unah.edu.hn
 	 * @version 0.0.1
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 * @since 2024/12/4
 	 * @date  2024/12/4
 	 * */
 	public String registrarConsulta(String paciente, String fecha, String hora, String costo, int idMedico) throws ClassNotFoundException, SQLException {
-		int idExpediente = encontrarExpediente(paciente);
-		String query = "INSERT INTO ConsultasMedicas VALUES (?, ?, ?, ?, ?)";
-		
-		Connection conn = new DataBaseConnection("medico", "medico123").getConnection();
-		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, fecha);
-		ps.setString(2, hora);
-		ps.setInt(3, idMedico);
-		ps.setInt(4, idExpediente);		
-		ps.setDouble(5, Double.parseDouble(costo));
-		
-		int rs = ps.executeUpdate();
-		
-		return "filas afectadas"+ rs;
-	}
+		   String resultado;
+		    Connection conn = null;
+		    PreparedStatement ps = null;
+
+		        int idExpediente = encontrarExpediente(paciente);
+		        String query = "EXEC insertConsutasMedicas @Fecha = ?, @Hora = ?, @MedicoId = ?, @ExpedienteId = ?, @Costo = ?";
+		        conn = new DataBaseConnection("medico", "medico123").getConnection();
+
+		        ps = conn.prepareStatement(query);
+		        ps.setString(1, fecha);
+		        ps.setString(2, hora);
+		        ps.setInt(3, idMedico);
+		        ps.setInt(4, idExpediente);
+		        ps.setDouble(5, Double.parseDouble(costo));
+
+		        int filasAfectadas = ps.executeUpdate();
+		        resultado = "Filas afectadas: " + filasAfectadas;
+				
+				return resultado;
+		  }
 	/**
 	 * encuentra el expediente mediante join en un proceso almacenado
 	 * @author cdcruzr@unah.edu.hn
@@ -39,13 +46,13 @@ public class RegistrarConsultaDAO {
 	 * @date  2024/12/4
 	 * */
 	private int encontrarExpediente(String pacienteNombre) throws SQLException, ClassNotFoundException {
-		 String query = "EXEC BuscarExpediente @Nombre = ?, @Apellido = ?";
+		 String query = "EXEC BuscarExpedienteConsulta @Nombre = ?, @Apellido = ?";
 		 
 		 String[] nombreApellido = pacienteNombre.split(" "); 
 		 String n1 = nombreApellido[0];
 		 String a1 = nombreApellido[1];
 		 
-		 int id = 0;
+		 int idExpediente = 0;
 		 
 		 Connection conn = new DataBaseConnection("medico", "medico123").getConnection();
 		 PreparedStatement ps = conn.prepareStatement(query);
@@ -55,10 +62,10 @@ public class RegistrarConsultaDAO {
 		 ResultSet rs = ps.executeQuery();
 		 
 		 if(rs.next()) {
-			 id =  rs.getInt(1);
+			 idExpediente =  rs.getInt(1);
 		 }
-		 
-		return id;
+		 ps.close();
+		return idExpediente;
 	}
 	
 }

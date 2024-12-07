@@ -31,19 +31,10 @@
 					<ul class="navbar-nav d-flex gap-2">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle link-light" href="#" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Generar </a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" id="verOrdenesRecetasMenu"
-									href="generatorReceta.jsp">Receta</a></li>
-							</ul></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle link-light" href="#" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Nuevo </a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" id="crearCosulta"
 									href="crearConsulta.jsp">Crear consulta</a></li>
-								<li><a class="dropdown-item" id="crearDiagnostico"
-									href="crearDiagnosticos.jsp">Crear diagnostico</a></li>
 							</ul></li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle link-light" href="#" role="button"
@@ -56,7 +47,7 @@
 				</div>
 				<ol class="breadcrumb mb-0">
 					<li class="breadcrumb-item"><a class="link-light"
-						href="viewMedico.jsp">Medico</a></li>
+						href="verConsultasMedico.jsp">ver consultas medicas</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Generar
 						receta</li>
 				</ol>
@@ -138,7 +129,12 @@
 						<option selected>Seleccionar</option>
 					</select>
 				</div>
-								
+				
+				<div class="col-md-3 ">
+					<label for="duracionsDias" class="form-label fw-bold w-100">Dias tratamiento</label>
+					<input type="number" min="1" class="form-control" id="duracionsDias" placeholder="Cantidad" required>
+				</div>
+					
 				<div class="p-3 md-2 text-center" id="botonContainer">
 					<div class="col">
 						<button type="submit" id="btnRegistrarReceta" class="btn btn-success w-25 fw-bold">Registrar receta</button>
@@ -155,8 +151,9 @@
 								<th scope="col">Marca</th>
 								<th scope="col">Cantidad productos</th>
 								<th scope="col">Dosis</th>
-								<th scope="col">Unidad de medida</th>
 								<th scope="col">Frecuencia</th>
+								<th scope="col">Unidad de medida</th>
+								<th scope="col">Dias tratamientos</th>	
 							</tr>
 						</thead>
 						<tbody id="bodyTable">

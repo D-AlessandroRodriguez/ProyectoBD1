@@ -44,8 +44,7 @@ public class loadPacienteServlet extends HttpServlet {
 					nombreMedico
 					));
 		} catch (ClassNotFoundException | IOException | SQLException e) {
-			e.printStackTrace();
+			response.getWriter().append("{\"status\": false, \"message\": \"Error de sentencia SQL\"}");
 		}
 	}
-
 }

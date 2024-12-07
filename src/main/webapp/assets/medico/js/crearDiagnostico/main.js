@@ -12,4 +12,4 @@ let btnRegistrarDiagnostico = document.querySelector("#registrarDiagnostico");
 
 
 actionDiagnostico.loadCargarPacientes(selectNombrePaciente, lblNombreDoctor);
-btnRegistrarDiagnostico.addEventListener("click", actionDiagnostico.insertDiagnostico.bind(actionDiagnostico,  observaciones, fecha));
+btnRegistrarDiagnostico.addEventListener("click", actionDiagnostico.insertDiagnostico.bind(actionDiagnostico, selectNombrePaciente,  observaciones, fecha));

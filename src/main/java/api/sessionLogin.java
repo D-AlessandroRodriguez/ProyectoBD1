@@ -37,7 +37,6 @@ public class sessionLogin extends HttpServlet {
 	
 		String username = request.getParameter("email");
 		String password = request.getParameter("password");
-		System.out.println(username);
 		Map<String, Object> rolesPermisos;
 		UserDAO userExists = new UserDAO(username, password);
 		
@@ -51,7 +50,6 @@ public class sessionLogin extends HttpServlet {
 		    	session.setAttribute("email", rolesPermisos.get("email"));
 		    	session.setAttribute("medicoId", rolesPermisos.get("medicoId"));
 		    	session.setAttribute("nombreMedico", rolesPermisos.get("nombreMedico"));
-		    	
 		    	response.getWriter().append("{\"status\":true}");
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
