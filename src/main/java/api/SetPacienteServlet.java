@@ -126,11 +126,10 @@ public class SetPacienteServlet extends HttpServlet {
 		Connection connection = new DataBaseConnection("admin","admin1").getConnection();
 		connection.setAutoCommit(false); // Desactiva el autocommit 
 		
-		String query = "INSERT INTO Personas (DNI, RTN, N1, N2, AP1, AP2, Sexo, FechaNacimiento, DireccionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO Personas (DNI, N1, N2, AP1, AP2, Sexo, FechaNacimiento, DireccionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
 		try (PreparedStatement statement = connection.prepareStatement(query)){
 	    	statement.setString(1, (String) dataMap.get("DNI"));
-        	statement.setString(2, (String) dataMap.get("RTN"));
         	statement.setString(3, (String) dataMap.get("primerNombre"));
         	statement.setString(4, (String) dataMap.get("segundoNombre"));
         	statement.setString(5, (String) dataMap.get("primerApellido"));

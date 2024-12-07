@@ -16,7 +16,7 @@ import DataBase.DataBaseConnection;
 public class PacientesDAO {
 	
 	
-	public static Map<String,Object> getEmployeeData(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
+	public static Map<String,Object> getPacienteData(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
 
 		String query = null;
 		

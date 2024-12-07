@@ -36,7 +36,7 @@ class ActionPacientes {
 		
 		let data = { 
 			primerNombre, segundoNombre, primerApellido, segundoApellido, 
-			fecha, telefono, sexo,
+			fecha, telefono, sexo, DNIPaciente,
 			pais, depto, ciudad, colonia, referencia, NumTelEmergencia
 		};
 		
