@@ -44,7 +44,7 @@ class Action {
 		console.log(personaData);
 		
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "/ProyectoBD1/enfermero_rh_api/expedientePersona");
+		xhr.open("POST", "/ProyectoBD1/api/expedientePersona");
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.addEventListener("readystatechange", Action.processResponse.bind(xhr,modalError));
 		xhr.send(personaData);

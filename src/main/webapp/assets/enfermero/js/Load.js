@@ -63,7 +63,7 @@ class Load {
 
 
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "/ProyectoBD1/enfermero_rh_api/loadPaises");
+		xhr.open("POST", "/ProyectoBD1/api/loadPaises");
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.addEventListener("readystatechange", Load.processResponse.bind(xhr, select));
 		if (`${value.value}`.length == 0) {

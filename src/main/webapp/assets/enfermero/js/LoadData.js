@@ -56,7 +56,7 @@ class LoadData {
 
 
 		let xhr = new XMLHttpRequest();
-		xhr.open("POST", "/ProyectoBD1/enfermero_rh_api/load");
+		xhr.open("POST", "/ProyectoBD1/api/load");
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.addEventListener("readystatechange", LoadData.processResponse.bind(xhr, select));
 		xhr.send(data);
