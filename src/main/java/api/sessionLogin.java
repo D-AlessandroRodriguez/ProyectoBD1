@@ -48,8 +48,8 @@ public class sessionLogin extends HttpServlet {
 		    	session.setAttribute("nombreUsuario", rolesPermisos.get("nombreUsuario"));
 		    	session.setAttribute("rol", rolesPermisos.get("rol"));
 		    	session.setAttribute("email", rolesPermisos.get("email"));
-		    	session.setAttribute("medicoId", rolesPermisos.get("medicoId"));
-		    	session.setAttribute("nombreMedico", rolesPermisos.get("nombreMedico"));
+		    	session.setAttribute("empleadoId", rolesPermisos.get("empleadoId"));
+		    	session.setAttribute("nombreEmpleado", rolesPermisos.get("nombreEmpleado"));
 		    	response.getWriter().append("{\"status\":true}");
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
