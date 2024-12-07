@@ -53,7 +53,7 @@ class ActionPacientes {
 		xhr.send(JSON.stringify(data));
 	}
 	
-	processResponse (xhr) {
+	processResponse() {
 		let xhr = this;
 			
 		if (xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status < 300)) {

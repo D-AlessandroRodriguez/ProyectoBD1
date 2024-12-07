@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-
 import DataBase.DataBaseConnection;
 
 public class EmployeesDAO {
@@ -24,11 +22,11 @@ public class EmployeesDAO {
 			
 			if ("ASC".equalsIgnoreCase(orderDirection)) {
 				
-				query = String.format("SELECT * FROM VistaEmpleados WHERE (Id LIKE ? OR N1 LIKE ? OR AP1 LIKE ? OR departamento LIKE ? OR Cargo LIKE ? OR Usuario LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				query = String.format("SELECT * FROM VistaEmpleados WHERE (Id LIKE ? OR N1 LIKE ? OR AP1 LIKE ? OR NombreDepartamento LIKE ? OR Cargo LIKE ? OR Correo LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
 			
 			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
 				
-				query = String.format("SELECT * FROM VistaEmpleados WHERE (Id LIKE ? OR N1 LIKE ? OR AP1 LIKE ? OR departamento LIKE ? OR Cargo LIKE ? OR Usuario LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				query = String.format("SELECT * FROM VistaEmpleados WHERE (Id LIKE ? OR N1 LIKE ? OR AP1 LIKE ? OR NombreDepartamento LIKE ? OR Cargo LIKE ? OR Correo LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
 			}
 		}
 
@@ -40,14 +38,16 @@ public class EmployeesDAO {
 		statement.setString(2, searchValue+"%");
 		statement.setString(3, searchValue+"%");
 		statement.setString(4, searchValue+"%");
-		statement.setInt(5, start);
-		statement.setInt(6, length);
+		statement.setString(5, searchValue+"%");
+		statement.setString(6, searchValue+"%");
+		statement.setInt(7, start);
+		statement.setInt(8, length);
 
 		ResultSet resultSet = statement.executeQuery();
 		
 		Map<String,Object> response = new HashMap<>();
 		
-		List<String> employees = new ArrayList<>(); // almacena todos los empleados
+		List<Object> employees = new ArrayList<>(); // almacena todos los empleados
 		
 		Map<String,String> employee; // almacena un solo empleado
 		
@@ -60,10 +60,10 @@ public class EmployeesDAO {
 			employee.put("apellido1", resultSet.getString(3));
 			employee.put("departamento", resultSet.getString(4));
 			employee.put("cargo", resultSet.getString(5));
-			employee.put("usuario", resultSet.getString(6));
+			employee.put("correo", resultSet.getString(6));
 			employee.put("perfil", resultSet.getString(1));
 			
-			employees.add(new Gson().toJson(employee));
+			employees.add(employee);
 		}
 		
 		//response.put("recordsTotal", String.format("%s", getRecipeOrdersCount()));

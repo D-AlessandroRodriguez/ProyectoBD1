@@ -24,11 +24,11 @@ public class PacientesDAO {
 			
 			if ("ASC".equalsIgnoreCase(orderDirection)) {
 				
-				query = String.format("SELECT * FROM VistaPacientes WHERE (Id LIKE ? OR N1 LIKE ? OR AP1 LIKE ? OR dni LIKE ? OR telefono LIKE ? OR telefonoEmergencia LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				query = String.format("SELECT * FROM VistaPacientes WHERE (PersonaId LIKE ? OR PrimerNombre LIKE ? OR PrimerApellido LIKE ? OR DNI LIKE ? OR Telefono LIKE ? OR Expediente LIKE ?) ORDER BY %s ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
 			
 			} else if ("DESC".equalsIgnoreCase(orderDirection)) {
 				
-				query = String.format("SELECT * FROM VistaPacientes WHERE (Id LIKE ? OR N1 LIKE ? OR AP1 LIKE ? OR dni LIKE ? OR telefono LIKE ? OR telefonoEmergencia LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
+				query = String.format("SELECT * FROM VistaPacientes WHERE (PersonaId LIKE ? OR PrimerNombre LIKE ? OR PrimerApellido LIKE ? OR DNI LIKE ? OR Telefono LIKE ? OR Expediente LIKE ?) ORDER BY %s DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY;", orderColumnIndex+1);
 			}
 		}
 
@@ -40,8 +40,10 @@ public class PacientesDAO {
 		statement.setString(2, searchValue+"%");
 		statement.setString(3, searchValue+"%");
 		statement.setString(4, searchValue+"%");
-		statement.setInt(5, start);
-		statement.setInt(6, length);
+		statement.setString(5, searchValue+"%");
+		statement.setString(6, searchValue+"%");
+		statement.setInt(7, start);
+		statement.setInt(8, length);
 
 		ResultSet resultSet = statement.executeQuery();
 		
@@ -60,8 +62,7 @@ public class PacientesDAO {
 			paciente.put("apellido1", resultSet.getString(3));
 			paciente.put("dni", resultSet.getString(4));
 			paciente.put("telefono", resultSet.getString(5));
-			paciente.put("telefonoEmergencia", resultSet.getString(6));
-			paciente.put("expediente", resultSet.getString(1));
+			paciente.put("expediente", resultSet.getString(6));
 			
 			pacientes.add(new Gson().toJson(paciente));
 		}

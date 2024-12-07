@@ -62,8 +62,6 @@ public class GetEmployeesServlet extends HttpServlet {
 			
 			dataTableResponse.put("draw", String.format("%s", draw));
 			
-			System.out.println(new Gson().toJson(dataTableResponse));
-			
 			response.getWriter().append(new Gson().toJson(dataTableResponse));
 			
 		} catch (ClassNotFoundException | SQLException e) {

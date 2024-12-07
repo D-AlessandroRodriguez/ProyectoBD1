@@ -35,6 +35,7 @@ INSERT INTO Cargos (Nombre, Codigo, Activo) VALUES ('Administrador', 'A', 1);
 INSERT INTO Cargos (Nombre, Codigo, Activo) VALUES ('Cajero', 'C', 1);
 INSERT INTO Cargos (Nombre, Codigo, Activo) VALUES ('Recepcionista', 'R', 1);
 INSERT INTO Cargos (Nombre, Codigo, Activo) VALUES ('Atencion al cliente', 'AC', 1);
+INSERT INTO Cargos (Nombre, Codigo, Activo) VALUES ('Jefe de Recursos Humanos', 'JRH', 1);
 
 SELECT * FROM Cargos
 GO
@@ -93,14 +94,6 @@ INSERT INTO Colonias (CiudadId,Nombre,Activo) VALUES (7, 'Los Pinos', 1);
 INSERT INTO Colonias (CiudadId,Nombre,Activo) VALUES (7, 'Modesto Rodas Alvarado', 1);
 INSERT INTO Colonias (CiudadId,Nombre,Activo) VALUES (7, 'Nueva Suyapa', 1);
 
-
-Colonia John F. Kennedy
-Colonia Canaán
-Colonia Divanna
-Colonia Los Pinos
-Colonia Modesto Rodas Alvarado
-Colonia Nueva Suyapa
-
 SELECT * FROM Empleados
 GO
 
@@ -117,11 +110,12 @@ GO
 
 
 CREATE VIEW VistaPacientes AS
-SELECT p.Id AS PersonaId, p.N1 AS PrimerNombre, p.AP1 AS SegundoNombre, 
-t.Id AS Telefono, pa.NumTelEmergencia AS TelefonoEmergencia
+SELECT p.Id AS PersonaId, p.N1 AS PrimerNombre, p.AP1 AS PrimerApellido,
+p.DNI, t.Id AS Telefono, Ex.Id Expediente
 FROM Personas p
 INNER JOIN Telefonos t ON t.PersonaId = p.Id
-INNER JOIN Pacientes pa ON pa.PersonaId = p.Id;
+INNER JOIN Pacientes pa ON pa.PersonaId = p.Id
+INNER JOIN Expedientes Ex ON Ex.PacienteId = pa.Id;
 GO
 
 SELECT * FROM VistaPacientes

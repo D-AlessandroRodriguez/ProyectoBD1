@@ -36,14 +36,14 @@ let table = new DataTable('#employeesTable', {
 			name: 'cargo'
 		},
 		{
-			data: 'usuario',
-			name: 'usuario'
+			data: 'correo',
+			name: 'correo'
 		},
 		{
 			data: 'perfil',
 			name: 'perfil',
 			render: function(data) {
-				return `<a class="link-opacity-50-hover" href="perfilMedico.jsp?perfil=${data}">Ver orden</a>`;
+				return `<a class="link-opacity-50-hover" href="perfilMedico.jsp?perfil=${data}">Ver perfil</a>`;
 			}
 		}
 	],
@@ -96,10 +96,6 @@ let tablePacientes = new DataTable('#pacienteTable', {
 			data: 'telefono',
 			name: 'telefono'
 		},		
-		{
-			data: 'telefonoEmergencia',
-			name: 'telefonoEmergencia'
-		},
 		{
 			data: 'expediente',
 			name: 'expediente',
