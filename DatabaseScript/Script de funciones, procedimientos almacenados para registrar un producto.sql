@@ -1,4 +1,4 @@
--- Script de funciones, procedimientos almacenados y transacciones para registrar elementos de la farmacia
+-- Script de funciones, procedimientos almacenados para registrar elementos de la farmacia
 
 -- Función para obtener el id de una marca a partir de su código
 CREATE FUNCTION obtenerMarcaId(@codigoMarca VARCHAR(5))

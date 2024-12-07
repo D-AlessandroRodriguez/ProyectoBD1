@@ -59,7 +59,7 @@ public class GetProductsServlet extends HttpServlet {
 		
 		try {
 			
-			Map<String,Object> dataTableResponse = ProductsDAO.getProducts(start, length, searchValue, orderColumnIndex, orderDirection);
+			Map<String,Object> dataTableResponse = ProductsDAO.getProductsForDataTable(start, length, searchValue, orderColumnIndex, orderDirection);
 			
 			dataTableResponse.put("draw", String.format("%s", draw));
 			
@@ -68,6 +68,26 @@ public class GetProductsServlet extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Método que recibe la petición GET del cliente Frontend el cual solicita todos los productos registrados.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/12/05
+	 * @date 2024/12/05
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			
+			Map<String,Object> responseMap = ProductsDAO.getProductsForDataList();
+			response.getWriter().append(new Gson().toJson(responseMap));
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			response.getWriter().append("{products: []}");
 		}
 	}
 }

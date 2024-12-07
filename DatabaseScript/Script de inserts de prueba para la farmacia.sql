@@ -34,14 +34,6 @@ INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Acofarma','acfrm',
 INSERT INTO MarcasDeProductos (Nombre,Codigo,Activo) VALUES ('Corinfar','crfar',1);
 GO
 
-SELECT TP.Id,TP.Nombre,U.Id,U.Nombre FROM TiposDeProductos AS TP INNER JOIN UnidadesDeMedida U ON U.Id = TP.UnidadMedidaId;
-GO
-
--- Llenado de tabla de productos
-INSERT INTO Productos (Id,NombreComercial,TipoId,MarcaId,UnidadMedidaId,CantidadContenido) VALUES ('P-20241130124745787','Acetaminofén 500 MG',7,2,3,30);
-INSERT INTO Productos (Id,NombreComercial,TipoId,MarcaId,UnidadMedidaId,CantidadContenido) VALUES ('P-20241130124751098','Rocefort',10,3,1,5);
-GO
-
 --Llenado de tipos de movimientos
 INSERT INTO TipoDeMovimientos (Nombre,Factor) VALUES ('Entrada',1);
 INSERT INTO TipoDeMovimientos (Nombre,Factor) VALUES ('Salida',-1);
@@ -49,16 +41,4 @@ INSERT INTO TipoDeMovimientos (Nombre,Factor) VALUES ('Producto dañado',-1);
 INSERT INTO TipoDeMovimientos (Nombre,Factor) VALUES ('Producto vencido',-1);
 INSERT INTO TipoDeMovimientos (Nombre,Factor) VALUES ('Producto robado',-1);
 INSERT INTO TipoDeMovimientos (Nombre,Factor) VALUES ('Producto devuelto',1);
-GO
-
--- Llenado de ejemplo de lotes
-INSERT INTO LotesProductos (Id,ProductoId,FechaIngreso,FechaElab,FechaVencimiento,CantidadIngresada,CantidadActual) VALUES ('L-20241130012854673','P-20241130124745787','2024-11-30','2024-11-26','2025-05-07',40,40);
-INSERT INTO LotesProductos (Id,ProductoId,FechaIngreso,FechaElab,FechaVencimiento,CantidadIngresada,CantidadActual) VALUES ('L-20241130012854433','P-20241130124751098','2024-11-30','2024-11-20','2025-10-25',63,63);
-GO
-
--- Llenado de ejemplo de ficha inventario
-INSERT INTO FichaInventario(Id,Fecha,TipoMovimientoId,ProductoId,Cantidad,LoteId) VALUES ('M-20241130013645678','2024-11-30',1,'P-20241130124745787',40,'L-20241130012854673');
-INSERT INTO FichaInventario(Id,Fecha,TipoMovimientoId,ProductoId,Cantidad,LoteId) VALUES ('M-20241130013645345','2024-11-30',1,'P-20241130124751098',63,'L-20241130012854433');
-INSERT INTO FichaInventario(Id,Fecha,TipoMovimientoId,ProductoId,Cantidad,LoteId) VALUES ('M-20241130013645653','2024-11-30',2,'P-20241130124751098',5,'L-20241130012854433');
-UPDATE LotesProductos SET CantidadActual = 58 WHERE ProductoId LIKE 'P-20241130124751098';
 GO

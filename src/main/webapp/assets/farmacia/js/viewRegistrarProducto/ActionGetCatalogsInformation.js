@@ -1,7 +1,22 @@
 
+/**
+ * Clase que se encarga de realizar peticiones al Backend para traer los registros de los catálogos de la base de datos que sirven para registrar un producto.
+ * @author jesus.zepeda@unah.hn
+ * @version 0.2.0
+ * @since 2024/12/03
+ * @date 2024/12/04
+ */
 class ActionGetCatalogsInformation {
 	
-	static processGetProductCategoriesResponse(categoriesCheckboxesCols) {
+	/**
+	 * Método que se encarga de procesar la respuesta del Backend a la solicitud para traer el catálogo de categorías de productos.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/03
+	 * @date 2024/12/04
+	 * @param {HTMLDivElement[]} categoriesCheckboxesCols Array de columnas de bootstrap en las cuáles se insertarán a las categorías como inputs checkbox en un orden específico.
+	 */
+	static processGetProductCategoriesResponse(categoriesCheckboxesCols=[]) {
 		
 		let xhr = this;
 		
@@ -27,6 +42,14 @@ class ActionGetCatalogsInformation {
 		}
 	}
 	
+	/**
+	 * Método que se encarga de realizar la petición al Backend para traer el catálogo de las categorías de productos.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/03
+	 * @date 2024/12/04
+	 * @param {HTMLDivElement[]} categoriesCheckboxesCols Array de columnas de bootstrap en las cuáles se insertarán a las categorías como inputs checkbox en un orden específico. 
+	 */
 	static getProductCategoriesCatalog(categoriesCheckboxesCols) {
 		
 		for (let categoryCheckbox of categoriesCheckboxesCols) {
@@ -40,7 +63,15 @@ class ActionGetCatalogsInformation {
 		xhr.send();	
 	}
 	
-	static processGetMeasurementUnitsResponse(unidadDeMedidaInput) {
+	/**
+	 * Método que se encarga de procesar la respuesta del Backend a la solicitud para obtener de la base de datos a la unidad de medida relacionada a un tipo de producto.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/03
+	 * @date 2024/12/04
+	 * @param {HTMLInputElement} unidadDeMedidaInput Input el cuál se rellenará con la unidad de medida obtenida de la base de datos por parate del Backend.
+	 */
+	static processGetMeasurementUnitResponse(unidadDeMedidaInput) {
 		
 		let xhr = this;
 		
@@ -59,6 +90,13 @@ class ActionGetCatalogsInformation {
 		}
 	}
 	
+	/**
+	 * Método que se encarga de realizar la petición al Backend de obtener de la base de datos a la unidad de medida asociada a un tipo de dato en específico.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/03
+	 * @date 2024/12/04
+	 */
 	static getMeasurementUnit(tipoSelect,unidadDeMedidaInput) {
 		
 		let typeCode = tipoSelect.value;
@@ -67,7 +105,7 @@ class ActionGetCatalogsInformation {
 			
 			let xhr = new XMLHttpRequest();
 			xhr.open("GET", `/ProyectoBD1/api/get_product_catalogs?op=2&typeCode=${typeCode}`);
-			xhr.addEventListener("load", ActionGetCatalogsInformation.processGetMeasurementUnitsResponse.bind(xhr,unidadDeMedidaInput));
+			xhr.addEventListener("load", ActionGetCatalogsInformation.processGetMeasurementUnitResponse.bind(xhr,unidadDeMedidaInput));
 			xhr.send();	
 		} else {
 			
@@ -76,6 +114,15 @@ class ActionGetCatalogsInformation {
 		}
 	}
 	
+	/**
+	 * Método que se encarga de procesar la respuesta del Backend a la solicitud de obtener de la base de datos a los catálogos de las marcas de productos y los tipos de productos.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/03
+	 * @date 2024/12/04
+	 * @param {HTMLSelectElement} marcaSelect Select el cual se debe rellenar con options con su respectiva marca de producto.
+	 * @param {HTMLSelectElement} tipoSelect Select el cual se debe rellenar con options con su respectivo tipo de producto.
+	 */
 	static processGetBranchesAndTypesResponse(marcaSelect,tipoSelect) {
 		
 		let xhr = this;
@@ -112,6 +159,15 @@ class ActionGetCatalogsInformation {
 		}
 	}
 	
+	/**
+	 * Método que se encarga de realizar la petición al Backend de obtener de la base de datos a los catálogos de marcas de productos y los tipos de productos.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.2.0
+	 * @since 2024/12/03
+	 * @date 2024/12/04
+	 * @param {HTMLSelectElement} marcaSelect Select el cual se debe rellenar con options con su respectiva marca de producto.
+	 * @param {HTMLSelectElement} tipoSelect Select el cual se debe rellenar con options con su respectivo tipo de producto.
+	 */
 	static getBranchAndTypeCatalogsInformation(marcaSelect,tipoSelect) {
 		
 		let xhr = new XMLHttpRequest();

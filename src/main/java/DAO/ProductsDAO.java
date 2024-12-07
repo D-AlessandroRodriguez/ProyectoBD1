@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +69,7 @@ public class ProductsDAO {
 	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
 	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
 	 */
-	public static Map<String,Object> getProducts(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
+	public static Map<String,Object> getProductsForDataTable(int start, int length, String searchValue, int orderColumnIndex, String orderDirection) throws ClassNotFoundException, SQLException {
 		
 		String query = null;
 		
@@ -242,6 +243,8 @@ public class ProductsDAO {
 				
 				response.put("errorMessage", null);
 				
+				connection.close();
+				
 				return response;
 				
 			} catch (Exception e) {
@@ -250,6 +253,7 @@ public class ProductsDAO {
 					
 					try {
 	                    connection.rollback();
+	                    connection.close();
 	                    e.printStackTrace();
 	                    
 	                } catch (SQLException rollbackEx) {
@@ -268,6 +272,7 @@ public class ProductsDAO {
 		response.put("status", false);
 		response.put("content", null);
 		response.put("errorMessage", "No se puedo registrar el producto!");
+		
 		return response;
 	}
 	
@@ -281,7 +286,50 @@ public class ProductsDAO {
 	 */
 	private static String getProductId() {
 		// TODO Auto-generated method stub
-		String productId = new String("P-"+TimeAndDate.getCurrentDate());
+		String productId = new String("P-"+TimeAndDate.getCurrentDate("YYYYMMddhhmmssSSS"));
 		return productId;
+	}
+
+	/**
+	 * Método que accede a la base de datos para recuperar los productos para ser mostrados en una DataList de bootstrap por el cliente Frontend.
+	 * @author jesus.zepeda@unah.hn
+	 * @version 0.1.0
+	 * @since 2024/12/05
+	 * @date 2024/12/05
+	 * @return Un mapa convertible a Json con los productos recolectados de la base de datos.
+	 * @throws ClassNotFoundException Excepción que se produce cuando no se encuentra una clase.
+	 * @throws SQLException Excepción que se produce cuando ocurre un error en la base de datos.
+	 */
+	public static Map<String, Object> getProductsForDataList() throws ClassNotFoundException, SQLException {
+		
+		String query = "SELECT * FROM VistaProductos;";
+		
+		Connection connection = new DataBaseConnection("farmaceutico","jesus123").getConnection();
+		
+		PreparedStatement statement = connection.prepareStatement(query);
+		
+		ResultSet resultSet = statement.executeQuery();
+		
+		Map<String,Object> response;
+		
+		List<Object> products = new LinkedList<>();
+		
+		Map<String,String> product;
+		
+		while (resultSet.next()) {
+			
+			product = new HashMap<>();
+			product.put("id", resultSet.getString(1));
+			product.put("information", String.format("%s %s %s %s", resultSet.getString(1),resultSet.getString(2), resultSet.getString(3), resultSet.getString(4)));
+			
+			products.add(product);
+		}
+		
+		response = new HashMap<>();
+		response.put("products", products);
+		
+		connection.close();
+		
+		return response;
 	}
 }

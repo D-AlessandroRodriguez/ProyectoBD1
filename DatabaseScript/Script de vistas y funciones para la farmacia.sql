@@ -1,4 +1,4 @@
-i-- Vistas y funciones del farmacéutico
+-- Vistas y funciones del farmacéutico
 
 --Ver información de los productos
 CREATE VIEW VistaProductos
@@ -9,7 +9,7 @@ M.Nombre marca,
 T.Nombre tipo,
 P.CantidadContenido contenido,
 U.Nombre unidad,
-ISNULL(SUM(F.Cantidad*TM.Factor), 0.00) stock
+ISNULL(SUM(F.Cantidad*TM.Factor), 0) stock
 FROM Productos P
 INNER JOIN MarcasDeProductos M
 ON P.MarcaId = M.Id

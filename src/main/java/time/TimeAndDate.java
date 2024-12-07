@@ -12,12 +12,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class TimeAndDate {
 
-	public static String getCurrentDate() {
+	public static String getCurrentDate(String pattern) {
 		
 		LocalDateTime time = LocalDateTime.now();
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("YYYYMMddhhmmssSSS");
-		
-		System.out.println(time.format(format));
+		DateTimeFormatter format = DateTimeFormatter.ofPattern(pattern);
 		
 		return time.format(format);
 	}
