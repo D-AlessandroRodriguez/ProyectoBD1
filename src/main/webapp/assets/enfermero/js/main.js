@@ -1,12 +1,13 @@
 let load = new Load();
 let dataLoad = new LoadData();
+let process = new ProcessData();
 
 var nombre1 = document.querySelector("#Nombre1");
 var nombre2 = document.querySelector("#Nombre2");
 var apellido1 = document.querySelector("#Apellido1");
 var apellido2 = document.querySelector("#Apellido2");
 var DNIPersona = document.querySelector("#DNIPersona");
-var RTNPersona = document.querySelector("#RTNPersona");
+
 var fechaNacimiento = document.querySelector("#fechaNacimiento");
 var sexoPersona = document.querySelector("#sexoPersona");
 var TiposDeSangre = document.querySelector("#TiposDeSangre");
@@ -36,11 +37,11 @@ var guardarExpediente = document.querySelector("#buttonCreate");
 var modalError = document.querySelector("#modalError");
 
 var direccionPersona = [pais,depto,ciudad,colonia,referenciaD];
-var persona = [DNIPersona,RTNPersona,nombre1,nombre2,apellido1,apellido2,sexoPersona,fechaNacimiento];
+var persona = [DNIPersona,nombre1,nombre2,apellido1,apellido2,sexoPersona,fechaNacimiento];
 var expedientedata = [TiposDeSangre,EstadosPaciente,telefonoEmergencia];
 
 
-guardarExpediente.addEventListener("click",ProcessData.load.bind(Action,persona,direccionPersona,expedientedata,modalError));
+guardarExpediente.addEventListener("click",process.load.bind(process,persona,direccionPersona,expedientedata,modalError));
 pais.addEventListener("change", load.send.bind(load,pais,depto));
 depto.addEventListener("change", load.send.bind(load,depto,ciudad));
 ciudad.addEventListener("change", load.send.bind(load,ciudad,colonia));

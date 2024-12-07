@@ -21,9 +21,9 @@ class ProcessData {
 			* @param {HTMLDivElement}  expediente conjunto de inputs donde ingreso los datos de la persona
 			* @param {HTMLDivElement}  modalError Modal que se muestra si los datos no son correctos
 			*/
-	static load(persona, direccionPersona, expediente, modalError) {
+	 load(persona, direccionPersona, expediente, modalError) {
 
-		console.log(expediente);
+		
 		let modalE = new ErrorToast(modalError);
 
 		let personaData = ProcessData.getUrltaData(persona);

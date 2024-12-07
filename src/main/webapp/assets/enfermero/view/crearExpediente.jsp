@@ -46,14 +46,14 @@
 
 		</div>
 	</nav>
-	
-	
-          
+
+
+
 	<div class="container border rounded shadow" id="formConsulta"
-    style="position: relative; width: 80vw; height: 80vh; display: flex; flex-direction: column;">
-    <div class="form-container text-center p-3 border-bottom">
-        <h2 class="fw-bold">Nuevo Expediente</h2>
-    </div>
+		style="position: relative; width: 80vw; height: 80vh; display: flex; flex-direction: column;">
+		<div class="form-container text-center p-3 border-bottom">
+			<h2 class="fw-bold">Nuevo Expediente</h2>
+		</div>
 		<form
 			style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
 			<div class="p-4" id="camposContainer"
@@ -73,8 +73,8 @@
 						</div>
 						<div class="col-md-3">
 							<label for="Nombre2" class="form-label fw-bold">Nombre 2</label>
-							<input type="text" class="form-control" id="Nombre2"  placeholder="Opcional"
-								name="Nombre2" name="Nombre2" >
+							<input type="text" class="form-control" id="Nombre2"
+								placeholder="Opcional" name="Nombre2" name="Nombre2">
 						</div>
 						<div class="col-md-3">
 							<label for="Apellido1" class="form-label fw-bold">Apellido
@@ -83,8 +83,8 @@
 						</div>
 						<div class="col-md-3">
 							<label for="Apellido2" class="form-label fw-bold">Apellido2</label>
-							<input type="text" class="form-control" id="Apellido2"  placeholder="Opcional"
-								name="Apellido2" name="Apellido2" >
+							<input type="text" class="form-control" id="Apellido2"
+								placeholder="Opcional" name="Apellido2" name="Apellido2">
 						</div>
 					</div>
 
@@ -94,12 +94,7 @@
 							<input type="text" class="form-control" id="DNIPersona"
 								name="DNIPersona" name="DNIPersona" required>
 						</div>
-						<div class="mb-3 col-md-3">
-							<label for="RTNPersona" class="form-label fw-bold  col-md-6">RTN</label>
-							<input type="text" class="form-control" id="RTNPersona"
-								name="RTNPersona" name="RTNPersona" placeholder="Opcional"
-								>
-						</div>
+
 						<div class="col-md-3">
 							<label for="fechaNacimiento" class="form-label fw-bold">Fecha</label>
 							<input type="date" class="form-control" id="fechaNacimiento"
@@ -127,12 +122,10 @@
 					<div class="row mb-3" id="rowDireccion1">
 
 						<div class="col-md-3 ">
-							<label for="pais" class="form-label fw-bold w-100">Pais</label>
-
-
-							<select class="form-select" aria-label="Default select example"
+							<label for="pais" class="form-label fw-bold w-100">Pais</label> <select
+								class="form-select" aria-label="Default select example"
 								id="pais" name="pais" required>
-								
+
 
 							</select>
 
@@ -141,9 +134,8 @@
 
 						</div>
 						<div class="col-md-3 ">
-							<label for="depto"
-								class="form-label fw-bold w-100">Departamento</label> <select
-								class="form-select" id="depto" name="depto"
+							<label for="depto" class="form-label fw-bold w-100">Departamento</label>
+							<select class="form-select" id="depto" name="depto"
 								aria-label="Default select example" required>
 
 							</select>
@@ -156,7 +148,7 @@
 
 							<select class="form-select" aria-label="Default select example"
 								id="ciudad" name="ciudad" required>
-								
+
 
 							</select>
 
@@ -167,7 +159,7 @@
 							<label for="colonia" class="form-label fw-bold w-100">Colonia</label>
 							<select class="form-select" aria-label="Default select example"
 								id="colonia" name="colonia" required>
-								
+
 							</select>
 
 
@@ -190,34 +182,34 @@
 
 					<div class="row mb-3" id="rowInfoSalud">
 						<div class="col-md-3">
-							<label for="TiposDeSangre"
-								class="form-label fw-bold w-100">Tipo sangre</label> <select
-								class="form-select" aria-label="Default select example"
-								name="TiposDeSangre" id="TiposDeSangre" required>
+							<label for="TiposDeSangre" class="form-label fw-bold w-100">Tipo
+								sangre</label> <select class="form-select"
+								aria-label="Default select example" name="TiposDeSangre"
+								id="TiposDeSangre" required>
 								<option selected>Seleccionar</option>
-								
+
 
 							</select>
 
 
 						</div>
 						<div class="col-md-3">
-							<label for="EstadosPaciente"
-								class="form-label fw-bold w-100">Estado</label> <select
-								class="form-select" aria-label="Default select example"
+							<label for="EstadosPaciente" class="form-label fw-bold w-100">Estado</label>
+							<select class="form-select" aria-label="Default select example"
 								id="EstadosPaciente" name="EstadosPaciente" required>
 								<option selected>Seleccionar</option>
-								
+
 
 							</select>
 
 
 						</div>
-						
+
 						<div class="col-md-3">
-							<label for="telefonoEmergencia" class="form-label fw-bold w-100"># emergencia
-								</label> <input type="text" class="form-control" id="telefonoEmergencia"
-								name="telefonoEmergencia" name="telefonoEmergencia" required placeholder="">
+							<label for="telefonoEmergencia" class="form-label fw-bold w-100">#
+								emergencia </label> <input type="text" class="form-control"
+								id="telefonoEmergencia" name="telefonoEmergencia"
+								name="telefonoEmergencia" required placeholder="">
 						</div>
 					</div>
 
@@ -253,7 +245,8 @@
 	</div>
 
 	<div class="toast" role="alert" aria-live="assertive"
-		aria-atomic="true" id="modalError" style="position:absolute;top:11vh;left:75vw;width:15vw;">
+		aria-atomic="true" id="modalError"
+		style="position: absolute; top: 11vh; left: 75vw; width: 15vw;">
 		<div class="toast-header">
 			<strong class="me-auto">Error</strong> <small
 				class="text-body-secondary">Ahora</small>
@@ -267,7 +260,7 @@
 
 
 	<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
-	
+
 	<script src="../js/LoadData.js"></script>
 	<script src="../js/Load.js"></script>
 	<script src="../js/Validator.js"></script>
@@ -275,6 +268,6 @@
 	<script src="../js/Action.js"></script>
 	<script src="../js/ProcessData.js"></script>
 	<script src="../js/main.js"></script>
-	
+
 </body>
 </html>

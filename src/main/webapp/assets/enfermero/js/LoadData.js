@@ -1,10 +1,8 @@
 class LoadData {
 
-
-
 	/**
 	 * Procesa la respuesta que recibe de un servlet y crea las opcciones
-	 * @author 
+	 * @author agblandin@unah.hn
 	 * @version 0.1.0
 	 * @date 2024/07/01
 	 * @since 2024/07/4
@@ -49,9 +47,7 @@ class LoadData {
 	* @since 2024/07/4
 	*/
 	send(select) {
-		
-	
-		
+
 		let data = [`${select.name}=${select.name}`];
 
 
@@ -60,10 +56,32 @@ class LoadData {
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.addEventListener("readystatechange", LoadData.processResponse.bind(xhr, select));
 		xhr.send(data);
-
-	
-
-
 	}
+
+	/**
+	 * Crea una petición para cargar datos
+	 * @author agblandin@unah.hn
+	 * @version 0.1.0
+	 * @date 2024/07/01
+	 * @since 2024/07/4
+	 */
+	send(value, select) {
+		let nombre = "nombre";
+		let codigo = "codigo";
+
+		let data = [`${nombre}=${value.id}`];
+
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", "/ProyectoBD1/api/loadPaises");
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		if (`${value.id}` == "Titulaciones") {
+			xhr.send(`${nombre}=Titulaciones`);
+			xhr.addEventListener("readystatechange", LoadData.processResponseT.bind(xhr, select));
+		} else {
+			xhr.addEventListener("readystatechange", LoadData.processResponse.bind(xhr, select));
+			xhr.send(data);
+		}
+	}
+
 
 }

@@ -74,13 +74,11 @@
 						</div>
 					</div>
 						<div class="row mb-3">
-						<div class="col-mb-3 col-md-6">
-							<label for="paciente" class="form-label fw-bold  ">Departamento</label>
-								<select
+						<div class="col-mb-3 col-md-6" >
+							<label for="deptosh" class="form-label fw-bold  ">Departamento</label>
+								<select name="nombre" id ="deptosh"
 								class="form-select" aria-label="Default select example" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Nerologia</option>
-								<option value="2">Cardiologia</option>
+								
 
 							</select>
 						</div>
@@ -88,10 +86,7 @@
 							<label for="paciente" class="form-label fw-bold  col-md-6">Doctor</label>
 							<select
 								class="form-select" aria-label="Default select example" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Dr. Zepeda</option>
-								<option value="2">Dr. Blandin</option>
-
+								
 							</select>
 						</div>
 					</div>
@@ -143,5 +138,7 @@
 
 	
 	<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../js/LoadData.js"></script>
+	<script src="../js/MainCreateConsulta.js"></script>
 </body>
 </html>
