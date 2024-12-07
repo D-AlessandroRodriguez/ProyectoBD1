@@ -21,13 +21,13 @@ import DAO.PacientesDAO;
  * @since 2024/12/03
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/api/GetPaciente" })
-public class GetPaciente extends HttpServlet {
+public class GetPatientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetPaciente() {
+    public GetPatientServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
