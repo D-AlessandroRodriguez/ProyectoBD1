@@ -47,9 +47,9 @@ public class PacientesDAO {
 		
 		Map<String,Object> response = new HashMap<>();
 		
-		List<String> pacientes = new ArrayList<>(); // almacena todos los empleados
+		List<String> pacientes = new ArrayList<>(); // almacena todos los pacientes
 		
-		Map<String,String> paciente; // almacena un solo empleado
+		Map<String,String> paciente; // almacena un solo paciente
 		
 		while (resultSet.next()) {
 			
@@ -67,7 +67,7 @@ public class PacientesDAO {
 		}
 		
 		//response.put("recordsTotal", String.format("%s", getRecipeOrdersCount()));
-		response.put("pacientesFiltered", String.format("%s", pacientes.size()));
+		response.put("recordsFiltered", String.format("%s", pacientes.size()));
 		response.put("data", pacientes);
 		
 		return response;
