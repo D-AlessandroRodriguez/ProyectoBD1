@@ -38,22 +38,16 @@
 			<!-- nav para tener dentro los botones para interactuar -->
 			<div class="collapse navbar-collapse mx-2" id="navbarNavDropdown">
 				<ul class="navbar-nav d-flex gap-2">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle link-light" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">Crear </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" id="verOrdenesRecetasMenu"
-								href="viewRecursosHumanos.jsp">Empleado</a></li>
-
-
-
-						</ul>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Crear </a>
+					</li>
+					<li>
+						<a class="dropdown-item" id="verOrdenesRecetasMenu" href="viewRecursosHumanos.jsp">Empleado</a>
+					</li>
+				</ul>
 			</div>
-
 		</div>
 	</nav>
-
-
 
 	<div class="container border rounded shadow" id="formConsulta"
 		style="position: relative; width: 90vw; height: 80vh; display: flex; flex-direction: column;">
