@@ -11,7 +11,8 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import DAO.EmployeesDAO;
+import DAO.PacientesDAO;
+
 
 /**
  * Servlet que obtiene los datos de los empleados de la base de datos
@@ -20,16 +21,18 @@ import DAO.EmployeesDAO;
  * @date 2024/12/04
  * @since 2024/12/03
  */
-@WebServlet(asyncSupported = true, urlPatterns = {"/api/GetEmployees"})
-public class GetEmployeesServlet extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = {"api/GetPaciente"})
+public class GetPatientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public GetEmployeesServlet() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public GetPatientServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    
     /**
 	 * Método que recibe la petición POST del cliente Frontend para mostrar la información de los empleados
 	 * @author jesus.zepeda@unah.hn
@@ -50,15 +53,15 @@ public class GetEmployeesServlet extends HttpServlet {
 		
 		} catch (NumberFormatException e) {
 			
-			//e.printStackTrace();
+			//e.printStackTrace(); 
 		}
 		
 		String searchValue = request.getParameter("search[value]");
 		String orderDirection = request.getParameter("order[0][dir]");
-		
+		 
 		try {
 			
-			Map<String,Object> dataTableResponse = EmployeesDAO.getEmployeeData(start, length, searchValue, orderColumnIndex, orderDirection);
+			Map<String,Object> dataTableResponse = PacientesDAO.getPacienteData(start, length, searchValue, orderColumnIndex, orderDirection);
 			
 			dataTableResponse.put("draw", String.format("%s", draw));
 			
@@ -71,5 +74,4 @@ public class GetEmployeesServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }
