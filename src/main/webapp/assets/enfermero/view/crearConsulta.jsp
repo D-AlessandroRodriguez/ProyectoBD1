@@ -28,7 +28,7 @@
 				<span class="navbar-toggler-icon">botones</span>
 			</button>
 			<!-- nav para tener dentro los botones para interactuar -->
-			<div class="collapse navbar-collapse mx-2" id="navbarNavDropdown">
+				<div class="collapse navbar-collapse mx-2" id="navbarNavDropdown">
 				<ul class="navbar-nav d-flex gap-2">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle link-light" href="#" role="button"
@@ -43,7 +43,7 @@
 
 				</ul>
 			</div>
-
+			
 		</div>
 	</nav>
 	<!-- Página principal -->
@@ -59,7 +59,7 @@
 				style="flex: 1; overflow-y: auto;">
 				<form>
 
-
+					
 
 					<div class="row mb-3">
 						<div class="col-mb-3 col-md-6">
@@ -68,30 +68,25 @@
 								name="paciente" required>
 						</div>
 						<div class="col-mb-3 col-md-6">
-							<label for="paciente" class="form-label fw-bold  col-md-6">DNI</label>
-							<input type="text" class="form-control" id="paciente"
-								name="paciente" required>
+							<label for="pacienteDNI" class="form-label fw-bold  col-md-6">DNI</label>
+							<input type="text" class="form-control" id="pacienteDNI"
+								name="pacienteDNI" required>
 						</div>
 					</div>
-					<div class="row mb-3">
-						<div class="col-mb-3 col-md-6">
-							<label for="paciente" class="form-label fw-bold  ">Area
-								de especialidad</label> <select class="form-select"
-								aria-label="Default select example" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Nerologia</option>
-								<option value="2">Cardiologia</option>
+						<div class="row mb-3">
+						<div class="col-mb-3 col-md-6" >
+							<label for="deptosh" class="form-label fw-bold  ">Departamento</label>
+								<select name="nombre" id ="deptosh"
+								class="form-select" aria-label="Default select example" required>
+								
 
 							</select>
 						</div>
 						<div class="col-mb-3 col-md-6">
-							<label for="paciente" class="form-label fw-bold  col-md-6">Especialista</label>
-							<select class="form-select" aria-label="Default select example"
-								required>
-								<option selected>Seleccionar</option>
-								<option value="1">Dr. Zepeda</option>
-								<option value="2">Dr. Blandin</option>
-
+							<label for="paciente" class="form-label fw-bold  col-md-6">Doctor</label>
+							<select
+								class="form-select" aria-label="Default select example" required>
+								
 							</select>
 						</div>
 					</div>
@@ -141,7 +136,9 @@
 		</div>
 	</div>
 
-
+	
 	<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../js/LoadData.js"></script>
+	<script src="../js/MainCreateConsulta.js"></script>
 </body>
 </html>

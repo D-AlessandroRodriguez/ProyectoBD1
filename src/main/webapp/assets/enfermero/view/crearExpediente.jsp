@@ -18,7 +18,7 @@
 				src="../img/logo-hospital.png" alt="Logo" width="35px" height="30px"
 				class="d-inline-block align-text-top"> Hospital San Jesús
 			</a>
-			
+			<!--hr vertical de boostrap-->
 			<div class="vr mx-1" style="color: white; width: 3px;"></div>
 			<!--  no se para que-->
 			<button class="navbar-toggler" type="button"
@@ -50,7 +50,7 @@
 
 
 	<div class="container border rounded shadow" id="formConsulta"
-		style="position: relative; width: 90vw; height: 80vh; display: flex; flex-direction: column;">
+		style="position: relative; width: 80vw; height: 80vh; display: flex; flex-direction: column;">
 		<div class="form-container text-center p-3 border-bottom">
 			<h2 class="fw-bold">Nuevo Expediente</h2>
 		</div>
@@ -74,7 +74,7 @@
 						<div class="col-md-3">
 							<label for="Nombre2" class="form-label fw-bold">Nombre 2</label>
 							<input type="text" class="form-control" id="Nombre2"
-								name="Nombre2" name="Nombre2" required>
+								placeholder="Opcional" name="Nombre2" name="Nombre2">
 						</div>
 						<div class="col-md-3">
 							<label for="Apellido1" class="form-label fw-bold">Apellido
@@ -84,7 +84,7 @@
 						<div class="col-md-3">
 							<label for="Apellido2" class="form-label fw-bold">Apellido2</label>
 							<input type="text" class="form-control" id="Apellido2"
-								name="Apellido2" name="Apellido2" required>
+								placeholder="Opcional" name="Apellido2" name="Apellido2">
 						</div>
 					</div>
 
@@ -92,14 +92,9 @@
 						<div class="mb-3 col-md-3">
 							<label for="DNIPersona" class="form-label fw-bold  ">DNI</label>
 							<input type="text" class="form-control" id="DNIPersona"
-								name="DNIPersona" name="DNIPersona">
+								name="DNIPersona" name="DNIPersona" required>
 						</div>
-						<div class="mb-3 col-md-3">
-							<label for="RTNPersona" class="form-label fw-bold  col-md-6">RTN</label>
-							<input type="text" class="form-control" id="RTNPersona"
-								name="RTNPersona" name="RTNPersona" placeholder="Opcional"
-								required>
-						</div>
+
 						<div class="col-md-3">
 							<label for="fechaNacimiento" class="form-label fw-bold">Fecha</label>
 							<input type="date" class="form-control" id="fechaNacimiento"
@@ -111,8 +106,8 @@
 							<select class="form-select" name="sexoPersona" id="sexoPersona"
 								aria-label="Default select example" required>
 								<option selected>Seleccionar</option>
-								<option value="1">Masculino</option>
-								<option value="2">Femenino</option>
+								<option value="F">Masculino</option>
+								<option value="M">Femenino</option>
 
 							</select>
 
@@ -127,14 +122,10 @@
 					<div class="row mb-3" id="rowDireccion1">
 
 						<div class="col-md-3 ">
-							<label for="paisDireccion" class="form-label fw-bold w-100">Pais</label>
-
-
-							<select class="form-select" aria-label="Default select example"
+							<label for="pais" class="form-label fw-bold w-100">Pais</label> <select
+								class="form-select" aria-label="Default select example"
 								id="pais" name="pais" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Honduras</option>
-								<option value="2">El Salvador</option>
+
 
 							</select>
 
@@ -143,13 +134,9 @@
 
 						</div>
 						<div class="col-md-3 ">
-							<label for="departamentoDireccion"
-								class="form-label fw-bold w-100">Departamento</label> <select
-								class="form-select" id="depto" name="depto"
+							<label for="depto" class="form-label fw-bold w-100">Departamento</label>
+							<select class="form-select" id="depto" name="depto"
 								aria-label="Default select example" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Francisco Morazan</option>
-								<option value="2">San Salvador</option>
 
 							</select>
 
@@ -157,13 +144,11 @@
 
 						</div>
 						<div class="col-md-3 ">
-							<label for="ciudadDireccion" class="form-label fw-bold w-100">Ciudad</label>
+							<label for="ciudad" class="form-label fw-bold w-100">Ciudad</label>
 
 							<select class="form-select" aria-label="Default select example"
 								id="ciudad" name="ciudad" required>
-								<option selected>Seleccionar</option>
-								<option value="1">Tegucigalpa</option>
-								<option value="2">Salvador</option>
+
 
 							</select>
 
@@ -171,12 +156,9 @@
 
 						</div>
 						<div class="col-md-3 ">
-							<label for="ColoniaDireccion" class="form-label fw-bold w-100">Colonia</label>
+							<label for="colonia" class="form-label fw-bold w-100">Colonia</label>
 							<select class="form-select" aria-label="Default select example"
 								id="colonia" name="colonia" required>
-								<option selected>Seleccionar</option>
-								<option value="1">hato</option>
-								<option value="2">Suyapa</option>
 
 							</select>
 
@@ -200,30 +182,34 @@
 
 					<div class="row mb-3" id="rowInfoSalud">
 						<div class="col-md-3">
-							<label for="departamentoDireccion"
-								class="form-label fw-bold w-100">Tipo sangre</label> <select
-								class="form-select" aria-label="Default select example"
-								name="tipoSangreP" id="tipoSangreP" required>
+							<label for="TiposDeSangre" class="form-label fw-bold w-100">Tipo
+								sangre</label> <select class="form-select"
+								aria-label="Default select example" name="TiposDeSangre"
+								id="TiposDeSangre" required>
 								<option selected>Seleccionar</option>
-								<option value="1">A</option>
-								<option value="2">B</option>
+
 
 							</select>
 
 
 						</div>
 						<div class="col-md-3">
-							<label for="departamentoDireccion"
-								class="form-label fw-bold w-100">Estado</label> <select
-								class="form-select" aria-label="Default select example"
-								id="estadoPersona" name="estadoPersona" required>
+							<label for="EstadosPaciente" class="form-label fw-bold w-100">Estado</label>
+							<select class="form-select" aria-label="Default select example"
+								id="EstadosPaciente" name="EstadosPaciente" required>
 								<option selected>Seleccionar</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
+
 
 							</select>
 
 
+						</div>
+
+						<div class="col-md-3">
+							<label for="telefonoEmergencia" class="form-label fw-bold w-100">#
+								emergencia </label> <input type="text" class="form-control"
+								id="telefonoEmergencia" name="telefonoEmergencia"
+								name="telefonoEmergencia" required placeholder="">
 						</div>
 					</div>
 
@@ -275,6 +261,7 @@
 
 	<script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
 
+	<script src="../js/LoadData.js"></script>
 	<script src="../js/Load.js"></script>
 	<script src="../js/Validator.js"></script>
 	<script src="../js/ErrorToast.js"></script>
