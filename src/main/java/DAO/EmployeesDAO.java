@@ -67,7 +67,7 @@ public class EmployeesDAO {
 		}
 		
 		//response.put("recordsTotal", String.format("%s", getRecipeOrdersCount()));
-		response.put("employeesFiltered", String.format("%s", employees.size()));
+		response.put("recordsFiltered", String.format("%s", employees.size()));
 		response.put("data", employees);
 		
 		return response;

@@ -20,7 +20,6 @@ class ActionMedico {
 		let segundoApellido = document.querySelector("#segundoApellido").value;
 		let fecha = document.querySelector("#fecha").value;
 		let DNI = document.querySelector("#DNI").value;
-		let RTN = document.querySelector("#RTN").value;
 		let correo = document.querySelector("#correo").value;
 		let telefono = document.querySelector("#telefono").value;
 		let sexo = document.querySelector("#sexo").value;
@@ -43,7 +42,7 @@ class ActionMedico {
 		
 		let dataFirstModal = { 
 			primerNombre, segundoNombre, primerApellido, segundoApellido, 
-			fecha, correo, telefono, sexo,
+			fecha, DNI, correo, telefono, sexo,
 			pais, depto, ciudad, colonia, referencia
 		};
 		
@@ -55,7 +54,7 @@ class ActionMedico {
 		let xhr = new XMLHttpRequest();
 	    xhr.open("POST", this.url1, true); // true indica que el método es asíncrono 
 	    xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.addEventListener("readystatechange", this.processResponseFirstModal(xhr));
+		xhr.addEventListener("readystatechange", this.processResponseFirstModal.bind(xhr));
 		
 		// Convierte los datos a JSON y los envía
 	    xhr.send(JSON.stringify(dataFirstModal));
@@ -92,8 +91,8 @@ class ActionMedico {
 			    perfil: dataRecibida.perfil
 			};
 
-			// Mantener la tabla actualizada
-			table.ajax.reload(); 
+			// Agregar el nuevo paciente a la tabla manualmente
+			table.row.add(nuevoPaciente).draw(); // Esto agregará la fila a la tabla DataTable
 			
 		} else {
 		    alert("Error al enviar los datos: " + this.statusText);
@@ -120,14 +119,14 @@ class ActionMedico {
 		let xhr = new XMLHttpRequest();	
 		xhr.open("POST", this.url2, true); // true indica que el método es asíncrono 
 		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.addEventListener("readystatechange", this.processResponseSecondModal(xhr));
+		xhr.addEventListener("readystatechange", this.processResponseSecondModal.bind(xhr));
 				
 		// Convierte los datos a JSON y los envía
 		xhr.send(JSON.stringify(dataSecondModal));
 	}
 	
 	processResponseSecondModal (xhr) {
-		//let xhr = this;
+		let xhr = this;
 			
 		if (xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status < 300)) {
 			alert("Datos enviados correctamente.");

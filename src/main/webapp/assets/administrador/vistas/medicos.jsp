@@ -129,13 +129,10 @@
 						
 						<div class="mb-3">
 							<div class="row align-items-start">
+								
 								<div class="col">
-									<label for="RTN" class="form-label">RTN</label>
-									<input type="text" class="form-control" id="RTN" name="RTN" required>
-								</div>
-								<div class="col">
-									<label for="telefono" class="form-label">Teléfono</label>
-									<input type="text" class="form-control" id="telefono" name="telefono" placeholder="9999-9999" required>
+									<label for="correo" class="form-label">Ingrese el correo electrónico</label>
+									<input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@gmail.com" required>
 								</div>
 							</div>
 						</div>
@@ -143,8 +140,8 @@
 						<div class="mb-3">
 							<div class="row align-items-start">
 								<div class="col">
-									<label for="correo" class="form-label">Ingrese el correo electrónico</label>
-									<input type="email" class="form-control" id="correo" name="correo" placeholder="ejemplo@gmail.com" required>
+									<label for="telefono" class="form-label">Teléfono</label>
+									<input type="text" class="form-control" id="telefono" name="telefono" placeholder="9999-9999" required>
 								</div>
 								<div class="col">	
 									<br><label for="sexo" class="form-label" style="margin-left: 3vw; margin-right: 1vw;">Sexo</label>
@@ -171,13 +168,13 @@
 						  <!-- Selector Principal -->
 						  <label for="depto" class="form-label" style="margin-right: 1vw; margin-left: 2vw;">Departamento</label>
 						  <select id="depto" class="btn btn-primary" class="form-select">
-						    <option value="" disabled selected>Seleccione</option>
+						    <option selected>Seleccione</option>
 						  </select>
 						  
 						  <!-- Selector Principal -->
 						  <label for="ciudad" class="form-label" style="margin-right: 1vw; margin-left: 2vw;">Ciudad</label>
 						  <select id="ciudad" class="btn btn-primary" class="form-select" disabled>
-						    <option value=""disabled selected>Seleccione</option>
+						    <option selected>Seleccione</option>
 						  </select>
 							
 						</div>
@@ -186,7 +183,7 @@
 							<!-- Selector Principal -->
 						  <label for="colonia" style="margin-right: 1vw; margin-left: 2vw;">Colonia</label>
 						  <select id="colonia" class="btn btn-primary" class="form-select" disabled>
-						    <option value=""disabled selected>Seleccione</option>
+						    <option selected>Seleccione</option>
 						  </select>
 							
 						</div>

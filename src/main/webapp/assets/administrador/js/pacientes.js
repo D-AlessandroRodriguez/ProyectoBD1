@@ -10,7 +10,7 @@ class ActionPacientes {
 		modal.show();
 	}
 	
-	getDataFirstModal (clickEvent){
+	getData (clickEvent){
 		let primerNombre = document.querySelector("#primerNombre").value;
 		let segundoNombre = document.querySelector("#segundoNombre").value;
 		let primerApellido = document.querySelector("#primerApellido").value;
@@ -43,14 +43,14 @@ class ActionPacientes {
 		this.sendData(data);
 	}
 	
-	sendData (dataSecondModal){
+	sendData (data){
 		let xhr = new XMLHttpRequest();	
 		xhr.open("POST", this.url, true); // true indica que el método es asíncrono 
 		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.addEventListener("readystatechange", this.processResponse(xhr));
+		xhr.addEventListener("readystatechange", this.processResponse.bind(xhr));
 				
 		// Convierte los datos a JSON y los envía
-		xhr.send(JSON.stringify(dataSecondModal));
+		xhr.send(JSON.stringify(data));
 	}
 	
 	processResponse (xhr) {
@@ -70,9 +70,10 @@ class ActionPacientes {
 				NumTelEmergencia: dataRecibida.NumTelEmergencia,
 				expediente: dataRecibida.expediente
 			};
-
-			// Mantener la tabla actualizada
-			table.ajax.reload(); 
+			
+			// Agregar el nuevo paciente a la tabla manualmente
+			table.row.add(nuevoPaciente).draw(); // Esto agregará la fila a la tabla DataTable
+			
 		} else {
 		    alert("Error al enviar los datos: " + this.statusText);
 		}
