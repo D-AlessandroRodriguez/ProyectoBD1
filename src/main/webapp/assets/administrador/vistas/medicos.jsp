@@ -30,29 +30,32 @@
 		<div class="menuLateral" id="menuLateral">
 		    <a href="administrador.jsp">Inicio</a>
 			
+			<!--
 			<div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Usuarios
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
-				    <li><a class="dropdown-item" href="#">Médicos</a></li>
+				    <li><a class="dropdown-item" href="medicos.jsp">Médicos</a></li>
 				    <li><a class="dropdown-item" href="#">Otros</a></li>
 	  			</ul>
-  			</div>
-  			
+  			</div> -->
+			
 		    <a href="pacientes.jsp">Pacientes</a>
 		    
+		    <!-- 
 		    <div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Consultas
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
-				    <li><a class="dropdown-item" href="verTodo.jsp">Ver todo</a></li>
+				    <li><a class="dropdown-item" href="#">Ver todo</a></li>
 				    <li><a class="dropdown-item" href="crearNuevo.jsp">Crear nuevo</a></li>
 	  			</ul>
-  			</div>
-		    
-		    <a href="#">Expedientes</a>
+  			</div> -->
+  			
+		    <a href="medicos.jsp">Empleados</a>
+		    <a href="consultas.jsp">Consultas</a>
 		    <a href="#">Pagos</a>
 		    <a href="#">Farmacia</a>
 		    <a href="#">Laboratorio</a>
@@ -63,18 +66,15 @@
 		<div class="container text-center" style="margin-left: 16vw; margin-top: 15vh; width:80vw;">
 			<div class="row align-items-start">
 				<div class="col">
-					<h3 class="pt-3">Médicos </h3>
+					<h3 class="pt-3">Empleados </h3>
 				</div>
 				<div class="col"></div>
 				<div class="col" style="margin-top: 2.5vh;">
-					<button id="registrarEmpleadoBoton" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#registrarEmpleadoModal" data-bs-whatever="registrarEmpleado"> Registrar </button>
+					<button id="registrarEmpleadoBoton" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#registrarEmpleadoModal" data-bs-whatever="registrarEmpleado"> Registrar empleado</button>
 				</div>
 			</div>
 		</div>
 		
-		<div style="margin-left: 20vw; margin-top: 2vh;">
-			<input type="search" class="form-control input-sm" placeholder="Buscar" aria-controls="buscarMedico" style="width:30vw;">
-		</div>
 		
 		
 		                                <!-- MODAL PARA REGISTRAR EMPLEADO -->

@@ -78,6 +78,7 @@ public class SetUserServlet extends HttpServlet {
 	 */
 	private int saveToUsuarios(Map<String, Object> dataMap) throws Exception {
 		Connection connection = new DataBaseConnection("admin","admin1").getConnection();
+		connection.setAutoCommit(false); // Desactiva el autocommit
 		
 		String query = "INSERT INTO Usuarios (PersonaId, EmpleadoId, Correo, Contrasena, Activo) VALUES (?, ?, ?, ?, ?)";
 		boolean activo = true;
@@ -95,6 +96,18 @@ public class SetUserServlet extends HttpServlet {
             if (rs.next()) {
                 return rs.getInt(1); // Retorna el ID del user
             }
+            
+            
+            connection.commit(); // Confirma los cambios si todo está bien
+        } catch (Exception e) {
+            if (connection != null) {
+            	connection.rollback(); // Reversión en caso de error
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+            	connection.close();
+            }
         }
         
         return -1;
@@ -111,6 +124,7 @@ public class SetUserServlet extends HttpServlet {
 	 */
 	private void saveToUsuariosRoles(Map<String, Object> dataMap, int UsuarioId) throws Exception {
 		Connection connection = new DataBaseConnection("admin","admin1").getConnection();
+		connection.setAutoCommit(false); // Desactiva el autocommit
 		
 		/*
 		Si en cambio el valor de ROL en el select no fuera numérico sino más bien un código como AD, ED, o el nombre como
@@ -132,6 +146,17 @@ public class SetUserServlet extends HttpServlet {
 			statement.setInt(1, UsuarioId);
 	    	statement.setInt(2, (int) dataMap.get("rol"));
 			statement.executeUpdate();
+			connection.commit(); // Confirma los cambios si todo está bien
+        
+		} catch (Exception e) {
+            if (connection != null) {
+            	connection.rollback(); // Reversión en caso de error
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+            	connection.close();
+            }
         }
 		
 	}

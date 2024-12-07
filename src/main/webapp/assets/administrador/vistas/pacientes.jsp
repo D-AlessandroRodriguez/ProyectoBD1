@@ -29,6 +29,7 @@
 		<div class="menuLateral" id="menuLateral">
 		    <a href="administrador.jsp">Inicio</a>
 			
+			<!--
 			<div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Usuarios
@@ -37,21 +38,23 @@
 				    <li><a class="dropdown-item" href="medicos.jsp">Médicos</a></li>
 				    <li><a class="dropdown-item" href="#">Otros</a></li>
 	  			</ul>
-  			</div>
-  			
+  			</div> -->
+			
 		    <a href="#">Pacientes</a>
 		    
+		    <!-- 
 		    <div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Consultas
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
-				    <li><a class="dropdown-item" href="verTodo.jsp">Ver todo</a></li>
+				    <li><a class="dropdown-item" href="#">Ver todo</a></li>
 				    <li><a class="dropdown-item" href="crearNuevo.jsp">Crear nuevo</a></li>
 	  			</ul>
-  			</div>
-		    
-		    <a href="#">Expedientes</a>
+  			</div> -->
+  			
+		    <a href="medicos.jsp">Empleados</a>
+		    <a href="consultas.jsp">Consultas</a>
 		    <a href="#">Pagos</a>
 		    <a href="#">Farmacia</a>
 		    <a href="#">Laboratorio</a>
@@ -76,7 +79,7 @@
 		</div>
 		
 		<!-- Modal para registrar paciente -->
-		<div id="registrarEmpleadoModal" class="modal fade" aria-hidden="true" tabindex="-1">
+		<div id="registrarPacienteModal" class="modal fade" aria-hidden="true" tabindex="-1">
 			<div class="modal-dialog modal-dialog-scrollable">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -100,7 +103,10 @@
 							<label for="segundoApellido" class="form-label">Ingrese el segundo apellido</label>
 							<input type="text" class="form-control" id="segundoApellido" name="segundoApellido" placeholder="Segundo apellido">
 						</div>
-						
+						<div class="mb-3">
+							<label for="DNIPaciente" class="form-label">DNI</label>
+							<input type="text" class="form-control" id="DNIPaciente" name="DNIPaciente" placeholder="9999-9999">
+						</div>
 						<div class="mb-3">
 							<label for="correo" class="form-label">Fecha de nacimiento</label>
 							<input type="date" class="form-control" id="fecha" name="fecha">
@@ -112,6 +118,10 @@
 						<div class="mb-3">
 							<label for="telefono" class="form-label">Teléfono</label>
 							<input type="text" class="form-control" id="telefono" name="telefono" placeholder="9999-9999">
+						</div>
+						<div class="mb-3">
+							<label for="NumTelEmergencia" class="form-label">Teléfono de emergencia</label>
+							<input type="text" class="form-control" id="NumTelEmergencia" name="NumTelEmergencia" placeholder="9999-9999">
 						</div>
 						
 						<div class="mb-3">
@@ -161,7 +171,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary">Guardar</button>
+						<button id="saveButtonPaciente" type="button" class="btn btn-primary">Guardar</button>
 					</div>
 				</div>
 			</div>
@@ -173,13 +183,13 @@
 			</div>
 			<div id="tablaRowContainer" class="row overflow-auto">
 				<div class="col px-5 mt-1 mb-2">
-					<table class="table table-hover text-center">
+					<table id="pacienteTable" class="table table-hover text-center">
 						<thead id="encabezadosDeTabla">
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Nombre</th>
+								<th scope="col">Apellido</th>
 								<th scope="col">DNI</th>
-								<th scope="col">Correo</th>
 								<th scope="col">Teléfono</th>
 								<th scope="col">Expediente</th>
 							</tr>

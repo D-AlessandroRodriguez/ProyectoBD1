@@ -14,22 +14,21 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
 import java.util.Map;
 
 
 /**
- * Servlet que guarda los datos del formulario de registro de un empleado en la base de datos
+ * Servlet que guarda los datos del formulario de registro de un paciente en la base de datos
  * @author pnvarela@unah.hn
  * @version 0.1.0
  * @date 2024/12/04
  * @since 2024/12/02
  */
-@WebServlet("/api/setEmployee")
-public class SetEmployeeServlet extends HttpServlet {
+@WebServlet("/api/setPaciente")
+public class SetPacienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SetEmployeeServlet() {
+    public SetPacienteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -60,20 +59,9 @@ public class SetEmployeeServlet extends HttpServlet {
         	int DireccionId = saveToDirecciones(dataMap); 
         	int PersonaId = saveToPersonas(dataMap, DireccionId);
             saveToTelefonos(dataMap, PersonaId);
-            int EmpleadoId = saveToEmpleados(dataMap, PersonaId); 
+            saveToPacientes(dataMap, PersonaId); 
             
-            // Creamos un mapa que contenga los datos necesarios para crear un usuario en la base de datos para enviarlo al frontend
-            Map<String, Object> responseData = new HashMap<>();
-            responseData.put("PersonaId", PersonaId);  
-            responseData.put("EmpleadoId", EmpleadoId);
-            responseData.put("Correo", (String) dataMap.get("correo")); 
-
-            String jsonResponse = gson.toJson(responseData);
-
-            // Establecemos el tipo de contenido y enviamos la respuesta JSON
-            response.setContentType("application/json");
             response.setStatus(200);  // solicitud exitosa
-            response.getWriter().write(jsonResponse);
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,35 +187,24 @@ public class SetEmployeeServlet extends HttpServlet {
 	}
 	
 	/**
-	 * Método que guarda los respectivos datos del form en la tabla Empleados
+	 * Método que guarda los respectivos datos del form en la tabla Pacientes
 	 * que provienen del frontend 
 	 * @author pnvarela@unah.hn
 	 * @version 0.1.0
 	 * @date 2024/12/03
 	 * @since 2024/12/02 
 	 */
-	private int saveToEmpleados(Map<String, Object> dataMap, int PersonaId) throws Exception {
+	private void saveToPacientes(Map<String, Object> dataMap, int PersonaId) throws Exception {
 		Connection connection = new DataBaseConnection("admin","admin1").getConnection();
 		
-		String query = "INSERT INTO Empleados (PersonaId, Activo, DepartamentoId, CargoId, Correo) VALUES (?, ?, ?, ?, ?)";
+		String query = "INSERT INTO Pacientes (PersonaId, NumTelEmergencia) VALUES (?, ?)";
 		boolean activo = true;
 		
 		try (PreparedStatement statement = connection.prepareStatement(query)){
 	    	statement.setInt(1, PersonaId);
-	    	statement.setBoolean(2, activo);
-	    	statement.setInt(3, (int) dataMap.get("deptoHospital"));
-	    	statement.setInt(4, (int) dataMap.get("cargo"));
-	    	statement.setString(5, (String) dataMap.get("correo")); 
-        	statement.executeUpdate();
+	    	statement.setString(5, (String) dataMap.get("NumTelEmergencia"));
         
-        	// Obtener el ID del empleado insertado
-        	ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next()) {
-                return rs.getInt(1); // Retorna el ID del empleado
-            }
         }
-        
-        return -1;
 		
 	}
 	

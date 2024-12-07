@@ -35,7 +35,8 @@ class ActionMedico {
 		
 
 		// Verificamos que no se envíe el formulario si algunos campos están vacíos 
-		if (!primerNombre || !primerApellido || !DNI || !fecha || !correo || !telefono || !sexo || !pais || !depto || !ciudad || !colonia || !deptoHospital || !cargo || !especialidad) {
+		// !depto || !ciudad || !colonia ||
+		if (!primerNombre || !primerApellido || !DNI || !fecha || !correo || !telefono || !sexo || !pais || !deptoHospital || !cargo || !especialidad) {
 			alert("Los campos son obligatorios.");
 		    return;
 		}
@@ -54,14 +55,14 @@ class ActionMedico {
 		let xhr = new XMLHttpRequest();
 	    xhr.open("POST", this.url1, true); // true indica que el método es asíncrono 
 	    xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.addEventListener("readystatechange", this.processResponse.bind(xhr));
+		xhr.addEventListener("readystatechange", this.processResponseFirstModal(xhr));
 		
 		// Convierte los datos a JSON y los envía
 	    xhr.send(JSON.stringify(dataFirstModal));
 	}
 	
 	processResponseFirstModal (xhr) {
-		let xhr = this;
+		//let xhr = this;
 		
 		if (xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status < 300)) {
 			alert("Datos enviados correctamente.");	
@@ -80,6 +81,19 @@ class ActionMedico {
 			let crearUsuario = document.querySelector("#crearUsuario"); 
 			this.saveButton.addEventListener("click", action.showModal.bind(action, crearUsuario));
 			this.secondSaveButton.addEventListener("click", action.getDataSecondModal.bind(action, idPersonaIngresada, idEmpleadoIngresado, correoIngresado));
+			
+			const nuevoEmpleado = {
+				id: dataRecibida.PersonaId,
+			    nombre1: dataRecibida.nombre1,
+			    apellido1: dataRecibida.apellido1,
+			    departamento: dataRecibida.departamento,
+			    cargo: dataRecibida.cargo,
+			    usuario: dataRecibida.usuario,
+			    perfil: dataRecibida.perfil
+			};
+
+			// Mantener la tabla actualizada
+			table.ajax.reload(); 
 			
 		} else {
 		    alert("Error al enviar los datos: " + this.statusText);
@@ -103,17 +117,17 @@ class ActionMedico {
 	}
 	
 	sendDataSecondModal (dataSecondModal){
-		let xhr = new XMLHttpRequest();
+		let xhr = new XMLHttpRequest();	
 		xhr.open("POST", this.url2, true); // true indica que el método es asíncrono 
 		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.addEventListener("readystatechange", this.processResponse.bind(xhr));
+		xhr.addEventListener("readystatechange", this.processResponseSecondModal(xhr));
 				
 		// Convierte los datos a JSON y los envía
 		xhr.send(JSON.stringify(dataSecondModal));
 	}
 	
 	processResponseSecondModal (xhr) {
-		let xhr = this;
+		//let xhr = this;
 			
 		if (xhr.readyState == XMLHttpRequest.DONE && (xhr.status >= 200 && xhr.status < 300)) {
 			alert("Datos enviados correctamente.");
@@ -134,6 +148,6 @@ let secondSaveButton = document.querySelector("#secondSaveButton");
 let action = new ActionMedico("api/setEmployee", "/api/setUser", saveButton, secondSaveButton);
 
 registrarEmpleadoModal.addEventListener("click", action.showModal.bind(action, registrarEmpleadoModal));
-//saveButton.addEventListener("click", action.getDataFirstModal.bind(action));
+saveButton.addEventListener("click", action.getDataFirstModal.bind(action));
 
 

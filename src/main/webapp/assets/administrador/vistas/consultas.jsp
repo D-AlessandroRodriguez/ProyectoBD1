@@ -28,18 +28,20 @@
 		<div class="menuLateral" id="menuLateral">
 		    <a href="administrador.jsp">Inicio</a>
 			
+			<!--
 			<div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Usuarios
 			    </a>
 			    <ul class="dropdown-menu dropdown-menu-dark">
 				    <li><a class="dropdown-item" href="medicos.jsp">Médicos</a></li>
-				    <li><a class="dropdown-item" href="otros.jsp">Otros</a></li>
+				    <li><a class="dropdown-item" href="#">Otros</a></li>
 	  			</ul>
-  			</div>
+  			</div> -->
 			
 		    <a href="pacientes.jsp">Pacientes</a>
 		    
+		    <!-- 
 		    <div class="btn-group dropend btn-dark">
 			    <a class="btn btn-light-bg-subtle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    Consultas
@@ -48,9 +50,10 @@
 				    <li><a class="dropdown-item" href="#">Ver todo</a></li>
 				    <li><a class="dropdown-item" href="crearNuevo.jsp">Crear nuevo</a></li>
 	  			</ul>
-  			</div>
-		    
-		    <a href="#">Expedientes</a>
+  			</div> -->
+  			
+		    <a href="medicos.jsp">Empleados</a>
+		    <a href="#">Consultas</a>
 		    <a href="#">Pagos</a>
 		    <a href="#">Farmacia</a>
 		    <a href="#">Laboratorio</a>
