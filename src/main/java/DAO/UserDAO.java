@@ -76,10 +76,11 @@ public class UserDAO {
         ResultSet resultSet = statement.executeQuery();
         if(resultSet.next()) {
         	result.put("nombreUsuario", resultSet.getString(1));
-        	result.put("rol", resultSet.getString(3));
-        	result.put("email", resultSet.getString(4));
-        	result.put("medicoId", resultSet.getInt(6));
-        	result.put("nombreMedico", String.format("%s %s", resultSet.getString(7), resultSet.getString(8)));	
+        	result.put("rol", resultSet.getString(2));
+        	result.put("email", resultSet.getString(3));
+        	result.put("medicoId", resultSet.getInt(4));
+        	result.put("nombreMedico", resultSet.getString(5));	
+        	result.put("cargo", resultSet.getString(6));
         }
         return result;
     }

@@ -1,9 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <%
-    String user = (String) session.getAttribute("rol");
-    if (user != null && user.equals("Médico")) {
+    String user = (String) session.getAttribute("cargo");
+  	String userCorreo = (String) session.getAttribute("email");
+  	System.out.print(user);
+  	
+    if (user != null && user.equals("Medico") && userCorreo.equals("cesar@hospital.com")) {
         response.sendRedirect("/ProyectoBD1/assets/medico/view/viewMedico.jsp");
+        
+    }else if (user != null && user.equals("Administrador")) {
+        response.sendRedirect("/ProyectoBD1/assets/administrador/vistas/administrador.jsp");
+        
+    }else if (user != null && user.equals("Cajero")) {
+        response.sendRedirect("/ProyectoBD1/assets/farmacia/view/mainViewFarmacia.jsp");
+        
+    }else if (user != null && user.equals("Medico") && userCorreo.equals("angel@hospital.com")) {
+        response.sendRedirect("/ProyectoBD1/assets/enfermero/view/viewEnfermero.jsp");
+    }else{
+    	if (user != null && user.equals("Médico")) {
+            response.sendRedirect("/ProyectoBD1/index.jsp");
+    	}
     }
 %>
 <!DOCTYPE html>
