@@ -60,7 +60,7 @@ response.setContentType("application/json");
 		 
 		try {
 			
-			Map<String,Object> dataTableResponse = PacientesDAO.getEmployeeData(start, length, searchValue, orderColumnIndex, orderDirection);
+			Map<String,Object> dataTableResponse = PacientesDAO.getPacienteData(start, length, searchValue, orderColumnIndex, orderDirection);
 			
 			dataTableResponse.put("draw", String.format("%s", draw));
 			
